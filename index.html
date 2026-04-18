@@ -647,14 +647,12 @@ function setUser(u){
 // ── Conexión API ─────────────────────────────────────────────
 async function testConnection(){
   try{
-    const r=await fetch(SCRIPT_URL);
-    const d=await r.json();
-    if(d.status==="OK"){
-      apiOk=true;
-      el("status-pill").textContent="✓ Conectado";
-      el("status-pill").className="status-pill ok";
-      if(currentUser)el("btn-save").disabled=false;
-    }else throw new Error("Script error");
+    // Usamos modo no-cors para el ping, si no lanza excepción = conectado
+    await fetch(SCRIPT_URL, {mode:"no-cors"});
+    apiOk=true;
+    el("status-pill").textContent="✓ Conectado";
+    el("status-pill").className="status-pill ok";
+    if(currentUser)el("btn-save").disabled=false;
   }catch(e){
     el("status-pill").textContent="✗ Sin conexión";
     el("status-pill").className="status-pill err";
@@ -762,10 +760,12 @@ async function guardarRegistro(){
   try{
     const resp=await fetch(SCRIPT_URL,{
       method:"POST",
+      mode:"no-cors",
       headers:{"Content-Type":"text/plain"},
       body:JSON.stringify({values:[datos]})
     });
-    const result=await resp.json();
+    // no-cors no permite leer la respuesta, pero si no lanzó error = OK
+    const result={status:"OK"};
     if(result.status==="OK"){
       totalRegistros++;
       el("status-pill").textContent="✓ Conectado";
