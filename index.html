@@ -602,13 +602,14 @@ const reqs=[
 {id:"nro",lb:"Número de Matriz"},
 {id:"tipo_int",lb:"Tipo de Interviniente"},
 {id:"fop",lb:"Fecha de la Operación"},
-{id:"forma_pago",lb:"Forma de Pago"},
+
 {id:"cedula",lb:"Cédula / Pasaporte"},
 {id:"nombres",lb:"Nombres Completos"},
 ];
 const errs=[];
 if(!_v01) errs.push("Seleccionar Matrizador en la barra superior");
 if(!_v13.scriptUrl) errs.push("Configurar la URL del Apps Script (botón ⚙)");
+if(document.querySelectorAll('.fpago_chk:checked').length===0) errs.push("Seleccionar al menos una Forma de Pago en la Sección I");
 reqs.forEach(r=>{
 const e=el(r.id);
 if(!e||!e.value.trim()){errs.push(r.lb);if(e)e.classList.add("err-f");}
