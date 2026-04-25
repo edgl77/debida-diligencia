@@ -627,8 +627,11 @@ let _v14=0;
 async function _v15(){
 _v14++;
 try{
-const _proxyUrl="https://corsproxy.io/?url="+encodeURIComponent(_v13.scriptUrl);
-const _resp=await fetch(_proxyUrl,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({values:[datos]})});
+const _resp=await fetch(_v13.scriptUrl,{
+method:"POST",
+headers:{"Content-Type":"text/plain"},
+body:JSON.stringify({values:[datos]})
+});
 const _rdata=await _resp.json();
 if(_rdata.status==="ERROR"||_rdata.status==="BUSY") throw new Error(_rdata.msg||"Error del servidor");
 const reg={id:Date.now(),fecha:new Date().toLocaleString("es-EC"),mat:_v01,nro:datos[6],nombre:datos[32],datos};
@@ -820,9 +823,7 @@ async function _f07(){
 if(!_v13.scriptUrl){ el("sp").textContent="⚙ Configurar"; el("sp").className="err"; return; }
 try{
 el("sp").textContent="⏳ Probando..."; el("sp").className="saving";
-const _cr=await fetch("https://corsproxy.io/?url="+encodeURIComponent(_v13.scriptUrl));
-const _cd=await _cr.json();
-if(_cd.status!=="OK") throw new Error(_cd.msg||"Script error");
+await fetch(_v13.scriptUrl,{mode:"no-cors"});
 _v03=true;
 el("sp").textContent="✓ Conectado"; el("sp").className="ok";
 if(_v01) el("bsv").disabled=false;
@@ -904,7 +905,7 @@ const ind=document.getElementById("cedula_searching");
 if(ind){ind.textContent="🔍 Buscando...";ind.style.display="inline";}
 try{
 const url=_v13.scriptUrl+"?action=buscar&cedula="+encodeURIComponent(cedula);
-const r=await fetch("https://corsproxy.io/?url="+encodeURIComponent(url));
+const r=await fetch(url);
 const d=await r.json();
 if(d.status==="FOUND"){
 const c=JSON.parse(d.msg);
