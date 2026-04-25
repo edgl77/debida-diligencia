@@ -627,7 +627,10 @@ let _v14=0;
 async function _v15(){
 _v14++;
 try{
-await fetch(_v13.scriptUrl,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify({values:[datos]})});
+const _proxyUrl="https://corsproxy.io/?url="+encodeURIComponent(_v13.scriptUrl);
+const _resp=await fetch(_proxyUrl,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({values:[datos]})});
+const _rdata=await _resp.json();
+if(_rdata.status==="ERROR"||_rdata.status==="BUSY") throw new Error(_rdata.msg||"Error del servidor");
 const reg={id:Date.now(),fecha:new Date().toLocaleString("es-EC"),mat:_v01,nro:datos[6],nombre:datos[32],datos};
 _v04.unshift(reg);
 if(_v04.length>50) _v04=_v04.slice(0,50);
@@ -635,7 +638,7 @@ localStorage.setItem("dd_hist",JSON.stringify(_v04));
 el("sp").textContent="✓ Conectado"; el("sp").className="ok";
 el("bsv").textContent="💾 Guardar"; el("bsv").disabled=false;
 _f17("✅","Guardado exitosamente",
-`Matrizador: ${_v01}\nN° Matriz: ${datos[6]||"—"}\nCliente: ${datos[32]||"—"}\n\n✔ Registro enviado a Google Sheets.\nUse 'Historial' para _f16.`,true);
+`Matrizador: ${_v01}\nN° Matriz: ${datos[6]||"—"}\nCliente: ${datos[32]||"—"}\n\n✔ Registro enviado a Google Sheets.\nUse 'Historial / Reimprimir' para volver a imprimirlo.`,true);
 }catch(err){
 if(_v14<3){
 el("bsv").textContent=`⏳ Reintentando ${_v14}/3...`;
@@ -817,7 +820,9 @@ async function _f07(){
 if(!_v13.scriptUrl){ el("sp").textContent="⚙ Configurar"; el("sp").className="err"; return; }
 try{
 el("sp").textContent="⏳ Probando..."; el("sp").className="saving";
-await fetch(_v13.scriptUrl,{mode:"no-cors"});
+const _cr=await fetch("https://corsproxy.io/?url="+encodeURIComponent(_v13.scriptUrl));
+const _cd=await _cr.json();
+if(_cd.status!=="OK") throw new Error(_cd.msg||"Script error");
 _v03=true;
 el("sp").textContent="✓ Conectado"; el("sp").className="ok";
 if(_v01) el("bsv").disabled=false;
@@ -899,7 +904,7 @@ const ind=document.getElementById("cedula_searching");
 if(ind){ind.textContent="🔍 Buscando...";ind.style.display="inline";}
 try{
 const url=_v13.scriptUrl+"?action=buscar&cedula="+encodeURIComponent(cedula);
-const r=await fetch(url);
+const r=await fetch("https://corsproxy.io/?url="+encodeURIComponent(url));
 const d=await r.json();
 if(d.status==="FOUND"){
 const c=JSON.parse(d.msg);
