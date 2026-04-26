@@ -281,7 +281,7 @@ function _f24(){
 try{ _v13 = JSON.parse(localStorage.getItem("dd_cfg")||"{}"); }catch(e){ _v13={}; }
 _v13.nombre   = _v13.nombre   || "";
 _v13.anio     = _v13.anio     || new Date().getFullYear()+"";
-_v13.scriptUrl= _v13.scriptUrl|| "";
+_v13.scriptUrl= _v13.scriptUrl|| "https://script.google.com/macros/s/AKfycbwYCcZ1ACDz7xzyf-3BFPg1KBG2BTDT2N0bjlcosEcfCPmV6Kpuppsdm0R60U4qNYgxWQ/exec";
 _v13.pass     = _v13.pass     || _v08;
 _v13.matrizadores   = _v13.matrizadores   || _v12;
 _v13.tipoActos      = _v13.tipoActos      || _v11;
@@ -608,7 +608,7 @@ const reqs=[
 ];
 const errs=[];
 if(!_v01) errs.push("Seleccionar Matrizador en la barra superior");
-if(!_v13.scriptUrl) errs.push("Configurar la URL del Apps Script (botón ⚙)");
+// URL quemada en código
 if(document.querySelectorAll('.fpago_chk:checked').length===0) errs.push("Seleccionar al menos una Forma de Pago en la Sección I");
 reqs.forEach(r=>{
 const e=el(r.id);
