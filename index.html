@@ -627,13 +627,53 @@ let _v14=0;
 async function _v15(){
 _v14++;
 try{
-const _resp=await fetch(_v13.scriptUrl,{
-method:"POST",
-headers:{"Content-Type":"text/plain"},
-body:JSON.stringify({values:[datos]})
+// Leer contador ANTES de guardar
+let _antesCount = 0;
+try{
+  const _pre = await fetch(_v13.scriptUrl+"?t="+Date.now());
+  const _preD = await _pre.json();
+  if(_preD.status==="OK"){
+    const _m = (_preD.msg||"").match(/Formularios:\s*(\d+)/);
+    if(_m) _antesCount = parseInt(_m[1])||0;
+  }
+}catch(e2){}
+
+// Enviar datos con no-cors (garantiza llegada al servidor)
+await fetch(_v13.scriptUrl,{
+  method:"POST",
+  mode:"no-cors",
+  headers:{"Content-Type":"text/plain"},
+  body:JSON.stringify({values:[datos]})
 });
-const _rdata=await _resp.json();
-if(_rdata.status==="ERROR"||_rdata.status==="BUSY") throw new Error(_rdata.msg||"Error del servidor");
+
+// Esperar y verificar que el contador aumentó
+await new Promise(r=>setTimeout(r,2500));
+let _confirmado = false;
+try{
+  const _post = await fetch(_v13.scriptUrl+"?t="+Date.now());
+  const _postD = await _post.json();
+  if(_postD.status==="OK"){
+    const _m2 = (_postD.msg||"").match(/Formularios:\s*(\d+)/);
+    const _despuesCount = _m2 ? parseInt(_m2[1])||0 : 0;
+    if(_despuesCount > _antesCount) _confirmado = true;
+  }
+}catch(e3){}
+
+if(!_confirmado){
+  // Segundo intento de verificación después de 3 segundos más
+  await new Promise(r=>setTimeout(r,3000));
+  try{
+    const _post2 = await fetch(_v13.scriptUrl+"?t="+Date.now());
+    const _postD2 = await _post2.json();
+    if(_postD2.status==="OK"){
+      const _m3 = (_postD2.msg||"").match(/Formularios:\s*(\d+)/);
+      const _count3 = _m3 ? parseInt(_m3[1])||0 : 0;
+      if(_count3 > _antesCount) _confirmado = true;
+    }
+  }catch(e4){}
+}
+
+if(!_confirmado) throw new Error("El registro no llegó al servidor. Verifique su conexión y reintente.");
 const reg={id:Date.now(),fecha:new Date().toLocaleString("es-EC"),mat:_v01,nro:datos[6],nombre:datos[32],datos};
 _v04.unshift(reg);
 if(_v04.length>50) _v04=_v04.slice(0,50);
@@ -823,7 +863,9 @@ async function _f07(){
 if(!_v13.scriptUrl){ el("sp").textContent="⚙ Configurar"; el("sp").className="err"; return; }
 try{
 el("sp").textContent="⏳ Probando..."; el("sp").className="saving";
-await fetch(_v13.scriptUrl,{mode:"no-cors"});
+const _tc = await fetch(_v13.scriptUrl+"?t="+Date.now());
+const _tcd = await _tc.json();
+if(_tcd.status!=="OK") throw new Error(_tcd.msg||"Error");
 _v03=true;
 el("sp").textContent="✓ Conectado"; el("sp").className="ok";
 if(_v01) el("bsv").disabled=false;
