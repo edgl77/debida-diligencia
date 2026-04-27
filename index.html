@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Debida Diligencia</title>
 <style>
@@ -819,22 +821,41 @@ el("cny_flds").style.opacity="1"; el("cny_flds").style.pointerEvents="";
 el("cny_notice").style.display="none";
 }
 async function _f07(){
-if(!_v13.scriptUrl){ el("sp").textContent="⚙ Configurar"; el("sp").className="err"; return; }
-el("sp").textContent="⏳ Probando..."; el("sp").className="saving";
-// Intentar JSONP con timeout de 5 segundos
+if(!_v13.scriptUrl){
+  el("sp").textContent="⚙ Configurar";
+  el("sp").className="err";
+  return;
+}
+el("sp").textContent="⏳ Probando...";
+el("sp").className="saving";
+// JSONP con timeout — funciona en cualquier red
 let _ok=false;
 try{
   await new Promise((res,rej)=>{
     const cb="__ddp"+Date.now();
     const sc=document.createElement("script");
-    const tm=setTimeout(()=>{ delete window[cb]; try{document.head.removeChild(sc);}catch(e){} rej(new Error("timeout")); },5000);
-    window[cb]=function(d){ clearTimeout(tm); delete window[cb]; try{document.head.removeChild(sc);}catch(e){} d.status==="OK"?res(d):rej(new Error(d.msg)); };
-    sc.onerror=()=>{ clearTimeout(tm); delete window[cb]; try{document.head.removeChild(sc);}catch(e){} rej(new Error("red")); };
+    const tm=setTimeout(()=>{
+      delete window[cb];
+      try{document.head.removeChild(sc);}catch(x){}
+      rej(new Error("timeout"));
+    },6000);
+    window[cb]=function(d){
+      clearTimeout(tm);
+      delete window[cb];
+      try{document.head.removeChild(sc);}catch(x){}
+      d.status==="OK"?res(d):rej(new Error(d.msg||"error"));
+    };
+    sc.onerror=()=>{
+      clearTimeout(tm);
+      delete window[cb];
+      try{document.head.removeChild(sc);}catch(x){}
+      rej(new Error("red"));
+    };
     sc.src=_v13.scriptUrl+"?callback="+cb+"&t="+Date.now();
     document.head.appendChild(sc);
   });
   _ok=true;
-}catch(e){ _ok=false; }
+}catch(e){_ok=false;}
 _v03=true;
 el("sp").textContent=_ok?"✓ Conectado":"✓ Listo";
 el("sp").className="ok";
