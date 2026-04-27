@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Debida Diligencia</title>
 <style>
@@ -821,36 +820,16 @@ el("cny_flds").style.opacity="1"; el("cny_flds").style.pointerEvents="";
 el("cny_notice").style.display="none";
 }
 async function _f07(){
-if(!_v13.scriptUrl){
-  el("sp").textContent="⚙ Configurar";
-  el("sp").className="err";
-  return;
-}
-el("sp").textContent="⏳ Probando...";
-el("sp").className="saving";
-// JSONP con timeout — funciona en cualquier red
+if(!_v13.scriptUrl){el("sp").textContent="⚙ Configurar";el("sp").className="err";return;}
+el("sp").textContent="⏳...";el("sp").className="saving";
 let _ok=false;
 try{
   await new Promise((res,rej)=>{
-    const cb="__ddp"+Date.now();
+    const cb="__p"+Date.now();
     const sc=document.createElement("script");
-    const tm=setTimeout(()=>{
-      delete window[cb];
-      try{document.head.removeChild(sc);}catch(x){}
-      rej(new Error("timeout"));
-    },6000);
-    window[cb]=function(d){
-      clearTimeout(tm);
-      delete window[cb];
-      try{document.head.removeChild(sc);}catch(x){}
-      d.status==="OK"?res(d):rej(new Error(d.msg||"error"));
-    };
-    sc.onerror=()=>{
-      clearTimeout(tm);
-      delete window[cb];
-      try{document.head.removeChild(sc);}catch(x){}
-      rej(new Error("red"));
-    };
+    const tm=setTimeout(()=>{delete window[cb];try{document.head.removeChild(sc);}catch(x){}rej();},6000);
+    window[cb]=d=>{clearTimeout(tm);delete window[cb];try{document.head.removeChild(sc);}catch(x){}d.status==="OK"?res():rej();};
+    sc.onerror=()=>{clearTimeout(tm);delete window[cb];try{document.head.removeChild(sc);}catch(x){}rej();};
     sc.src=_v13.scriptUrl+"?callback="+cb+"&t="+Date.now();
     document.head.appendChild(sc);
   });
@@ -859,7 +838,7 @@ try{
 _v03=true;
 el("sp").textContent=_ok?"✓ Conectado":"✓ Listo";
 el("sp").className="ok";
-if(_v01) el("bsv").disabled=false;
+if(_v01)el("bsv").disabled=false;
 }
 
 async function _f04(){
@@ -973,6 +952,26 @@ items.push(cb.value+(monto?' USD '+parseFloat(monto).toFixed(2):'')+(ref?' ('+re
 });
 return items.join(' | ');
 }
+function _f01(){
+el("ao").style.display="flex"; el("alv").style.display="block"; el("apv").style.display="none";
+el("api").value=""; el("ape").style.display="none";
+setTimeout(()=>el("api").focus(),100);
+}
+function _f02(){ el("ao").style.display="none"; }
+function _f03(){
+if(el("api").value===(_v13.pass||_v08)){
+el("alv").style.display="none"; el("apv").style.display="block";
+el("cn").value=_v13.nombre||"";
+el("ca").value=_v13.anio||"";
+el("cs").value=_v13.scriptUrl||"";
+el("cp").value="";
+el("cm").value=(_v13.matrizadores||[]).join("\n");
+el("cac").value=(_v13.tipoActos||[]).join("\n");
+el("cna").value=(_v13.nacionalidades||[]).join("\n");
+el("cpr").value=(_v13.profesiones||[]).join("\n");
+}else{ el("ape").style.display="block"; el("api").focus(); }
+}
+
 _f06();
 _f07();
 </script>
