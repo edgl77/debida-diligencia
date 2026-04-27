@@ -627,12 +627,26 @@ let _v14=0;
 async function _v15(){
 _v14++;
 try{
+// Enviar datos
 await fetch(_v13.scriptUrl,{
   method:"POST",
   mode:"no-cors",
   headers:{"Content-Type":"text/plain"},
   body:JSON.stringify({values:[datos]})
 });
+// Verificar con JSONP que llegó al servidor
+await new Promise(r=>setTimeout(r,2000));
+const _antesVerif = await new Promise((resolve)=>{
+  const cbV="__dd_v_"+Date.now();
+  const scV=document.createElement("script");
+  window[cbV]=function(d){ delete window[cbV]; document.head.removeChild(scV); resolve(d); };
+  scV.onerror=()=>{ delete window[cbV]; document.head.removeChild(scV); resolve({status:"ERROR"}); };
+  scV.src=_v13.scriptUrl+"?callback="+cbV+"&t="+Date.now();
+  document.head.appendChild(scV);
+});
+if(_antesVerif.status!=="OK"){
+  throw new Error("No se pudo verificar el guardado. Reintente.");
+}
 const reg={id:Date.now(),fecha:new Date().toLocaleString("es-EC"),mat:_v01,nro:datos[6],nombre:datos[32],datos};
 _v04.unshift(reg);
 if(_v04.length>50) _v04=_v04.slice(0,50);
@@ -822,7 +836,20 @@ async function _f07(){
 if(!_v13.scriptUrl){ el("sp").textContent="⚙ Configurar"; el("sp").className="err"; return; }
 try{
 el("sp").textContent="⏳ Probando..."; el("sp").className="saving";
-await fetch(_v13.scriptUrl,{mode:"no-cors"});
+// JSONP: carga script que llama a función global — funciona en CUALQUIER red
+await new Promise((resolve,reject)=>{
+  const cbName="__dd_ping_"+Date.now();
+  const script=document.createElement("script");
+  window[cbName]=function(data){
+    delete window[cbName];
+    document.head.removeChild(script);
+    if(data.status==="OK") resolve(data);
+    else reject(new Error(data.msg||"Error"));
+  };
+  script.onerror=()=>{ delete window[cbName]; document.head.removeChild(script); reject(new Error("Sin conexión")); };
+  script.src=_v13.scriptUrl+"?callback="+cbName+"&t="+Date.now();
+  document.head.appendChild(script);
+});
 _v03=true;
 el("sp").textContent="✓ Conectado"; el("sp").className="ok";
 if(_v01) el("bsv").disabled=false;
@@ -904,9 +931,33 @@ const ind=document.getElementById("cedula_searching");
 if(ind){ind.textContent="🔍 Buscando...";ind.style.display="inline";}
 try{
 const url=_v13.scriptUrl+"?action=buscar&cedula="+encodeURIComponent(cedula);
-// Autocompletado desactivado temporalmente por restricciones CORS
-throw new Error("skip");
-const r=await fetch(url);
+const _busqData = await new Promise((resolve)=>{
+  const cbB="__dd_b_"+Date.now();
+  const scB=document.createElement("script");
+  window[cbB]=function(d){ delete window[cbB]; document.head.removeChild(scB); resolve(d); };
+  scB.onerror=()=>{ delete window[cbB]; document.head.removeChild(scB); resolve({status:"ERROR"}); };
+  scB.src=url.replace("?","?callback="+cbB+"&")+"&t="+Date.now();
+  document.head.appendChild(scB);
+});
+if(_busqData.status==="FOUND"){
+  const c=JSON.parse(_busqData.msg);
+  const campos={nombres:c.nombres,ruc:c.ruc,nacion:c.nacion,ecivil:c.ecivil,
+    profesion:c.profesion,actividad:c.actividad,direccion:c.direccion,
+    ciudad_cli:c.ciudad,telefono:c.telefono,correo:c.correo,empresa:c.empresa,tact:c.tact};
+  Object.entries(campos).forEach(([id,val])=>{const e=document.getElementById(id);if(e&&val)e.value=val;});
+  const sel_nac=document.getElementById("nacion");
+  if(sel_nac&&c.nacion){for(let i=0;i<sel_nac.options.length;i++){if(sel_nac.options[i].value===c.nacion){sel_nac.selectedIndex=i;break;}}}
+  const sel_ec=document.getElementById("ecivil");
+  if(sel_ec&&c.ecivil){for(let i=0;i<sel_ec.options.length;i++){if(sel_ec.options[i].value===c.ecivil){sel_ec.selectedIndex=i;_f23(c.ecivil);break;}}}
+  if(ind){ind.textContent="✅ Datos cargados";ind.style.color="#2E7D32";ind.style.display="inline";}
+  setTimeout(()=>{if(ind){ind.textContent="";ind.style.display="none";}},4000);
+  return;
+} else if(_busqData.status==="NOT_FOUND"){
+  if(ind){ind.textContent="🆕 Cliente nuevo";ind.style.color="#E65100";ind.style.display="inline";}
+  setTimeout(()=>{if(ind){ind.textContent="";ind.style.display="none";}},4000);
+  return;
+}
+const r=null; // fallback
 const d=await r.json();
 if(d.status==="FOUND"){
 const c=JSON.parse(d.msg);
