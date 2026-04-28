@@ -529,7 +529,7 @@ el("ba").style.display="flex";
 function _f19(id){ el(id).classList.toggle("open"); }
 function _f20(id){ el(id).classList.add("open"); el(id).scrollIntoView({behavior:"smooth",block:"start"}); }
 function _f21(e){ document.querySelectorAll(".rp").forEach(p=>p.classList.remove("on")); e.classList.add("on"); _v02=e.dataset.v; }
-function _f22(u){ _v01=u; el("bsv").disabled=!u||!_v03; if(u&&el("func"))el("func").value=u; }
+function _f22(u){ _v01=u; el("bsv").disabled=!u; if(u&&el("func"))el("func").value=u; }
 function _f23(val){
 const sinCony=["Soltero/a","Divorciado/a","Viudo/a"];
 const blk=sinCony.includes(val);
