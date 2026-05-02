@@ -96,37 +96,74 @@ textarea{resize:vertical;min-height:58px}
 .bs{background:var(--navy);color:#fff}.bs:hover{background:#132d54}
 .bo{background:#fff;color:var(--navy);border:2px solid var(--navy)}.bo:hover{background:var(--gray)}
 
-/* ====== PANEL FORMAS DE PAGO MEJORADO ====== */
-#fpago_panel{background:#F8FAFC;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-top:4px}
-.fpago_header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.fpago_header span{font-size:10px;font-weight:700;color:#374151}
-#fp_ref_info{font-size:9px;color:#6B7280;font-style:italic}
-.fp_row{display:grid;grid-template-columns:200px 140px 1fr;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid #F1F5F9}
-.fp_row:last-child{border-bottom:none}
-.fp_row_inactive{opacity:.45;pointer-events:none}
-.fp_chk_label{display:flex;align-items:center;gap:7px;font-size:10px;cursor:pointer;font-weight:500;color:#374151}
-.fp_chk_label input{width:14px;height:14px;accent-color:var(--teal);cursor:pointer;flex-shrink:0}
+/* ====== PANEL FORMAS DE PAGO — MOBILE FIRST ====== */
+#fpago_panel{background:#F8FAFC;border:1.5px solid var(--border);border-radius:12px;padding:12px;margin-top:4px}
+.fpago_header{margin-bottom:10px}
+.fpago_header .fph-title{font-size:11px;font-weight:700;color:#374151}
+#fp_ref_info{display:inline-block;margin-top:3px;font-size:10px;color:#0D7377;font-weight:600;background:#CCFBF1;padding:2px 8px;border-radius:8px}
+
+/* Cada forma de pago: tarjeta vertical apilada */
+.fp_card{background:#fff;border:2px solid #E2E8F0;border-radius:10px;margin-bottom:8px;overflow:hidden;transition:border-color .2s,box-shadow .2s;cursor:pointer}
+.fp_card:last-child{margin-bottom:0}
+.fp_card.fp_active{border-color:#0D7377;box-shadow:0 2px 8px rgba(13,115,119,.15)}
+.fp_card.fp_active .fp_card_head{background:#CCFBF1}
+
+/* Cabecera de la tarjeta — siempre visible, tappable */
+.fp_card_head{display:flex;align-items:center;gap:10px;padding:11px 14px;min-height:48px;-webkit-tap-highlight-color:transparent;user-select:none}
+.fp_card_head .fp_icon{font-size:18px;flex-shrink:0;width:28px;text-align:center}
+.fp_card_head .fp_name{flex:1;font-size:12px;font-weight:600;color:#374151}
+.fp_card.fp_active .fp_card_head .fp_name{color:#065F46}
+.fp_chk_box{width:22px;height:22px;border-radius:6px;border:2px solid #CBD5E1;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;background:#fff}
+.fp_card.fp_active .fp_chk_box{background:#0D7377;border-color:#0D7377}
+.fp_chk_mark{color:#fff;font-size:13px;font-weight:900;display:none}
+.fp_card.fp_active .fp_chk_mark{display:block}
+
+/* Monto badge cuando está seleccionado */
+.fp_monto_badge{font-size:11px;font-weight:700;color:#0D7377;margin-right:4px;display:none;font-family:monospace}
+.fp_card.fp_active .fp_monto_badge{display:block}
+
+/* Cuerpo expandible de la tarjeta */
+.fp_card_body{display:none;padding:0 14px 12px 14px;border-top:1px solid #E2E8F0}
+.fp_card.fp_active .fp_card_body{display:block}
+
+/* Campo monto dentro de la tarjeta */
+.fp_monto_field{margin-top:10px}
+.fp_monto_field label{font-size:10px;font-weight:700;color:#374151;display:block;margin-bottom:4px}
 .fp_monto_wrap{position:relative}
-.fp_monto_wrap span{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:10px;color:#6B7280;pointer-events:none}
-.fp_monto_wrap input{padding-left:30px!important}
-.fp_ref_inp{font-size:10px!important;color:#555}
+.fp_monto_wrap .fp_sym{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:700;color:#0D7377;pointer-events:none}
+.fp_monto_wrap input[type=number]{
+  width:100%;padding:10px 12px 10px 28px;
+  border:2px solid #CBD5E1;border-radius:8px;
+  font-size:16px;/* 16px evita zoom en iOS */
+  font-weight:700;color:#065F46;background:#F0FDF4;
+  -moz-appearance:textfield;font-family:inherit}
+.fp_monto_wrap input[type=number]::-webkit-inner-spin-button,
+.fp_monto_wrap input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
+.fp_monto_wrap input[type=number]:focus{outline:none;border-color:#0D7377;box-shadow:0 0 0 3px rgba(13,115,119,.15)}
+
+/* Campo referencia */
+.fp_ref_field{margin-top:8px}
+.fp_ref_field label{font-size:10px;font-weight:700;color:#374151;display:block;margin-bottom:4px}
+.fp_ref_field input[type=text]{
+  width:100%;padding:9px 12px;
+  border:1.5px solid #CBD5E1;border-radius:8px;
+  font-size:14px;color:#374151;background:#fff;font-family:inherit}
+.fp_ref_field input[type=text]:focus{outline:none;border-color:#0D7377;box-shadow:0 0 0 2px rgba(13,115,119,.1)}
 
 /* BARRA DE CUADRE */
-#fpago_balance{margin-top:12px;border-radius:8px;overflow:hidden;border:1.5px solid var(--border)}
-#fpago_balance_header{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#F1F5F9;font-size:10px;font-weight:700;color:#374151}
-#fpago_balance_body{padding:10px 12px;background:#fff}
-.fp_bal_row{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#555;padding:2px 0}
-.fp_bal_row.total{font-weight:700;color:#1a1a2e;border-top:1px solid #E2E8F0;margin-top:5px;padding-top:6px}
-.fp_bal_row .val{font-family:monospace;font-size:11px}
-/* Barra de progreso */
-#fp_progbar_wrap{margin-top:8px;background:#E5E7EB;border-radius:4px;height:8px;overflow:hidden}
-#fp_progbar{height:8px;border-radius:4px;transition:width .3s,background .3s;width:0}
-/* Estado del cuadre */
-#fp_estado{margin-top:8px;padding:7px 12px;border-radius:7px;font-size:10px;font-weight:700;display:none}
-#fp_estado.ok{background:#D1FAE5;color:#065F46;border:1px solid #6EE7B7;display:block}
-#fp_estado.over{background:#FEE2E2;color:#991B1B;border:1px solid #FCA5A5;display:block}
-#fp_estado.under{background:#FEF3C7;color:#92400E;border:1px solid #FCD34D;display:block}
-#fp_estado.noref{background:#EDE9FE;color:#5B21B6;border:1px solid #C4B5FD;display:block}
+#fpago_balance{margin-top:12px;border-radius:10px;overflow:hidden;border:1.5px solid var(--border)}
+#fpago_balance_header{display:flex;justify-content:space-between;align-items:center;padding:9px 13px;background:#F1F5F9;font-size:10px;font-weight:700;color:#374151;flex-wrap:wrap;gap:4px}
+#fpago_balance_body{padding:10px 13px;background:#fff}
+.fp_bal_row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#555;padding:3px 0}
+.fp_bal_row.total{font-weight:700;color:#1a1a2e;border-top:1.5px solid #E2E8F0;margin-top:6px;padding-top:8px;font-size:12px}
+.fp_bal_row .val{font-family:monospace;font-size:12px;font-weight:700}
+#fp_progbar_wrap{margin-top:10px;background:#E5E7EB;border-radius:6px;height:10px;overflow:hidden}
+#fp_progbar{height:10px;border-radius:6px;transition:width .35s,background .35s;width:0}
+#fp_estado{margin-top:10px;padding:10px 13px;border-radius:8px;font-size:11px;font-weight:600;line-height:1.5;display:none}
+#fp_estado.ok{background:#D1FAE5;color:#065F46;border:1.5px solid #6EE7B7;display:block}
+#fp_estado.over{background:#FEE2E2;color:#991B1B;border:1.5px solid #FCA5A5;display:block}
+#fp_estado.under{background:#FEF3C7;color:#92400E;border:1.5px solid #FCD34D;display:block}
+#fp_estado.noref{background:#EDE9FE;color:#5B21B6;border:1.5px solid #C4B5FD;display:block}
 
 /* MODAL */
 #mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;align-items:center;justify-content:center}
@@ -379,49 +416,51 @@ const _v07=[
 
 /* ====== PANEL FORMAS DE PAGO (nuevo) ====== */
 function _buildFPPanel(){
-  const rows=FP_OPCIONES.map(fp=>`
-<div class="fp_row fp_row_inactive" id="fprow_${fp.key}">
-  <label class="fp_chk_label">
-    <input type="checkbox" id="fpchk_${fp.key}" value="${fp.label}"
-      onchange="_onFPCheck('${fp.key}',this.checked)">
-    ${fp.label}
-  </label>
-  <div class="fp_monto_wrap">
-    <span>$</span>
-    <input type="number" id="fpmonto_${fp.key}" min="0" step="0.01"
-      placeholder="0.00" oninput="_calcFPBalance()" disabled>
+  const cards = FP_OPCIONES.map(fp => {
+    const icon = {'transferencia': '🏦', 'cheque_cert': '📋', 'cheque_pers': '📝', 'efectivo': '💵', 'poliza': '📄', 'credito_hip': '🏠', 'compensacion': '🔄', 'permuta': '🤝', 'otro_pago': '➕'}[fp.key] || '💳';
+    const refPh = {'transferencia': 'N° cuenta / banco origen', 'cheque_cert': 'N° cheque / banco emisor', 'cheque_pers': 'N° cheque / banco', 'efectivo': 'Detalle (opcional)', 'poliza': 'N° póliza / entidad', 'credito_hip': 'Entidad / N° crédito', 'compensacion': 'Descripción de la compensación', 'permuta': 'Bien permutado / detalle', 'otro_pago': 'Especifique la forma de pago'}[fp.key] || 'Referencia / detalle';
+    return `
+<div class="fp_card" id="fpcard_${fp.key}" onclick="_toggleFP('${fp.key}')">
+  <div class="fp_card_head">
+    <span class="fp_icon">${icon}</span>
+    <span class="fp_name">${fp.label}</span>
+    <span class="fp_monto_badge" id="fpbadge_${fp.key}"></span>
+    <div class="fp_chk_box"><span class="fp_chk_mark">✓</span></div>
   </div>
-  <input type="text" class="fp_ref_inp" id="fpref_${fp.key}"
-    placeholder="${fp.key==='transferencia'?'N° cuenta / banco':fp.key==='cheque_cert'||fp.key==='cheque_pers'?'N° cheque / banco':fp.key==='credito_hip'?'Entidad financiera / N° crédito':fp.key==='poliza'?'N° póliza / entidad':'Referencia / detalle'}"
-    oninput="_calcFPBalance()" disabled>
-</div>`).join("");
+  <div class="fp_card_body" onclick="event.stopPropagation()">
+    <div class="fp_monto_field">
+      <label>Monto (USD) <span style="color:#B71C1C">*</span></label>
+      <div class="fp_monto_wrap">
+        <span class="fp_sym">$</span>
+        <input type="number" id="fpmonto_${fp.key}" min="0" step="0.01"
+          placeholder="0.00" inputmode="decimal"
+          oninput="_onFPMonto('${fp.key}',this.value)">
+      </div>
+    </div>
+    <div class="fp_ref_field">
+      <label>Referencia / Detalle</label>
+      <input type="text" id="fpref_${fp.key}" placeholder="${refPh}"
+        oninput="_calcFPBalance()">
+    </div>
+  </div>
+</div>`;
+  }).join('');
 
   return `<div id="fpago_panel">
   <div class="fpago_header">
-    <span>Seleccione las formas de pago e ingrese el monto de cada una</span>
-    <span id="fp_ref_info">La suma debe igualar la Cuantía o el Avalúo</span>
+    <div class="fph-title">Seleccione las formas de pago — toque para activar cada una</div>
+    <span id="fp_ref_info"></span>
   </div>
-  <div id="fpago_rows">${rows}</div>
-
-  <!-- Balance / cuadre -->
+  <div id="fpago_cards">${cards}</div>
   <div id="fpago_balance" style="display:none">
     <div id="fpago_balance_header">
       <span>Resumen de Pago</span>
-      <span id="fp_pct_label" style="font-weight:400;color:#6B7280"></span>
+      <span id="fp_pct_label" style="font-weight:500;color:#6B7280"></span>
     </div>
     <div id="fpago_balance_body">
-      <div class="fp_bal_row">
-        <span>Cuantía / Avalúo de referencia</span>
-        <span class="val" id="fp_ref_total">$ 0.00</span>
-      </div>
-      <div class="fp_bal_row">
-        <span>Total formas de pago ingresadas</span>
-        <span class="val" id="fp_sum_label">$ 0.00</span>
-      </div>
-      <div class="fp_bal_row total">
-        <span id="fp_diff_txt">Diferencia</span>
-        <span class="val" id="fp_diff_label">$ 0.00</span>
-      </div>
+      <div class="fp_bal_row"><span>Referencia (Cuantía / Avalúo)</span><span class="val" id="fp_ref_total">—</span></div>
+      <div class="fp_bal_row"><span>Total formas de pago</span><span class="val" id="fp_sum_label">$ 0.00</span></div>
+      <div class="fp_bal_row total"><span id="fp_diff_txt">Diferencia</span><span class="val" id="fp_diff_label">$ 0.00</span></div>
       <div id="fp_progbar_wrap"><div id="fp_progbar"></div></div>
       <div id="fp_estado"></div>
     </div>
@@ -429,99 +468,111 @@ function _buildFPPanel(){
 </div>`;
 }
 
-function _onFPCheck(key,checked){
-  const row=el("fprow_"+key);
-  const monto=el("fpmonto_"+key);
-  const ref=el("fpref_"+key);
-  if(checked){
-    row.classList.remove("fp_row_inactive");
-    monto.disabled=false; ref.disabled=false;
-    monto.focus();
+function _toggleFP(key){
+  const card = el('fpcard_'+key);
+  const isActive = card.classList.contains('fp_active');
+  if(isActive){
+    // Desactivar
+    card.classList.remove('fp_active');
+    const m = el('fpmonto_'+key);
+    const r = el('fpref_'+key);
+    if(m){ m.value=''; }
+    if(r){ r.value=''; }
+    el('fpbadge_'+key).textContent='';
+    _calcFPBalance();
   } else {
-    row.classList.add("fp_row_inactive");
-    monto.disabled=true; ref.disabled=true;
-    monto.value=""; ref.value="";
+    // Activar y hacer foco en monto
+    card.classList.add('fp_active');
+    setTimeout(()=>{ const m=el('fpmonto_'+key); if(m){ m.focus(); m.select(); } },120);
+    _calcFPBalance();
   }
+}
+
+function _onFPMonto(key, val){
+  const badge = el('fpbadge_'+key);
+  const n = parseFloat(val)||0;
+  badge.textContent = n>0 ? '$ '+n.toLocaleString('es-EC',{minimumFractionDigits:2,maximumFractionDigits:2}) : '';
   _calcFPBalance();
 }
 
 function _getRefValue(){
-  // Tomar el mayor entre cuantia y avaluo (o el que esté definido)
-  const c=parseFloat(v("cuantia"))||0;
-  const a=parseFloat(v("avaluo"))||0;
+  const c=parseFloat(v('cuantia'))||0;
+  const a=parseFloat(v('avaluo'))||0;
   return c>0?c:(a>0?a:0);
 }
 
 function _calcFPBalance(){
   let sum=0;
+  let activeCount=0;
   FP_OPCIONES.forEach(fp=>{
-    const chk=el("fpchk_"+fp.key);
-    if(chk&&chk.checked){
-      const m=parseFloat((el("fpmonto_"+fp.key)||{}).value)||0;
+    const card=el('fpcard_'+fp.key);
+    if(card&&card.classList.contains('fp_active')){
+      activeCount++;
+      const m=parseFloat((el('fpmonto_'+fp.key)||{}).value)||0;
       sum+=m;
     }
   });
 
   const ref=_getRefValue();
-  const hasAny=document.querySelectorAll('[id^="fpchk_"]:checked').length>0;
+  const bal=el('fpago_balance');
+  if(!bal) return;
+  if(activeCount===0){bal.style.display='none';return;}
+  bal.style.display='block';
 
-  const bal=el("fpago_balance");
-  if(!hasAny){bal.style.display="none"; return;}
-  bal.style.display="block";
-
-  el("fp_ref_total").textContent="$ "+(ref>0?ref.toFixed(2):"—");
-  el("fp_sum_label").textContent="$ "+sum.toFixed(2);
+  el('fp_ref_total').textContent = ref>0?'$ '+ref.toFixed(2):'—';
+  el('fp_sum_label').textContent = '$ '+sum.toFixed(2);
 
   const diff=sum-ref;
-  el("fp_diff_label").textContent=(diff>=0?"":"−")+"$ "+Math.abs(diff).toFixed(2);
+  el('fp_diff_label').textContent=(diff>=0?'':'−')+'$ '+Math.abs(diff).toFixed(2);
 
   const pct=ref>0?Math.min((sum/ref)*100,120):0;
-  const bar=el("fp_progbar");
-  bar.style.width=Math.min(pct,100)+"%";
+  const bar=el('fp_progbar');
+  bar.style.width=Math.min(pct,100)+'%';
 
-  const est=el("fp_estado");
-  const pctLbl=el("fp_pct_label");
+  const est=el('fp_estado');
+  const pctLbl=el('fp_pct_label');
 
   if(ref<=0){
-    // Sin referencia: solo mostrar suma
-    bar.style.background="#6B7280";
-    pctLbl.textContent="Sin cuantía/avalúo ingresada";
-    est.className="noref";
-    est.textContent="ℹ Ingrese Cuantía o Avalúo en el campo superior para validar el cuadre.";
-    el("fp_diff_txt").textContent="Sin referencia";
+    bar.style.background='#9CA3AF';
+    pctLbl.textContent='Sin cuantía/avalúo';
+    est.className='noref';
+    est.textContent='ℹ Ingrese la Cuantía o el Avalúo arriba para validar el cuadre automáticamente.';
+    el('fp_diff_txt').textContent='Sin referencia';
   } else if(Math.abs(diff)<0.01){
-    bar.style.background="#2E7D32";
-    pctLbl.textContent="✓ 100% — Cuadre exacto";
-    est.className="ok";
-    est.textContent="✅ Las formas de pago cuadran exactamente con la cuantía/avalúo.";
-    el("fp_diff_txt").textContent="Diferencia";
+    bar.style.background='#2E7D32';
+    pctLbl.textContent='✓ Cuadre exacto';
+    est.className='ok';
+    est.textContent='✅ Las formas de pago suman exactamente $ '+sum.toFixed(2)+' — igual a la cuantía/avalúo. ¡Correcto!';
+    el('fp_diff_txt').textContent='Diferencia';
   } else if(diff>0){
-    bar.style.background="#B71C1C";
-    pctLbl.textContent="⚠ "+pct.toFixed(1)+"% — Excede la referencia";
-    est.className="over";
-    est.textContent="❌ El total de formas de pago ($ "+sum.toFixed(2)+") EXCEDE en $ "+diff.toFixed(2)+" a la cuantía/avalúo ($ "+ref.toFixed(2)+"). Corrija los montos.";
-    el("fp_diff_txt").textContent="Exceso";
+    bar.style.background='#B71C1C';
+    pctLbl.textContent='⚠ Excede en $ '+diff.toFixed(2);
+    est.className='over';
+    est.textContent='❌ Total pagos $ '+sum.toFixed(2)+' EXCEDE la referencia $ '+ref.toFixed(2)+' en $ '+diff.toFixed(2)+'. Corrija los montos.';
+    el('fp_diff_txt').textContent='Exceso';
   } else {
-    bar.style.background="#B45309";
-    pctLbl.textContent=pct.toFixed(1)+"% — Faltan $ "+Math.abs(diff).toFixed(2);
-    est.className="under";
-    est.textContent="⚠ El total de formas de pago ($ "+sum.toFixed(2)+") es MENOR en $ "+Math.abs(diff).toFixed(2)+" que la cuantía/avalúo ($ "+ref.toFixed(2)+"). Verifique.";
-    el("fp_diff_txt").textContent="Faltante";
+    bar.style.background='#B45309';
+    const falta=Math.abs(diff);
+    pctLbl.textContent='Faltan $ '+falta.toFixed(2);
+    est.className='under';
+    est.textContent='⚠ Total pagos $ '+sum.toFixed(2)+' — faltan $ '+falta.toFixed(2)+' para completar $ '+ref.toFixed(2)+'.';
+    el('fp_diff_txt').textContent='Faltante';
   }
 }
 
 /* Recalcular balance cuando cambia cuantia o avaluo */
 function _onCuantiaChange(){
   _calcFPBalance();
-  // Actualizar label referencia
   const c=parseFloat(v("cuantia"))||0;
   const a=parseFloat(v("avaluo"))||0;
   const info=el("fp_ref_info");
   if(info){
-    if(c>0&&a>0) info.textContent="Ref: Cuantía $ "+c.toFixed(2)+" / Avalúo $ "+a.toFixed(2);
-    else if(c>0) info.textContent="Ref: Cuantía $ "+c.toFixed(2);
-    else if(a>0) info.textContent="Ref: Avalúo $ "+a.toFixed(2);
-    else info.textContent="La suma debe igualar la Cuantía o el Avalúo";
+    if(c>0||a>0){
+      let parts=[];
+      if(c>0) parts.push("Cuantía $ "+c.toFixed(2));
+      if(a>0) parts.push("Avalúo $ "+a.toFixed(2));
+      info.textContent="📌 Ref: "+parts.join(" / ");
+    } else { info.textContent=""; }
   }
 }
 
@@ -529,13 +580,13 @@ function _onCuantiaChange(){
 function _serializeFP(){
   const items=[];
   FP_OPCIONES.forEach(fp=>{
-    const chk=el("fpchk_"+fp.key);
-    if(chk&&chk.checked){
+    const card=el("fpcard_"+fp.key);
+    if(card&&card.classList.contains("fp_active")){
       const monto=parseFloat((el("fpmonto_"+fp.key)||{}).value)||0;
-      const ref=(el("fpref_"+fp.key)||{}).value||"";
+      const ref=((el("fpref_"+fp.key)||{}).value||"").trim();
       let txt=fp.label;
       if(monto>0) txt+=" $"+monto.toFixed(2);
-      if(ref) txt+=" ("+ref.trim()+")";
+      if(ref) txt+=" ("+ref+")";
       items.push(txt);
     }
   });
@@ -546,8 +597,9 @@ function _serializeFP(){
 function _sumFP(){
   let s=0;
   FP_OPCIONES.forEach(fp=>{
-    const chk=el("fpchk_"+fp.key);
-    if(chk&&chk.checked) s+=parseFloat((el("fpmonto_"+fp.key)||{}).value)||0;
+    const card=el("fpcard_"+fp.key);
+    if(card&&card.classList.contains("fp_active"))
+      s+=parseFloat((el("fpmonto_"+fp.key)||{}).value)||0;
   });
   return s;
 }
@@ -792,13 +844,13 @@ function _f10(){
 
   // Montos por forma de pago (columnas individuales para el sheet)
   const fpMontos=FP_OPCIONES.map(fp=>{
-    const chk=el("fpchk_"+fp.key);
-    if(!chk||!chk.checked) return "";
+    const card=el("fpcard_"+fp.key);
+    if(!card||!card.classList.contains("fp_active")) return "";
     return parseFloat((el("fpmonto_"+fp.key)||{}).value)||"";
   });
   const fpRefs=FP_OPCIONES.map(fp=>{
-    const chk=el("fpchk_"+fp.key);
-    if(!chk||!chk.checked) return "";
+    const card=el("fpcard_"+fp.key);
+    if(!card||!card.classList.contains("fp_active")) return "";
     return (el("fpref_"+fp.key)||{}).value||"";
   });
 
@@ -867,23 +919,18 @@ function _f09(){
   if(!_v01) errs.push("Seleccionar Funcionario en la barra superior");
 
   // Validar formas de pago
-  const fpChecked=document.querySelectorAll('[id^="fpchk_"]:checked').length;
-  if(fpChecked===0){ errs.push("Seleccionar al menos una Forma de Pago"); }
+  const fpActive=FP_OPCIONES.filter(fp=>{const c=el("fpcard_"+fp.key);return c&&c.classList.contains("fp_active");});
+  if(fpActive.length===0){ errs.push("Seleccionar al menos una Forma de Pago"); }
   else {
-    // Validar cuadre si hay cuantia o avaluo
+    fpActive.forEach(fp=>{
+      const m=parseFloat((el("fpmonto_"+fp.key)||{}).value)||0;
+      if(m<=0) errs.push("Ingrese el monto para: "+fp.label);
+    });
     const ref=_getRefValue();
     const sum=_sumFP();
     if(ref>0 && Math.abs(sum-ref)>0.01){
-      errs.push("Las formas de pago ($ "+sum.toFixed(2)+") no cuadran con la cuantía/avalúo ($ "+ref.toFixed(2)+")");
+      errs.push("Formas de pago ($ "+sum.toFixed(2)+") no cuadran con la cuantía/avalúo ($ "+ref.toFixed(2)+")");
     }
-    // Advertir montos en $0
-    FP_OPCIONES.forEach(fp=>{
-      const chk=el("fpchk_"+fp.key);
-      if(chk&&chk.checked){
-        const m=parseFloat((el("fpmonto_"+fp.key)||{}).value)||0;
-        if(m<=0) errs.push("Ingrese el monto para la forma de pago: "+fp.label);
-      }
-    });
   }
 
   reqs.forEach(r=>{
@@ -959,10 +1006,10 @@ function _f13(d,resp){
 
   // Construir tabla de formas de pago para impresión
   const fpPrintRows=FP_OPCIONES.map((fp,i)=>{
-    const chk=el("fpchk_"+fp.key);
-    if(!chk||!chk.checked) return "";
+    const card=el("fpcard_"+fp.key);
+    if(!card||!card.classList.contains("fp_active")) return "";
     const monto=parseFloat((el("fpmonto_"+fp.key)||{}).value)||0;
-    const ref=(el("fpref_"+fp.key)||{}).value||"—";
+    const ref=((el("fpref_"+fp.key)||{}).value)||"—";
     return`<div class="pp_fp_row"><div>${fp.label}</div><div>$ ${monto.toFixed(2)}</div><div>${ref}</div></div>`;
   }).filter(Boolean).join("");
   const fpPrint=fpPrintRows?`<div class="pp_fp">
@@ -1087,12 +1134,13 @@ function _f11(){
   document.querySelectorAll(".ai,.bchk").forEach(e=>e.classList&&e.classList.remove("sel"));
   document.querySelectorAll(".rp").forEach(p=>p.classList.remove("on"));
   FP_OPCIONES.forEach(fp=>{
-    const row=el("fprow_"+fp.key);
-    if(row) row.classList.add("fp_row_inactive");
-    const m=el("fpmonto_"+fp.key); if(m){m.disabled=true;m.value="";}
-    const r=el("fpref_"+fp.key); if(r){r.disabled=true;r.value="";}
+    const card=el("fpcard_"+fp.key);
+    if(card) card.classList.remove("fp_active");
+    const m=el("fpmonto_"+fp.key); if(m) m.value="";
+    const r=el("fpref_"+fp.key); if(r) r.value="";
+    const b=el("fpbadge_"+fp.key); if(b) b.textContent="";
   });
-  el("fpago_balance").style.display="none";
+  const fpbal=el("fpago_balance"); if(fpbal) fpbal.style.display="none";
   _v02="";
   ["bff","pepf"].forEach(id=>{const e=el(id);if(e)e.style.display="none";});
   el("cny_flds").style.opacity="1"; el("cny_flds").style.pointerEvents="";
