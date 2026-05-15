@@ -2,1234 +2,1325 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Debida Diligencia</title>
+<meta http-equiv="Cache-Control" content="no-cache,no-store">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Debida Diligencia &mdash; Soluciones D&S</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --navy:#1B3A6B;--teal:#0D7377;--green:#2E7D32;--blue:#1565C0;
-  --purple:#6A1B9A;--orange:#E65100;--slate:#37474F;--olive:#558B2F;
-  --red:#B71C1C;--brick:#BF360C;--gray:#F2F6FA;--border:#CBD5E1;--white:#fff;
-}
+:root{--t:#0D7377;--n:#1B3A6B;--b:#CBD5E1;--g:#F2F6FA}
 body{font-family:'Segoe UI',Arial,sans-serif;font-size:13px;background:#EEF2F7;color:#1a1a2e;min-height:100vh}
-
 /* TOPBAR */
-#topbar{background:linear-gradient(135deg,#1B3A6B 0%,#1a3560 100%);color:#fff;padding:0 20px;height:62px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.35)}
-#topbar-brand{display:flex;align-items:center;gap:12px}
-#topbar-logo{height:38px;width:auto;display:block;filter:drop-shadow(0 1px 3px rgba(0,0,0,.3))}
-#topbar-tagline{display:flex;flex-direction:column;justify-content:center;border-left:1.5px solid rgba(255,255,255,.2);padding-left:12px;margin-left:2px}
-#topbar-tagline span.form-name{font-size:11px;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.3px}
-#topbar-tagline span.form-sub{font-size:9px;color:rgba(255,255,255,.55);margin-top:1px}
-.tr{display:flex;gap:10px;align-items:center}
-#user-select{padding:6px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:11px;cursor:pointer;max-width:220px}
-#user-select option{background:#1B3A6B;color:#fff}
-#sp{padding:6px 16px;border-radius:20px;font-size:10px;font-weight:700;background:rgba(13,115,119,.6);color:#fff;border:1px solid rgba(13,115,119,.8);cursor:pointer;white-space:nowrap;transition:all .25s;letter-spacing:.3px}
-#sp:hover{background:rgba(13,115,119,.85)}
+#tb{background:linear-gradient(135deg,#1B3A6B,#1a3560);padding:0 16px;height:62px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.35)}
+#tb-brand{display:flex;align-items:center;gap:10px}
+#tb-logo{height:36px}
+#tb-tag{display:flex;flex-direction:column;border-left:1.5px solid rgba(255,255,255,.2);padding-left:10px}
+#tb-tag .t1{font-size:11px;font-weight:700;color:rgba(255,255,255,.9)}
+#tb-tag .t2{font-size:9px;color:rgba(255,255,255,.55);margin-top:1px}
+.tb-r{display:flex;gap:8px;align-items:center}
+#us{padding:5px 10px;border-radius:7px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:11px;cursor:pointer;max-width:210px}
+#us option{background:#1B3A6B}
+#sp{padding:5px 14px;border-radius:20px;font-size:10px;font-weight:700;background:rgba(13,115,119,.6);color:#fff;border:1px solid rgba(13,115,119,.8);cursor:pointer;white-space:nowrap;transition:all .2s}
 #sp.ok{background:#1a7a45;border-color:#22c55e}
 #sp.err{background:rgba(183,28,28,.7);border-color:#ef4444}
-#sp.saving{background:rgba(230,81,0,.7);border-color:#f97316}
-
+#sp.spin{background:rgba(230,81,0,.7);border-color:#f97316}
 /* LAYOUT */
-#app{max-width:980px;margin:0 auto;padding:20px 14px}
-#pb{background:var(--navy);border-radius:10px;padding:12px 18px;margin-bottom:18px;display:flex;gap:5px;align-items:center;flex-wrap:wrap;box-shadow:0 2px 8px rgba(27,58,107,.18)}
-.ps{padding:4px 10px;border-radius:12px;font-size:9px;font-weight:700;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.2);cursor:pointer;transition:all .2s;white-space:nowrap}
-.ps.active{color:#fff;background:var(--teal);border-color:var(--teal)}
-
+#app{max-width:980px;margin:0 auto;padding:16px 12px}
+/* NAV */
+#nav{background:var(--n);border-radius:10px;padding:10px 14px;margin-bottom:14px;display:flex;gap:4px;flex-wrap:wrap}
+.pst{padding:3px 10px;border-radius:10px;font-size:9px;font-weight:700;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.pst:hover,.pst.act{color:#fff;background:var(--t);border-color:var(--t)}
 /* SECCIONES */
-.sc{background:#fff;border-radius:10px;margin-bottom:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08)}
-.sh{display:flex;align-items:center;gap:10px;padding:11px 18px;color:#fff;cursor:pointer;user-select:none}
+.sc{background:#fff;border-radius:10px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.sh{display:flex;align-items:center;gap:10px;padding:10px 16px;color:#fff;cursor:pointer;user-select:none}
 .sh:hover{filter:brightness(1.08)}
-.sn{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0}
+.sn{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0}
 .sh h2{font-size:11px;font-weight:700;flex:1}
-.sv{font-size:13px;transition:transform .25s}
-.sb{padding:16px 18px;border-top:2px solid;display:none}
+.sv{transition:transform .25s}
+.sb{padding:14px 16px;display:none;border-top:2px solid #E2E8F0}
 .sc.open .sb{display:block}
 .sc.open .sv{transform:rotate(180deg)}
-
-/* GRIDS */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .full{grid-column:1/-1}
-@media(max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr}}
-
+@media(max-width:640px){.g2,.g3{grid-template-columns:1fr}}
 /* CAMPOS */
-.fld{display:flex;flex-direction:column;gap:3px}
-.fld label{font-size:10px;font-weight:700;color:#374151;letter-spacing:.2px}
-.fld label .req{color:#B71C1C;margin-left:2px}
-input[type=text],input[type=date],input[type=email],input[type=number],input[type=tel],select,textarea{
-  width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;
-  font-size:11px;color:#1a1a2e;background:#fff;transition:border-color .2s;font-family:inherit}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,115,119,.12)}
-input.err-f,select.err-f{border-color:#B71C1C!important;background:#FEF2F2}
-textarea{resize:vertical;min-height:58px}
-
-/* CHECKBOXES */
-.ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:5px;padding:8px;background:#F8FAFC;border:1.5px solid var(--border);border-radius:8px}
-.ai{display:flex;align-items:center;gap:7px;padding:5px 9px;border-radius:6px;cursor:pointer;transition:background .15s;font-size:10px;border:1px solid transparent}
+.fld{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
+.fld label{font-size:10px;font-weight:700;color:#374151}
+.req{color:#B71C1C;margin-left:2px}
+.cc{font-size:9px;color:#9CA3AF;text-align:right;margin-top:1px}
+input[type=text],input[type=date],input[type=email],input[type=number],input[type=tel],select,textarea{width:100%;padding:7px 10px;border:1.5px solid var(--b);border-radius:7px;font-size:11px;color:#1a1a2e;background:#fff;font-family:inherit;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--t);box-shadow:0 0 0 3px rgba(13,115,119,.12)}
+input.ef,select.ef{border-color:#B71C1C!important;background:#FEF2F2}
+textarea{resize:vertical;min-height:54px}
+/* RADIO/CHECK */
+.ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:5px;padding:8px;background:#F8FAFC;border:1.5px solid var(--b);border-radius:8px}
+.ai{display:flex;align-items:center;gap:7px;padding:5px 9px;border-radius:6px;cursor:pointer;font-size:10px;border:1px solid transparent;transition:background .15s}
 .ai:hover{background:#E0F2FE}
-.ai.sel{background:#CCFBF1;border-color:var(--teal);font-weight:600}
-.ai input{width:14px;height:14px;accent-color:var(--teal);flex-shrink:0;cursor:pointer}
-
-/* RADIOS */
-.rr{display:flex;gap:14px;flex-wrap:wrap;padding:5px 0}
+.ai.sel{background:#CCFBF1;border-color:var(--t);font-weight:600}
+.ai input{width:14px;height:14px;accent-color:var(--t);flex-shrink:0;cursor:pointer}
+.rr{display:flex;gap:12px;flex-wrap:wrap;padding:4px 0}
 .ri{display:flex;align-items:center;gap:5px;font-size:11px;cursor:pointer}
-.ri input{accent-color:var(--teal);width:13px;height:13px}
-
-/* RIESGO PILLS */
+.ri input{accent-color:var(--t);width:13px;height:13px}
+/* RIESGO */
 .rprow{display:flex;gap:8px;flex-wrap:wrap;margin-top:5px}
-.rp{padding:6px 16px;border-radius:20px;border:2px solid;cursor:pointer;font-size:10px;font-weight:700;transition:all .2s;user-select:none}
-.rp[data-v="BAJO"]{color:var(--green);border-color:var(--green)}
-.rp[data-v="MEDIO"]{color:#B45309;border-color:#B45309}
-.rp[data-v="ALTO"]{color:var(--orange);border-color:var(--orange)}
-.rp[data-v="MUY ALTO"]{color:var(--red);border-color:var(--red)}
-.rp.on[data-v="BAJO"]{background:#D1FAE5}
-.rp.on[data-v="MEDIO"]{background:#FEF3C7}
-.rp.on[data-v="ALTO"]{background:#FFEDD5}
-.rp.on[data-v="MUY ALTO"]{background:#FEE2E2}
-
+.rp{padding:5px 14px;border-radius:20px;border:2px solid;cursor:pointer;font-size:10px;font-weight:700;transition:all .2s;user-select:none}
+.rp[data-v="BAJO"]{color:#2E7D32;border-color:#2E7D32}.rp.on[data-v="BAJO"]{background:#D1FAE5}
+.rp[data-v="MEDIO"]{color:#B45309;border-color:#B45309}.rp.on[data-v="MEDIO"]{background:#FEF3C7}
+.rp[data-v="ALTO"]{color:#E65100;border-color:#E65100}.rp.on[data-v="ALTO"]{background:#FFEDD5}
+.rp[data-v="MUY ALTO"]{color:#B71C1C;border-color:#B71C1C}.rp.on[data-v="MUY ALTO"]{background:#FEE2E2}
 /* BOTONES */
-.br{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
-.btn{padding:10px 20px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:all .2s;font-family:inherit}
-.bp{background:var(--teal);color:#fff}.bp:hover{background:#0a5e63}.bp:disabled{background:#9CA3AF;cursor:not-allowed}
-.bs{background:var(--navy);color:#fff}.bs:hover{background:#132d54}
-.bo{background:#fff;color:var(--navy);border:2px solid var(--navy)}.bo:hover{background:var(--gray)}
+.br{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;align-items:center}
+.btn{padding:10px 20px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+.bp{background:var(--t);color:#fff}.bp:hover{background:#0a5e63}.bp:disabled{background:#9CA3AF;cursor:not-allowed}
+.bs{background:var(--n);color:#fff}.bs:hover{background:#132d54}
+.bo{background:#fff;color:var(--n);border:2px solid var(--n)}.bo:hover{background:var(--g)}
+/* FP CARDS */
+.fpc{background:#fff;border:2px solid #E2E8F0;border-radius:10px;margin-bottom:8px;overflow:hidden;transition:border-color .2s;cursor:pointer}
+.fpc.on{border-color:var(--t);box-shadow:0 2px 8px rgba(13,115,119,.15)}
+.fph{display:flex;align-items:center;gap:10px;padding:10px 14px;min-height:46px;user-select:none}
+.fpc.on .fph{background:#CCFBF1}
+.fpic{font-size:17px;width:26px;text-align:center;flex-shrink:0}
+.fpnm{flex:1;font-size:12px;font-weight:600;color:#374151}
+.fpc.on .fpnm{color:#065F46}
+.fpbg{font-size:11px;font-weight:700;color:var(--t);margin-right:4px;display:none;font-family:monospace}
+.fpc.on .fpbg{display:block}
+.fpck{width:22px;height:22px;border-radius:6px;border:2px solid #CBD5E1;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:transparent;flex-shrink:0}
+.fpc.on .fpck{background:var(--t);border-color:var(--t);color:#fff}
+.fpb{display:none;padding:0 14px 12px;border-top:1px solid #E2E8F0}
+.fpc.on .fpb{display:block}
+.fpmw label{font-size:10px;font-weight:700;color:#374151;display:block;margin:10px 0 4px}
+.fps{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:700;color:var(--t);pointer-events:none}
+.fpmw input[type=number]{padding:10px 12px 10px 28px;border:2px solid #CBD5E1;border-radius:8px;font-size:16px;font-weight:700;color:#065F46;background:#F0FDF4;-moz-appearance:textfield;width:100%}
+.fpmw input::-webkit-inner-spin-button,.fpmw input::-webkit-outer-spin-button{-webkit-appearance:none}
+.fpmw input:focus{outline:none;border-color:var(--t);box-shadow:0 0 0 3px rgba(13,115,119,.15)}
 
-/* ====== PANEL FORMAS DE PAGO — MOBILE FIRST ====== */
-#fpago_panel{background:#F8FAFC;border:1.5px solid var(--border);border-radius:12px;padding:12px;margin-top:4px}
-.fpago_header{margin-bottom:10px}
-.fpago_header .fph-title{font-size:11px;font-weight:700;color:#374151}
-#fp_ref_info{display:inline-block;margin-top:3px;font-size:10px;color:#0D7377;font-weight:600;background:#CCFBF1;padding:2px 8px;border-radius:8px}
 
-/* Cada forma de pago: tarjeta vertical apilada */
-.fp_card{background:#fff;border:2px solid #E2E8F0;border-radius:10px;margin-bottom:8px;overflow:hidden;transition:border-color .2s,box-shadow .2s;cursor:pointer}
-.fp_card:last-child{margin-bottom:0}
-.fp_card.fp_active{border-color:#0D7377;box-shadow:0 2px 8px rgba(13,115,119,.15)}
-.fp_card.fp_active .fp_card_head{background:#CCFBF1}
-
-/* Cabecera de la tarjeta — siempre visible, tappable */
-.fp_card_head{display:flex;align-items:center;gap:10px;padding:11px 14px;min-height:48px;-webkit-tap-highlight-color:transparent;user-select:none}
-.fp_card_head .fp_icon{font-size:18px;flex-shrink:0;width:28px;text-align:center}
-.fp_card_head .fp_name{flex:1;font-size:12px;font-weight:600;color:#374151}
-.fp_card.fp_active .fp_card_head .fp_name{color:#065F46}
-.fp_chk_box{width:22px;height:22px;border-radius:6px;border:2px solid #CBD5E1;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;background:#fff}
-.fp_card.fp_active .fp_chk_box{background:#0D7377;border-color:#0D7377}
-.fp_chk_mark{color:#fff;font-size:13px;font-weight:900;display:none}
-.fp_card.fp_active .fp_chk_mark{display:block}
-
-/* Monto badge cuando está seleccionado */
-.fp_monto_badge{font-size:11px;font-weight:700;color:#0D7377;margin-right:4px;display:none;font-family:monospace}
-.fp_card.fp_active .fp_monto_badge{display:block}
-
-/* Cuerpo expandible de la tarjeta */
-.fp_card_body{display:none;padding:0 14px 12px 14px;border-top:1px solid #E2E8F0}
-.fp_card.fp_active .fp_card_body{display:block}
-
-/* Campo monto dentro de la tarjeta */
-.fp_monto_field{margin-top:10px}
-.fp_monto_field label{font-size:10px;font-weight:700;color:#374151;display:block;margin-bottom:4px}
-.fp_monto_wrap{position:relative}
-.fp_monto_wrap .fp_sym{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:700;color:#0D7377;pointer-events:none}
-.fp_monto_wrap input[type=number]{
-  width:100%;padding:10px 12px 10px 28px;
-  border:2px solid #CBD5E1;border-radius:8px;
-  font-size:16px;/* 16px evita zoom en iOS */
-  font-weight:700;color:#065F46;background:#F0FDF4;
-  -moz-appearance:textfield;font-family:inherit}
-.fp_monto_wrap input[type=number]::-webkit-inner-spin-button,
-.fp_monto_wrap input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
-.fp_monto_wrap input[type=number]:focus{outline:none;border-color:#0D7377;box-shadow:0 0 0 3px rgba(13,115,119,.15)}
-
-/* Campo referencia */
-.fp_ref_field{margin-top:8px}
-.fp_ref_field label{font-size:10px;font-weight:700;color:#374151;display:block;margin-bottom:4px}
-.fp_ref_field input[type=text]{
-  width:100%;padding:9px 12px;
-  border:1.5px solid #CBD5E1;border-radius:8px;
-  font-size:14px;color:#374151;background:#fff;font-family:inherit}
-.fp_ref_field input[type=text]:focus{outline:none;border-color:#0D7377;box-shadow:0 0 0 2px rgba(13,115,119,.1)}
-
-/* BARRA DE CUADRE */
-#fpago_balance{margin-top:12px;border-radius:10px;overflow:hidden;border:1.5px solid var(--border)}
-#fpago_balance_header{display:flex;justify-content:space-between;align-items:center;padding:9px 13px;background:#F1F5F9;font-size:10px;font-weight:700;color:#374151;flex-wrap:wrap;gap:4px}
-#fpago_balance_body{padding:10px 13px;background:#fff}
-.fp_bal_row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#555;padding:3px 0}
-.fp_bal_row.total{font-weight:700;color:#1a1a2e;border-top:1.5px solid #E2E8F0;margin-top:6px;padding-top:8px;font-size:12px}
-.fp_bal_row .val{font-family:monospace;font-size:12px;font-weight:700}
-#fp_progbar_wrap{margin-top:10px;background:#E5E7EB;border-radius:6px;height:10px;overflow:hidden}
-#fp_progbar{height:10px;border-radius:6px;transition:width .35s,background .35s;width:0}
-#fp_estado{margin-top:10px;padding:10px 13px;border-radius:8px;font-size:11px;font-weight:600;line-height:1.5;display:none}
-#fp_estado.ok{background:#D1FAE5;color:#065F46;border:1.5px solid #6EE7B7;display:block}
-#fp_estado.over{background:#FEE2E2;color:#991B1B;border:1.5px solid #FCA5A5;display:block}
-#fp_estado.under{background:#FEF3C7;color:#92400E;border:1.5px solid #FCD34D;display:block}
-#fp_estado.noref{background:#EDE9FE;color:#5B21B6;border:1.5px solid #C4B5FD;display:block}
-
-/* MODAL */
-#mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;align-items:center;justify-content:center}
-#mo.show{display:flex}
-#mb{background:#fff;border-radius:12px;padding:28px;max-width:420px;width:90%;text-align:center}
-#mb .ic{font-size:42px;margin-bottom:10px}
-#mb h3{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:7px}
-#mb p{font-size:12px;color:#555;margin-bottom:18px;line-height:1.65;white-space:pre-line}
-#mb .br{justify-content:center}
-
-/* HISTORIAL */
-#hp{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:998;align-items:flex-start;justify-content:center;overflow-y:auto;padding:18px 10px}
-#hp.show{display:flex}
-#hb{background:#fff;border-radius:12px;padding:22px;max-width:680px;width:100%;margin:auto}
-.hi{border:1px solid #e2e8f0;border-radius:8px;padding:11px 13px;margin-bottom:9px;cursor:pointer;transition:all .2s}
-.hi:hover{border-color:var(--teal);background:#F0FDFA}
-.hm{font-size:10px;color:#888;margin-top:3px}
-
+/* FP BALANCE */
+#fpbal{margin-top:12px;border-radius:10px;overflow:hidden;border:1.5px solid var(--b);display:none}
+#fpbalh{padding:8px 12px;background:#F1F5F9;font-size:10px;font-weight:700;color:#374151;display:flex;justify-content:space-between}
+#fpbalb{padding:10px 12px;background:#fff}
+.fbr{display:flex;justify-content:space-between;font-size:11px;color:#555;padding:3px 0}
+.fbr.tot{font-weight:700;color:#1a1a2e;border-top:1.5px solid #E2E8F0;margin-top:6px;padding-top:8px}
+.fbr .val{font-family:monospace;font-size:12px;font-weight:700}
+#fppb{height:10px;background:#E5E7EB;border-radius:6px;margin-top:10px;overflow:hidden}
+#fppbi{height:10px;border-radius:6px;transition:width .35s,background .35s;width:0}
+#fpest{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:11px;font-weight:600;line-height:1.5;display:none}
+#fpest.ok{background:#D1FAE5;color:#065F46;border:1.5px solid #6EE7B7;display:block}
+#fpest.over{background:#FEE2E2;color:#991B1B;border:1.5px solid #FCA5A5;display:block}
+#fpest.under{background:#FEF3C7;color:#92400E;border:1.5px solid #FCD34D;display:block}
+#fpest.noref{background:#EDE9FE;color:#5B21B6;border:1.5px solid #C4B5FD;display:block}
+/* OVERLAYS */
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.56);z-index:900;align-items:flex-start;justify-content:center;overflow-y:auto;padding:14px}
+.ov.show{display:flex}
+.md{background:#fff;border-radius:14px;padding:24px;max-width:500px;width:100%;margin:auto;box-shadow:0 8px 40px rgba(0,0,0,.35)}
+.md h3{font-size:14px;font-weight:800;color:#1B3A6B;margin-bottom:12px}
 /* ADMIN */
-#ao{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:2000;align-items:flex-start;justify-content:center;overflow-y:auto;padding:16px 10px}
-#ao.show{display:flex}
-#ab{background:#fff;border-radius:14px;padding:26px;max-width:580px;width:100%;margin:auto;box-shadow:0 8px 40px rgba(0,0,0,.35)}
-.cl{font-size:10px;font-weight:700;color:#374151;display:block;margin-bottom:3px}
-.ci{width:100%;padding:8px 10px;border:1.5px solid #CBD5E1;border-radius:7px;font-size:11px;margin-bottom:11px;font-family:inherit}
-.ct{width:100%;padding:8px 10px;border:1.5px solid #CBD5E1;border-radius:7px;font-size:11px;margin-bottom:11px;resize:vertical;font-family:inherit}
-
-/* IMPRESIÓN */
+.cl{font-size:10px;font-weight:700;color:#374151;display:block;margin-bottom:3px;margin-top:8px}
+.ci{width:100%;padding:8px 10px;border:1.5px solid #CBD5E1;border-radius:7px;font-size:11px;margin-bottom:4px;font-family:inherit}
+.ct{width:100%;padding:8px 10px;border:1.5px solid #CBD5E1;border-radius:7px;font-size:11px;margin-bottom:4px;resize:vertical;font-family:inherit}
+.lbdg{display:inline-block;font-size:9px;padding:1px 6px;border-radius:8px;background:#FEE2E2;color:#7F1D1D;font-weight:700;margin-left:6px}
+/* HISTORIAL */
+.hi{border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:all .2s}
+.hi:hover{border-color:var(--t);background:#F0FDFA}
+.hied{background:#FFFBEB;border-color:#F59E0B}
+/* AUTOCOMPLETE */
+.int-it{padding:8px 10px;border-radius:7px;background:#fff;border:1px solid #E2E8F0;margin-bottom:5px;cursor:pointer;font-size:11px;transition:all .2s}
+.int-it:hover{border-color:var(--t);background:#CCFBF1}
+/* PRINT */
 #pd{display:none}
 @media print{
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   body{background:#fff!important;font-size:8pt}
-  #topbar,#app,#mo,#ao,#hp{display:none!important}
+  #tb,#app,.ov{display:none!important}
   #pd{display:block!important}
   @page{size:A4;margin:10mm 8mm}
 }
 .pw{font-family:'Segoe UI',Arial,sans-serif;font-size:8pt;color:#111}
-.ph{background:#1B3A6B;color:#fff;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.ph-l h1{font-size:11pt;font-weight:800}
-.ph-l p{font-size:7pt;opacity:.85;margin-top:1px}
-.ph-r{text-align:right;font-size:7.5pt;opacity:.85;line-height:1.6}
-.pm{display:flex;gap:0;margin-bottom:6px;border:1px solid #CBD5E1;border-radius:4px;overflow:hidden}
+.phd{background:#1B3A6B;color:#fff;padding:9px 12px;display:flex;justify-content:space-between;margin-bottom:6px}
+.phd h1{font-size:11pt;font-weight:800}
+.phd p{font-size:7pt;opacity:.85;margin-top:1px}
+.phd .pr{text-align:right;font-size:7.5pt;opacity:.85;line-height:1.6}
+.pmeta{display:flex;margin-bottom:6px;border:1px solid #CBD5E1;border-radius:4px;overflow:hidden}
 .pmi{flex:1;padding:4px 9px;background:#E8F4FD;border-right:1px solid #CBD5E1}
-.pmi:last-child{border-right:none}
-.pmi .lb{font-size:6pt;color:#555;font-weight:700;text-transform:uppercase}
-.pmi .vl{font-size:8.5pt;color:#1B3A6B;font-weight:700;margin-top:1px}
-.ps2{margin-bottom:6px;border:1px solid #CBD5E1;border-radius:4px;overflow:hidden;page-break-inside:avoid}
-.psh{padding:4px 9px;color:#fff;font-size:8.5pt;font-weight:700;display:flex;align-items:center;gap:7px}
-.psh .n{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:7pt;font-weight:800;flex-shrink:0}
+.pml{font-size:6pt;color:#555;font-weight:700;text-transform:uppercase}
+.pmv{font-size:8.5pt;color:#1B3A6B;font-weight:700}
+.psec{margin-bottom:6px;border:1px solid #CBD5E1;border-radius:4px;overflow:hidden;page-break-inside:avoid}
+.psh{padding:4px 9px;color:#fff;font-size:8.5pt;font-weight:700}
 .psb{padding:6px 9px;background:#fff}
-.pg{display:grid;gap:3px 9px}
-.pg2{grid-template-columns:1fr 1fr}
-.pg3{grid-template-columns:1fr 1fr 1fr}
+.pgrd{display:grid;gap:3px 9px}
+.pg2{grid-template-columns:1fr 1fr}.pg3{grid-template-columns:1fr 1fr 1fr}
 .pf{display:flex;flex-direction:column}
-.pl{font-size:6pt;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.3px;margin-bottom:1px}
-.pv{border-bottom:1px solid #9CA3AF;min-height:13px;padding:1px 2px;font-size:7.5pt;line-height:1.3}
-.pv.e{color:#D1D5DB;font-style:italic;font-size:6.5pt}
-.pac{display:grid;grid-template-columns:repeat(3,1fr);gap:2px 7px;margin-top:3px}
-.pa{display:flex;align-items:center;gap:3px;font-size:7pt;padding:1px 0}
-.pb2{width:11px;height:11px;border:1.5px solid #555;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8pt;font-weight:900}
-.pb2.on{background:#0D7377;border-color:#0D7377;color:#fff}
-.pbas{display:grid;grid-template-columns:repeat(2,1fr);gap:2px 7px}
-.pr{display:inline-block;padding:2px 10px;border-radius:10px;font-weight:800;font-size:8.5pt;border:1.5px solid}
-.pfir{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:6px}
-.pfb{border:1px solid #CBD5E1;min-height:50px;padding:5px 7px;display:flex;flex-direction:column;justify-content:flex-end}
-.pfl{border-top:1.5px solid #555;margin-top:24px}
-.pfl2{font-size:6.5pt;text-align:center;margin-top:2px;color:#555}
+.pl{font-size:6pt;font-weight:700;color:#6B7280;text-transform:uppercase;margin-bottom:1px}
+.pv{border-bottom:1px solid #9CA3AF;min-height:13px;padding:1px 2px;font-size:7.5pt}
+.pfirm{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:6px}
+.pfirb{border:1px solid #CBD5E1;min-height:50px;padding:5px 7px;display:flex;flex-direction:column;justify-content:flex-end}
+.pfirl{border-top:1.5px solid #555;margin-top:24px}
+.pfirc{font-size:6.5pt;text-align:center;margin-top:2px;color:#555}
 .pft{text-align:center;font-size:6pt;color:#888;margin-top:5px;border-top:1px solid #CBD5E1;padding-top:3px}
-/* Print formas de pago */
-.pp_fp{margin-top:4px;border:1px solid #E2E8F0;border-radius:4px;overflow:hidden}
-.pp_fp_row{display:grid;grid-template-columns:180px 80px 1fr;gap:0;border-bottom:1px solid #F1F5F9;font-size:7pt}
-.pp_fp_row:last-child{border-bottom:none}
-.pp_fp_row div{padding:3px 6px}
-.pp_fp_row.header{background:#F1F5F9;font-weight:700;font-size:6.5pt;color:#374151}
-.pp_fp_total{display:flex;justify-content:space-between;padding:4px 6px;background:#E8F4FD;font-size:7.5pt;font-weight:700;color:#1B3A6B;border-top:1.5px solid #CBD5E1}
+.pp-fp{display:grid;grid-template-columns:160px 70px 1fr;border-bottom:1px solid #F1F5F9;font-size:7pt}
+.pp-fp div{padding:3px 6px}
+.pp-fp.hdr{background:#F1F5F9;font-weight:700}
+.pp-tot{display:flex;justify-content:space-between;padding:4px 6px;background:#E8F4FD;font-size:7.5pt;font-weight:700;color:#1B3A6B}
 </style>
 </head>
 <body>
-
-<!-- TOPBAR -->
-<div id="topbar">
-  <div id="topbar-brand">
-    <img id="topbar-logo" src="data:image/png;base64,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F83qnGv+DF83qlwtJaKJxr/gxfN6pxr/AIMXzeqXC0loonGv+DF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/gxfN6pcLSWiica/wCDF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/AIMXzeqXC0loonGv+DF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/gxfN6pcLSWiica/wCDF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/AIMXzeqXC0loonGv+DF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/gxfN6pcLSWiica/wCDF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/AIMXzeqXC0loonGv+DF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/gxfN6pcLSWiica/wCDF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/AIMXzeqXC0loonGv+DF83qhrX/Bi+b1S4Wkv/YDtKgVcoll9n9FowF+SzySDDnYb7hyC9ShupZKgREUEhERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREB//9k=" alt="Soluciones D&S">
-    <div id="topbar-tagline">
-      <span class="form-name" id="tt">Formulario de Debida Diligencia</span>
-      <span class="form-sub" id="ts">Prevención de Lavado de Activos</span>
+<div id="tb">
+  <div id="tb-brand">
+    <img id="tb-logo" src="data:image/png;base64,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F83qnGv+DF83qlwtJaKJxr/gxfN6pxr/AIMXzeqXC0loonGv+DF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/gxfN6pcLSWiica/wCDF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/AIMXzeqXC0loonGv+DF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/gxfN6pcLSWiica/wCDF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/AIMXzeqXC0loonGv+DF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/gxfN6pcLSWiica/wCDF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/AIMXzeqXC0loonGv+DF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/gxfN6pcLSWiica/wCDF83qnGv+DF83qlwtJaKJxr/gxfN6pxr/AIMXzeqXC0loonGv+DF83qhrX/Bi+b1S4Wkv/YDtKgVcoll9n9FowF+SzySDDnYb7hyC9ShupZKgREUEhERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREB//9k=" alt="D&amp;S">
+    <div id="tb-tag">
+      <span class="t1" id="tt">Formulario de Debida Diligencia</span>
+      <span class="t2" id="tsub">Prevenci&oacute;n de Lavado de Activos &middot; Soluciones D&amp;S</span>
     </div>
   </div>
-  <div class="tr">
-    <select id="user-select" onchange="_f22(this.value)">
-      <option value="">— Seleccionar funcionario —</option>
-    </select>
-    <div id="sp" onclick="_f01()" title="Configuración">⚙ Configurar</div>
+  <div class="tb-r">
+    <select id="us" onchange="setFunc(this.value)"><option value="">&#8212; Seleccionar funcionario &#8212;</option></select>
+    <div id="sp" onclick="openAdmin()">&#9881; Config</div>
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
-  <div id="pb"></div>
-  <div id="fs"></div>
-  <div class="br" id="ba" style="display:none">
-    <button class="btn bs" onclick="_f12()">🖨️ Imprimir A4</button>
-    <button class="btn bo"  onclick="_f14()">📋 Historial / Reimprimir</button>
-    <button class="btn bo"  onclick="_f11()">↺ Nuevo</button>
-    <button class="btn bp"  id="bsv" onclick="_f08()" disabled>💾 Guardar</button>
-    <div style="margin-left:auto;display:flex;align-items:center;gap:5px;opacity:.4;font-size:9px;color:#555">
-      <span>Powered by</span><strong style="color:#0D7377">Soluciones D&amp;S</strong>
+  <div id="nav"></div>
+
+  <!-- S1: Informacion General -->
+  <div class="sc" id="s1">
+    <div class="sh" style="background:#0D7377" onclick="togSec('s1')">
+      <div class="sn">I</div><h2>I. Informaci&oacute;n General de la Operaci&oacute;n</h2><span class="sv">&#9660;</span>
     </div>
+    <div class="sb" id="b_s1">
+      <div style="background:#F0FDF4;border:1.5px solid #6EE7B7;border-radius:10px;padding:12px;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;color:#065F46;margin-bottom:6px">&#128269; Buscar interviniente pre-registrado (autocompleta todos los campos)</div>
+        <div style="display:flex;gap:8px">
+          <input type="text" id="intCed" placeholder="Ingrese c&eacute;dula o pasaporte..." maxlength="15" style="flex:1" onkeydown="if(event.key==='Enter')buscarInt()">
+          <button onclick="buscarInt()" class="btn bp" style="white-space:nowrap;padding:7px 14px;font-size:11px">&#128269; Buscar</button>
+        </div>
+        <div id="intRes" style="margin-top:8px"></div>
+        <div id="intBdg" style="display:none;background:#D1FAE5;border:1px solid #6EE7B7;border-radius:7px;padding:7px 10px;margin-top:6px;font-size:11px;color:#065F46;font-weight:700"></div>
+      </div>
+      <div class="g3">
+        <div class="fld"><label>N&deg; de Matriz <span class="req">*</span></label><input type="text" id="nro" maxlength="17" placeholder="" oninput="cc(this,17)"><div class="cc">0/17</div></div>
+        <div class="fld"><label>Tipo de Interviniente<span class="req">*</span></label><select id="tipo_int" ><option value="">â€” Seleccionar â€”</option><option>Vendedor</option><option>Comprador</option><option>Donante</option><option>Donatario</option><option>Acreedor</option><option>Deudor</option><option>Cedente</option><option>Cesionario</option><option>Garante</option><option>Otro</option></select></div>
+        <div class="fld"><label>Fecha de la Operaci&oacute;n<span class="req">*</span></label><input type="date" id="fop"></div>
+      </div>
+      <div class="g3" style="margin-top:4px">
+        <div class="fld"><label>Cuant&iacute;a / Monto Total (USD) <span class="req">*</span></label><input type="number" id="cuantia" min="0" step="0.01"></div>
+        <div class="fld"><label>Avalu&oacute; Catastral (USD) <span class="req">*</span> <small style="color:#0D7377;font-weight:600">(referencia para FP)</small></label>
+          <input type="number" id="avaluo" min="0" step="0.01" oninput="onAvaluo()"></div>
+        <div></div>
+      </div>
+      <!-- FORMAS DE PAGO -->
+      <div style="margin-top:14px">
+        <div style="font-size:10px;font-weight:700;color:#374151;margin-bottom:8px">
+          Formas de Pago <span class="req">*</span>
+          <span style="font-weight:400;color:#6B7280"> &#8212; La suma debe igualar el <strong>Avalu&oacute; Catastral</strong></span>
+          <span id="fpref" style="font-size:10px;color:#0D7377;font-weight:600;margin-left:8px"></span>
+        </div>
+        <div id="fp_cards">
+<div class="fpc" id="fpc_debito" onclick="togFP('debito')">
+  <div class="fph"><span class="fpic">&#128179;</span><span class="fpnm">Valor debitado</span>
+    <span class="fpbg" id="fpbg_debito"></span>
+    <div class="fpck" id="fpck_debito">&#10003;</div>
+  </div>
+  <div class="fpb" id="fpb_debito" onclick="event.stopPropagation()">
+    <div class="fpmw"><label>Monto (USD) <span class="req">*</span></label>
+      <div style="position:relative"><span class="fps">$</span>
+        <input type="number" id="fpm_debito" min="0" step="0.01" placeholder="0.00" inputmode="decimal"
+          oninput="onFPM('debito',this.value)">
+      </div></div>
   </div>
 </div>
-
-<!-- MODAL -->
-<div id="mo"><div id="mb">
-  <div class="ic" id="mi">✅</div>
-  <h3 id="mt"></h3><p id="mm"></p>
-  <div class="br">
-    <button class="btn bs" id="mbp" onclick="_f12()">🖨️ Imprimir</button>
-    <button class="btn bp" id="mbo" onclick="_f18()">Cerrar</button>
+<div class="fpc" id="fpc_credito" onclick="togFP('credito')">
+  <div class="fph"><span class="fpic">&#127970;</span><span class="fpnm">Valor cr&eacute;dito</span>
+    <span class="fpbg" id="fpbg_credito"></span>
+    <div class="fpck" id="fpck_credito">&#10003;</div>
+  </div>
+  <div class="fpb" id="fpb_credito" onclick="event.stopPropagation()">
+    <div class="fpmw"><label>Monto (USD) <span class="req">*</span></label>
+      <div style="position:relative"><span class="fps">$</span>
+        <input type="number" id="fpm_credito" min="0" step="0.01" placeholder="0.00" inputmode="decimal"
+          oninput="onFPM('credito',this.value)">
+      </div></div>
+  </div>
+</div>
+<div class="fpc" id="fpc_efectivo" onclick="togFP('efectivo')">
+  <div class="fph"><span class="fpic">&#128181;</span><span class="fpnm">Valor efectivo</span>
+    <span class="fpbg" id="fpbg_efectivo"></span>
+    <div class="fpck" id="fpck_efectivo">&#10003;</div>
+  </div>
+  <div class="fpb" id="fpb_efectivo" onclick="event.stopPropagation()">
+    <div class="fpmw"><label>Monto (USD) <span class="req">*</span></label>
+      <div style="position:relative"><span class="fps">$</span>
+        <input type="number" id="fpm_efectivo" min="0" step="0.01" placeholder="0.00" inputmode="decimal"
+          oninput="onFPM('efectivo',this.value)">
+      </div></div>
+  </div>
+</div>
+<div class="fpc" id="fpc_cheque" onclick="togFP('cheque')">
+  <div class="fph"><span class="fpic">&#128203;</span><span class="fpnm">Cheque</span>
+    <span class="fpbg" id="fpbg_cheque"></span>
+    <div class="fpck" id="fpck_cheque">&#10003;</div>
+  </div>
+  <div class="fpb" id="fpb_cheque" onclick="event.stopPropagation()">
+    <div class="fpmw"><label>Monto (USD) <span class="req">*</span></label>
+      <div style="position:relative"><span class="fps">$</span>
+        <input type="number" id="fpm_cheque" min="0" step="0.01" placeholder="0.00" inputmode="decimal"
+          oninput="onFPM('cheque',this.value)">
+      </div></div>
+  </div>
+</div>
+<div class="fpc" id="fpc_bienes" onclick="togFP('bienes')">
+  <div class="fph"><span class="fpic">&#127968;</span><span class="fpnm">Valor en bienes</span>
+    <span class="fpbg" id="fpbg_bienes"></span>
+    <div class="fpck" id="fpck_bienes">&#10003;</div>
+  </div>
+  <div class="fpb" id="fpb_bienes" onclick="event.stopPropagation()">
+    <div class="fpmw"><label>Monto (USD) <span class="req">*</span></label>
+      <div style="position:relative"><span class="fps">$</span>
+        <input type="number" id="fpm_bienes" min="0" step="0.01" placeholder="0.00" inputmode="decimal"
+          oninput="onFPM('bienes',this.value)">
+      </div></div>
+  </div>
+</div>
+<div class="fpc" id="fpc_servicios" onclick="togFP('servicios')">
+  <div class="fph"><span class="fpic">&#129309;</span><span class="fpnm">Valor en servicios</span>
+    <span class="fpbg" id="fpbg_servicios"></span>
+    <div class="fpck" id="fpck_servicios">&#10003;</div>
+  </div>
+  <div class="fpb" id="fpb_servicios" onclick="event.stopPropagation()">
+    <div class="fpmw"><label>Monto (USD) <span class="req">*</span></label>
+      <div style="position:relative"><span class="fps">$</span>
+        <input type="number" id="fpm_servicios" min="0" step="0.01" placeholder="0.00" inputmode="decimal"
+          oninput="onFPM('servicios',this.value)">
+      </div></div>
+  </div>
+</div>
+<div class="fpc" id="fpc_tarjeta" onclick="togFP('tarjeta')">
+  <div class="fph"><span class="fpic">&#128179;</span><span class="fpnm">Tarjeta de cr&eacute;dito</span>
+    <span class="fpbg" id="fpbg_tarjeta"></span>
+    <div class="fpck" id="fpck_tarjeta">&#10003;</div>
+  </div>
+  <div class="fpb" id="fpb_tarjeta" onclick="event.stopPropagation()">
+    <div class="fpmw"><label>Monto (USD) <span class="req">*</span></label>
+      <div style="position:relative"><span class="fps">$</span>
+        <input type="number" id="fpm_tarjeta" min="0" step="0.01" placeholder="0.00" inputmode="decimal"
+          oninput="onFPM('tarjeta',this.value)">
+      </div></div>
   </div>
 </div></div>
-
-<!-- HISTORIAL -->
-<div id="hp"><div id="hb">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-    <h3 style="font-size:15px;font-weight:800;color:#1B3A6B">📋 Historial — Formularios guardados</h3>
-    <button onclick="_f15()" style="background:none;border:none;font-size:22px;cursor:pointer;color:#888">✕</button>
-  </div>
-  <p style="font-size:11px;color:#666;margin-bottom:12px">Clic en un registro para cargarlo y reimprimir.</p>
-  <div id="hl"></div>
-</div></div>
-
-<!-- ADMIN -->
-<div id="ao"><div id="ab">
-  <div id="alv">
-    <h3 style="font-size:15px;font-weight:800;color:#1B3A6B;margin-bottom:5px">🔐 Panel de Administración — Soluciones D&S</h3>
-    <p style="font-size:11px;color:#555;margin-bottom:13px">Contraseña requerida para configurar el sistema.</p>
-    <input type="password" id="api" class="ci" placeholder="Contraseña de administrador" onkeydown="if(event.key==='Enter')_f03()">
-    <div id="ape" style="color:#B71C1C;font-size:10px;display:none;margin-bottom:8px">❌ Contraseña incorrecta</div>
-    <div style="display:flex;gap:8px">
-      <button onclick="_f03()" class="btn bs" style="font-size:12px;padding:9px 18px">Ingresar</button>
-      <button onclick="_f02()" class="btn bo" style="font-size:12px;padding:9px 18px">Cancelar</button>
-    </div>
-  </div>
-  <div id="apv" style="display:none">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-      <h3 style="font-size:15px;font-weight:800;color:#1B3A6B">⚙ Configuración del Sistema</h3>
-      <button onclick="_f02()" style="background:none;border:none;font-size:22px;cursor:pointer;color:#888">✕</button>
-    </div>
-    <label class="cl">🏛 Nombre de la Institución / Notaría <span style="color:#B71C1C">*</span></label>
-    <input type="text" id="cn" class="ci" placeholder="Ej: Notaría del Cantón / Empresa">
-    <label class="cl">📅 Año del formulario</label>
-    <input type="text" id="ca" class="ci" placeholder="2026" style="max-width:120px">
-    <label class="cl">🔗 URL del Apps Script (termina en /exec) <span style="color:#B71C1C">*</span></label>
-    <input type="text" id="cs" class="ci" placeholder="https://script.google.com/macros/s/.../exec" style="font-family:monospace;font-size:10px">
-    <div style="display:flex;gap:8px;align-items:center;margin-top:-7px;margin-bottom:12px">
-      <button onclick="_f04()" class="btn bo" style="font-size:11px;padding:5px 13px">🔌 Probar</button>
-      <span id="csr" style="font-size:10px"></span>
-    </div>
-    <label class="cl">🔑 Nueva contraseña de admin (vacío = no cambiar)</label>
-    <input type="password" id="cp" class="ci" placeholder="Nueva contraseña...">
-    <label class="cl">👤 Funcionarios / Matrizadores (uno por línea)</label>
-    <textarea id="cm" class="ct" rows="6"></textarea>
-    <label class="cl">📋 Tipos de Acto o Contrato (uno por línea)</label>
-    <textarea id="cac" class="ct" rows="6"></textarea>
-    <label class="cl">🌍 Nacionalidades (una por línea)</label>
-    <textarea id="cna" class="ct" rows="5"></textarea>
-    <label class="cl">💼 Profesiones (una por línea)</label>
-    <textarea id="cpr" class="ct" rows="5"></textarea>
-    <div id="cmsg" style="display:none;padding:9px 12px;border-radius:7px;font-size:11px;margin-bottom:10px"></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button onclick="_f05()" class="btn bp" style="font-size:12px">💾 Guardar configuración</button>
-      <button onclick="_f02()" class="btn bo" style="font-size:12px">Cerrar</button>
-    </div>
-    <p style="font-size:9px;color:#aaa;margin-top:10px">⚠ La configuración se guarda en este navegador. Configure cada equipo que use el formulario.</p>
-  </div>
-</div></div>
-
-<!-- ÁREA IMPRESIÓN -->
-<div id="pd"></div>
-
-<script>
-const _v08=atob("YWRtaW4yMDI2");
-const _v09=["Afgana","Albanesa","Alemana","Andorrana","Angoleña","Antiguana","Argentina","Armenia","Australiana","Austriaca","Azerbaiyana","Bahameña","Bareinita","Bangladesí","Barbadense","Bielorrusa","Belga","Beliceña","Beninesa","Butanesa","Boliviana","Bosnia","Botsuanesa","Brasileña","Bruneana","Búlgara","Burkinesa","Burundesa","Caboverdiana","Camboyesa","Camerunesa","Canadiense","Catarí","Chadiana","Chilena","China","Chipriota","Colombiana","Comorense","Congoleña","Costarricense","Croata","Cubana","Danesa","Dominicana","Ecuatoguineana","Ecuatoriana","Egipcia","Salvadoreña","Emiratense","Eritrea","Eslovaca","Eslovena","Española","Estadounidense","Estonia","Etíope","Fiyiana","Filipina","Finlandesa","Francesa","Gabonesa","Gambiana","Georgiana","Ghanesa","Granadina","Griega","Guatemalteca","Guineana","Guyanesa","Haitiana","Hondureña","Húngara","India","Indonesia","Iraní","Iraquí","Irlandesa","Islandesa","Israelí","Italiana","Jamaicana","Japonesa","Jordana","Kazaja","Keniana","Laosiana","Letona","Libanesa","Liberiana","Libia","Lituana","Luxemburguesa","Macedoniana","Malaya","Marroquí","Mauriciana","Mexicana","Moldava","Mongola","Montenegrina","Mozambiqueña","Namibia","Nepalesa","Nicaragüense","Nigeriana","Noruega","Neozelandesa","Omaní","Pakistaní","Palestina","Panameña","Paraguaya","Peruana","Polaca","Portuguesa","Ruandesa","Rumana","Rusa","Samoana","Saudí","Senegalesa","Serbia","Singapurense","Siria","Somalí","Sudafricana","Sudanesa","Sueca","Suiza","Tailandesa","Tanzana","Timorense","Togolesa","Tunecina","Turca","Ugandesa","Ucraniana","Uruguaya","Uzbeka","Venezolana","Vietnamita","Yemení","Zambiana","Zimbabuense"];
-const _v10=["Abogado/a","Administrador/a de Empresas","Agrónomo/a","Arquitecto/a","Auditor/a","Biólogo/a","Chef / Cocinero/a","Comerciante","Comunicador/a Social","Contador/a Público/a","Diplomático/a","Economista","Educador/a / Docente","Empleado/a Público/a","Enfermero/a","Escritor/a","Estudiante","Funcionario/a de Gobierno","Gerente","Independiente / Freelance","Ingeniero/a Civil","Ingeniero/a de Sistemas","Ingeniero/a Industrial","Jubilado/a / Pensionista","Médico/a","Militar / Policía","Notario/a","Odontólogo/a","Periodista","Psicólogo/a","Químico/a farmacéutico/a","Servidor/a Público/a","Técnico/a","Transportista","Veterinario/a","Otros"];
-const _v11=["Promesas de celebrar contratos","Compraventa","Transferencia de dominio / constitución de hipoteca","Constitución de hipoteca","Donación","Permuta","Liquidación de la sociedad conyugal","Liquidación de la sociedad de bienes","Dación en pago","Cesión de derechos onerosos","Comodato","Constitución de consorcios con cuantía determinada","Traspaso de un crédito con cuantía","Cesión de participaciones"];
-const _v12=["Funcionario 1","Funcionario 2","Funcionario 3","Funcionario 4","Funcionario 5"];
-const _v05=["Fiscalía General del Estado","Función Judicial (consulta de procesos)","Superintendencia de Compañías","Servicio de Rentas Internas","Listas restrictivas nacionales e internacionales"];
-const _v06=["Inconsistencia económica","Monto elevado","Vinculación penal directa","Vinculación penal indirecta","Actividad económica sensible","Operación inusual","Estructura societaria compleja","Cliente nuevo"];
-
-/* Formas de pago disponibles */
-const FP_OPCIONES=[
-  {key:"transferencia",label:"Transferencia bancaria"},
-  {key:"cheque_cert",  label:"Cheque certificado"},
-  {key:"cheque_pers",  label:"Cheque personal"},
-  {key:"efectivo",     label:"Efectivo"},
-  {key:"poliza",       label:"Póliza de acumulación"},
-  {key:"credito_hip",  label:"Crédito hipotecario"},
-  {key:"compensacion", label:"Compensación de deudas"},
-  {key:"permuta",      label:"Permuta"},
-  {key:"otro_pago",    label:"Otro"}
-];
-
-let _v13={};
-function _f24(){
-try{_v13=JSON.parse(localStorage.getItem("dd_cfg")||"{}");}catch(e){_v13={};}
-_v13.nombre    =_v13.nombre   ||"";
-_v13.anio      =_v13.anio     ||new Date().getFullYear()+"";
-_v13.scriptUrl =_v13.scriptUrl||"";
-_v13.pass      =_v13.pass     ||_v08;
-_v13.matrizadores  =_v13.matrizadores  ||_v12;
-_v13.tipoActos     =_v13.tipoActos     ||_v11;
-_v13.nacionalidades=_v13.nacionalidades||_v09;
-_v13.profesiones   =_v13.profesiones   ||_v10;
-}
-_f24();
-
-let _v01="",_v02="",_v03=false;
-let _v04=[];
-try{_v04=JSON.parse(localStorage.getItem("dd_hist")||"[]");}catch(e){}
-
-const el=id=>document.getElementById(id);
-const v=id=>{const e=el(id);return e?e.value.trim():"";};
-const rv=n=>{const e=document.querySelector(`input[name="${n}"]:checked`);return e?e.value:"";};
-const chks=c=>[...document.querySelectorAll(`.${c}:checked`)].map(e=>e.value).join(", ");
-
-function sel(opts,id){
-  return'<select id="'+id+'"><option value="">— Seleccionar —</option>'+
-  opts.map(o=>'<option>'+o+'</option>').join('')+'</select>';
-}
-function fld(label,inp,req=false){
-  return'<div class="fld"><label>'+label+(req?'<span class="req">*</span>':'')+'</label>'+inp+'</div>';
-}
-function rads(opts,name){
-  return'<div class="rr">'+opts.map(o=>'<label class="ri"><input type="radio" name="'+name+'" value="'+o+'"> '+o+'</label>').join('')+'</div>';
-}
-
-const _v07=[
-  {id:"s1",t:"I. Información General de la Operación",c:"#0D7377",n:"I"},
-  {id:"s2",t:"II. Identificación del Cliente",c:"#1565C0",n:"II"},
-  {id:"s3",t:"↪ Cónyuge / Conviviente",c:"#6A1B9A",n:"↪"},
-  {id:"s4",t:"III. Información Tributaria",c:"#E65100",n:"III"},
-  {id:"s5",t:"IV. Perfil Económico y Origen de Fondos",c:"#37474F",n:"IV"},
-  {id:"s6",t:"V. Beneficiario Final",c:"#558B2F",n:"V"},
-  {id:"s7",t:"VI. Persona Jurídica",c:"#4527A0",n:"VI"},
-  {id:"s8",t:"VII. Consultas en Bases Públicas",c:"#00695C",n:"VII"},
-  {id:"s9",t:"VIII. PEP — Persona Expuesta Políticamente",c:"#B71C1C",n:"VIII"},
-  {id:"s10",t:"IX. Matriz de Evaluación de Riesgo",c:"#BF360C",n:"IX"},
-  {id:"s11",t:"X. Decisión Institucional",c:"#1B3A6B",n:"X"},
-  {id:"s12",t:"XI. Uso Interno",c:"#1B3A6B",n:"XI"},
-];
-
-/* ====== PANEL FORMAS DE PAGO (nuevo) ====== */
-function _buildFPPanel(){
-  const cards = FP_OPCIONES.map(fp => {
-    const icon = {'transferencia': '🏦', 'cheque_cert': '📋', 'cheque_pers': '📝', 'efectivo': '💵', 'poliza': '📄', 'credito_hip': '🏠', 'compensacion': '🔄', 'permuta': '🤝', 'otro_pago': '➕'}[fp.key] || '💳';
-    const refPh = {'transferencia': 'N° cuenta / banco origen', 'cheque_cert': 'N° cheque / banco emisor', 'cheque_pers': 'N° cheque / banco', 'efectivo': 'Detalle (opcional)', 'poliza': 'N° póliza / entidad', 'credito_hip': 'Entidad / N° crédito', 'compensacion': 'Descripción de la compensación', 'permuta': 'Bien permutado / detalle', 'otro_pago': 'Especifique la forma de pago'}[fp.key] || 'Referencia / detalle';
-    return `
-<div class="fp_card" id="fpcard_${fp.key}" onclick="_toggleFP('${fp.key}')">
-  <div class="fp_card_head">
-    <span class="fp_icon">${icon}</span>
-    <span class="fp_name">${fp.label}</span>
-    <span class="fp_monto_badge" id="fpbadge_${fp.key}"></span>
-    <div class="fp_chk_box"><span class="fp_chk_mark">✓</span></div>
-  </div>
-  <div class="fp_card_body" onclick="event.stopPropagation()">
-    <div class="fp_monto_field">
-      <label>Monto (USD) <span style="color:#B71C1C">*</span></label>
-      <div class="fp_monto_wrap">
-        <span class="fp_sym">$</span>
-        <input type="number" id="fpmonto_${fp.key}" min="0" step="0.01"
-          placeholder="0.00" inputmode="decimal"
-          oninput="_onFPMonto('${fp.key}',this.value)">
+        <div id="fpbal">
+          <div id="fpbalh">
+            <span>Resumen de Pago</span>
+            <span id="fppct" style="color:#6B7280;font-weight:500"></span>
+          </div>
+          <div id="fpbalb">
+            <div class="fbr"><span>Avalu&oacute; catastral (referencia)</span><span class="val" id="fprefv">&#8212;</span></div>
+            <div class="fbr"><span>Total formas de pago</span><span class="val" id="fpsum">$ 0.00</span></div>
+            <div class="fbr tot"><span id="fpdtxt">Diferencia</span><span class="val" id="fpdiff">$ 0.00</span></div>
+            <div id="fppb"><div id="fppbi"></div></div>
+            <div id="fpest"></div>
+          </div>
+        </div>
+      </div>
+      <!-- TIPO DE BIEN -->
+      <div style="margin-top:16px">
+        <div style="font-size:10px;font-weight:700;color:#374151;margin-bottom:8px">Tipo de Bien Objeto de la Operaci&oacute;n</div>
+        <div class="g3">
+          <div class="fld"><label>Tipo de bien</label><select id="tipo_bien" ><option value="">â€” Seleccionar â€”</option><option>Casa</option><option>Departamento</option><option>Terreno</option><option>Local comercial</option><option>Oficina</option><option>Bodega</option><option>Galp&oacute;n industrial</option><option>Finca / Hacienda</option><option>Lote urbanizado</option><option>Bien en construcci&oacute;n</option><option>Bien rural</option><option>Condominio / PH</option><option>Otro tipo de bien</option></select></div>
+          <div class="fld"><label>Direcci&oacute;n del bien</label><input type="text" id="dir_bien" maxlength="80" placeholder="" oninput="cc(this,80)"><div class="cc">0/80</div></div>
+          <div class="fld"><label>Estado del bien</label><select id="estado_bien" ><option value="">â€” Seleccionar â€”</option><option>Nuevo</option><option>Usado</option><option>En construcci&oacute;n</option><option>Preventas</option></select></div>
+        </div>
+      </div>
+      <!-- ENTIDAD -->
+      <div style="margin-top:14px">
+        <div style="font-size:10px;font-weight:700;color:#374151;margin-bottom:8px">Entidad Financiera</div>
+        <div class="g3">
+          <div class="fld"><label>Entidad Financiera <span style="font-size:9px;color:#9CA3AF">(50 car.)</span></label><input type="text" id="entidad" maxlength="50" placeholder="" oninput="cc(this,50)"><div class="cc">0/50</div></div>
+          <div class="fld"><label>N&deg; de Cuenta <small style="color:#9CA3AF">(30 num.)</small></label>
+            <input type="text" id="nro_cta" maxlength="30" inputmode="numeric" oninput="cc(this,30);this.value=this.value.replace(/[^0-9]/g,'')">
+            <div class="cc">0/30</div></div>
+          <div class="fld"><label>Tipo de Cuenta</label><select id="tipo_cta" ><option value="">â€” Seleccionar â€”</option><option>Cuenta Corriente</option><option>Cuenta Ahorros</option><option>Cuenta Empresarial</option></select></div>
+        </div>
+      </div>
+      <!-- ACTOS -->
+      <div style="margin-top:14px">
+        <div style="font-size:10px;font-weight:700;color:#374151;margin-bottom:8px">Tipo de Acto o Contrato</div>
+        <div class="ag" id="ag_actos"><!-- dinÃ¡mico: buildActos() --></div>
       </div>
     </div>
-    <div class="fp_ref_field">
-      <label>Referencia / Detalle</label>
-      <input type="text" id="fpref_${fp.key}" placeholder="${refPh}"
-        oninput="_calcFPBalance()">
+  </div>
+
+  <!-- S2: Identificacion Cliente -->
+  <div class="sc" id="s2">
+    <div class="sh" style="background:#1565C0" onclick="togSec('s2')">
+      <div class="sn">II</div><h2>II. Identificaci&oacute;n del Cliente</h2><span class="sv">&#9660;</span>
+    </div>
+    <div class="sb" id="b_s2">
+      <div class="g3">
+        <div class="fld"><label>Tipo de Identificaci&oacute;n</label><select id="tipo_id" ><option value="">â€” Seleccionar â€”</option><option>C&eacute;dula</option><option>Pasaporte</option><option>RUC</option></select></div>
+        <div class="fld"><label>C&eacute;dula / Pasaporte <span class="req">*</span> <small style="color:#9CA3AF">(15 car.)</small></label><input type="text" id="cedula" maxlength="15" placeholder="" oninput="cc(this,15)"><div class="cc">0/15</div></div>
+        <div class="fld"><label>RUC <small style="color:#9CA3AF">(13 num.)</small></label><input type="text" id="ruc" maxlength="13" placeholder="" oninput="cc(this,13)"><div class="cc">0/13</div></div>
+        <div class="fld full"><label>Apellidos y Nombres Completos <span class="req">*</span></label>
+          <input type="text" id="nombres" maxlength="100" placeholder="Apellido Apellido Nombre Nombre" oninput="cc(this,100)">
+          <div class="cc">0/100</div></div>
+        <div class="fld"><label>Nacionalidad</label><select id="nacion" ><option value="">â€” Seleccionar â€”</option><option>Ecuatoriana</option><option>Colombiana</option><option>Peruana</option><option>Venezolana</option><option>Estadounidense</option><option>Espa&ntilde;ola</option><option>Italiana</option><option>Argentina</option><option>Boliviana</option><option>Chilena</option><option>Otra</option></select></div>
+        <div class="fld"><label>Estado Civil</label><select id="ecivil" onchange="togCony(this.value)"><option value="">â€” Seleccionar â€”</option><option>Soltero/a</option><option>Casado/a</option><option>Divorciado/a</option><option>Viudo/a</option><option>Uni&oacute;n libre</option></select></div>
+        <div class="fld"><label>Profesi&oacute;n / Ocupaci&oacute;n</label><select id="profesion" ><option value="">â€” Seleccionar â€”</option><option>Abogado/a</option><option>Comerciante</option><option>Contador/a P&uacute;blico/a</option><option>Economista</option><option>Empleado/a P&uacute;blico/a</option><option>Gerente</option><option>Independiente / Freelance</option><option>Ingeniero/a</option><option>Jubilado/a</option><option>M&eacute;dico/a</option><option>Servidor/a P&uacute;blico/a</option><option>Otros</option></select></div>
+        <div class="fld full"><div class="fld"><label>Actividad Econ&oacute;mica Principal <span class="req">*</span> <small style="color:#9CA3AF">(50 car.)</small></label><input type="text" id="actividad" maxlength="50" placeholder="" oninput="cc(this,50)"><div class="cc">0/50</div></div></div>
+        <div class="fld full"><div class="fld"><label>Direcci&oacute;n Domiciliaria <span class="req">*</span> <small style="color:#9CA3AF">(80 car.)</small></label><input type="text" id="direccion" maxlength="80" placeholder="" oninput="cc(this,80)"><div class="cc">0/80</div></div></div>
+        <div class="fld"><label>Ciudad / Provincia <small style="color:#9CA3AF">(50 car.)</small></label><input type="text" id="ciudad_cli" maxlength="50" placeholder="" oninput="cc(this,50)"><div class="cc">0/50</div></div>
+        <div class="fld"><label>Tel&eacute;fono <small style="color:#9CA3AF">(15 num.)</small></label>
+          <input type="tel" id="telefono" maxlength="15" inputmode="tel" oninput="cc(this,15);this.value=this.value.replace(/[^0-9+\- ]/g,'')">
+          <div class="cc">0/15</div></div>
+        <div class="fld"><label>Correo Electr&oacute;nico</label><input type="email" id="correo" maxlength="80"></div>
+        <div class="fld full"><div class="fld"><label>Empresa / Lugar de Trabajo <small style="color:#9CA3AF">(100 car.)</small></label><input type="text" id="empresa" maxlength="100" placeholder="" oninput="cc(this,100)"><div class="cc">0/100</div></div></div>
+        <div class="fld"><label>Tiempo de Actividad (a&ntilde;os)</label><input type="number" id="tact" min="0" max="60" style="max-width:100px"></div>
+      </div>
     </div>
   </div>
-</div>`;
-  }).join('');
 
-  return `<div id="fpago_panel">
-  <div class="fpago_header">
-    <div class="fph-title">Seleccione las formas de pago — toque para activar cada una</div>
-    <span id="fp_ref_info"></span>
-  </div>
-  <div id="fpago_cards">${cards}</div>
-  <div id="fpago_balance" style="display:none">
-    <div id="fpago_balance_header">
-      <span>Resumen de Pago</span>
-      <span id="fp_pct_label" style="font-weight:500;color:#6B7280"></span>
+  <!-- S3: Conyuge -->
+  <div class="sc" id="s3">
+    <div class="sh" style="background:#6A1B9A" onclick="togSec('s3')">
+      <div class="sn">III</div><h2>III. C&oacute;nyuge / Conviviente</h2><span class="sv">&#9660;</span>
     </div>
-    <div id="fpago_balance_body">
-      <div class="fp_bal_row"><span>Referencia (Cuantía / Avalúo)</span><span class="val" id="fp_ref_total">—</span></div>
-      <div class="fp_bal_row"><span>Total formas de pago</span><span class="val" id="fp_sum_label">$ 0.00</span></div>
-      <div class="fp_bal_row total"><span id="fp_diff_txt">Diferencia</span><span class="val" id="fp_diff_label">$ 0.00</span></div>
-      <div id="fp_progbar_wrap"><div id="fp_progbar"></div></div>
-      <div id="fp_estado"></div>
+    <div class="sb" id="b_s3">
+      <div id="cny_notice" style="display:none;background:#FEF3C7;border:1px solid #F59E0B;border-radius:7px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#92400E">
+        &#9888; La secci&oacute;n C&oacute;nyuge no aplica para el estado civil seleccionado.
+      </div>
+      <div class="g3" id="cny_flds">
+        <div class="fld"><label>Tipo de Identificaci&oacute;n</label><select id="ctipo_id" ><option value="">â€” Seleccionar â€”</option><option>C&eacute;dula</option><option>Pasaporte</option><option>RUC</option></select></div>
+        <div class="fld"><label>C&eacute;dula / Pasaporte C&oacute;nyuge</label><input type="text" id="cced" maxlength="15" placeholder="" oninput="cc(this,15)"><div class="cc">0/15</div></div>
+        <div class="fld"><label>RUC C&oacute;nyuge</label><input type="text" id="cruc" maxlength="13" placeholder="" oninput="cc(this,13)"><div class="cc">0/13</div></div>
+        <div class="fld full"><label>Nombres Completos C&oacute;nyuge</label>
+          <input type="text" id="cnom" maxlength="100" oninput="cc(this,100)"><div class="cc">0/100</div></div>
+        <div class="fld"><label>Nacionalidad</label><select id="cnac" ><option value="">â€” Seleccionar â€”</option><option>Ecuatoriana</option><option>Colombiana</option><option>Peruana</option><option>Venezolana</option><option>Estadounidense</option><option>Espa&ntilde;ola</option><option>Italiana</option><option>Argentina</option><option>Boliviana</option><option>Chilena</option><option>Otra</option></select></div>
+        <div class="fld"><label>Profesi&oacute;n</label><select id="cprof" ><option value="">â€” Seleccionar â€”</option><option>Abogado/a</option><option>Comerciante</option><option>Contador/a P&uacute;blico/a</option><option>Economista</option><option>Empleado/a P&uacute;blico/a</option><option>Gerente</option><option>Independiente / Freelance</option><option>Ingeniero/a</option><option>Jubilado/a</option><option>M&eacute;dico/a</option><option>Servidor/a P&uacute;blico/a</option><option>Otros</option></select></div>
+        <div class="fld"><label>Actividad Econ&oacute;mica</label><input type="text" id="cact" maxlength="50" placeholder="" oninput="cc(this,50)"><div class="cc">0/50</div></div>
+        <div class="fld"><label>Direcci&oacute;n</label><input type="text" id="cdir" maxlength="80" placeholder="" oninput="cc(this,80)"><div class="cc">0/80</div></div>
+        <div class="fld"><label>Tel&eacute;fono</label><input type="tel" id="ctel" maxlength="15" inputmode="tel"></div>
+        <div class="fld"><label>Correo</label><input type="email" id="ccorreo" maxlength="80"></div>
+        <div class="fld"><label>Empresa</label><input type="text" id="cemp" maxlength="100" placeholder="" oninput="cc(this,100)"><div class="cc">0/100</div></div>
+      </div>
     </div>
   </div>
-</div>`;
+
+  <!-- S4: Tributaria -->
+  <div class="sc" id="s4">
+    <div class="sh" style="background:#E65100" onclick="togSec('s4')">
+      <div class="sn">IV</div><h2>IV. Informaci&oacute;n Tributaria</h2><span class="sv">&#9660;</span>
+    </div>
+    <div class="sb" id="b_s4">
+      <div class="g3">
+        <div class="fld"><label>Estado del RUC</label><div class="rr"><label class="ri"><input type="radio" name="eruc" value="Activo"> Activo</label><label class="ri"><input type="radio" name="eruc" value="Suspendido"> Suspendido</label><label class="ri"><input type="radio" name="eruc" value="Cancelado"> Cancelado</label></div></div>
+        <div class="fld"><label>R&eacute;gimen Tributario</label><div class="rr"><label class="ri"><input type="radio" name="regimen" value="General"> General</label><label class="ri"><input type="radio" name="regimen" value="RIMPE-Emprendedor"> RIMPE-Emprendedor</label><label class="ri"><input type="radio" name="regimen" value="RIMPE-Negocio Popular"> RIMPE-Negocio Popular</label></div></div>
+        <div class="fld"><label>Obligado a llevar Contabilidad</label><div class="rr"><label class="ri"><input type="radio" name="oblig" value="S&iacute;"> S&iacute;</label><label class="ri"><input type="radio" name="oblig" value="No"> No</label></div></div>
+        <div class="fld"><label>Contribuyente Especial</label><div class="rr"><label class="ri"><input type="radio" name="contrib" value="S&iacute;"> S&iacute;</label><label class="ri"><input type="radio" name="contrib" value="No"> No</label></div></div>
+        <div class="fld"><label>Fecha Verificaci&oacute;n SRI</label><input type="date" id="fsri"></div>
+        <div class="fld"><label>Resultado Verificaci&oacute;n SRI</label><input type="text" id="rsri" maxlength="80" placeholder="" oninput="cc(this,80)"><div class="cc">0/80</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5: Perfil Economico -->
+  <div class="sc" id="s5">
+    <div class="sh" style="background:#37474F" onclick="togSec('s5')">
+      <div class="sn">V</div><h2>V. Perfil Econ&oacute;mico y Origen de Fondos</h2><span class="sv">&#9660;</span>
+    </div>
+    <div class="sb" id="b_s5">
+      <div class="g3">
+        <div class="fld"><label>Ingreso Mensual Promedio (USD)<span class="req">*</span></label><input type="number" id="ingreso" min="0" step="0.01"></div>
+        <div class="fld"><label>Patrimonio Aproximado (USD)</label><input type="number" id="patrimonio" min="0" step="0.01"></div>
+        <div class="fld"><label>Origen de los Fondos</label><select id="ofondos" ><option value="">â€” Seleccionar â€”</option><option>Ahorros propios</option><option>Cr&eacute;dito bancario</option><option>Venta de inmueble</option><option>Actividad comercial</option><option>Herencia</option><option>Donaci&oacute;n</option><option>Salario</option><option>Otro</option></select></div>
+        <div class="fld full"><div class="fld"><label>Descripci&oacute;n del Origen de Fondos <small style="color:#9CA3AF">(100 car.)</small></label><input type="text" id="odetalle" maxlength="100" placeholder="" oninput="cc(this,100)"><div class="cc">0/100</div></div></div>
+        <div class="fld full"><label>Respaldo Documental Presentado</label>
+          <div class="rr" style="flex-wrap:wrap;gap:6px 14px">
+            <label class="ri"><input type="checkbox" class="rdoc" value="Estados de cuenta"> Estados de cuenta</label>
+            <label class="ri"><input type="checkbox" class="rdoc" value="Decl. renta"> Declaraci&oacute;n de renta</label>
+            <label class="ri"><input type="checkbox" class="rdoc" value="Escritura previa"> Escritura previa</label>
+            <label class="ri"><input type="checkbox" class="rdoc" value="Contrato cr&eacute;dito"> Contrato cr&eacute;dito</label>
+            <label class="ri"><input type="checkbox" class="rdoc" value="Certif. laboral"> Certificado laboral</label>
+            <label class="ri"><input type="checkbox" class="rdoc" value="Estados financieros"> Estados financieros</label>
+            <label class="ri"><input type="checkbox" class="rdoc" value="No presenta"> No presenta</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: Beneficiario Final -->
+  <div class="sc" id="s6">
+    <div class="sh" style="background:#558B2F" onclick="togSec('s6')">
+      <div class="sn">VI</div><h2>VI. Beneficiario Final</h2><span class="sv">&#9660;</span>
+    </div>
+    <div class="sb" id="b_s6">
+      <div class="fld" style="margin-bottom:12px"><label>&iquest;Act&uacute;a por cuenta propia?</label>
+        <div class="rr">
+          <label class="ri"><input type="radio" name="cpropia" value="S&iacute;" onchange="document.getElementById('bff').style.display='none'"> S&iacute;</label>
+          <label class="ri"><input type="radio" name="cpropia" value="No" onchange="document.getElementById('bff').style.display='grid'"> No &#8212; identificar beneficiario</label>
+        </div>
+      </div>
+      <div class="g3" id="bff" style="display:none">
+        <div class="fld full"><div class="fld"><label>Nombre del Beneficiario Final</label><input type="text" id="bfnom" maxlength="100" placeholder="" oninput="cc(this,100)"><div class="cc">0/100</div></div></div>
+        <div class="fld"><label>C&eacute;dula / RUC</label><input type="text" id="bfced" maxlength="15" placeholder="" oninput="cc(this,15)"><div class="cc">0/15</div></div>
+        <div class="fld"><label>Nacionalidad</label><input type="text" id="bfnac" maxlength="40" placeholder="" oninput="cc(this,40)"><div class="cc">0/40</div></div>
+        <div class="fld"><label>Tel&eacute;fono</label><input type="tel" id="bftel" maxlength="15"></div>
+        <div class="fld"><label>Correo</label><input type="email" id="bfcorreo" maxlength="80"></div>
+        <div class="fld"><label>Relaci&oacute;n con el compareciente</label><input type="text" id="bfrel" maxlength="60" placeholder="" oninput="cc(this,60)"><div class="cc">0/60</div></div>
+        <div class="fld full"><div class="fld"><label>Direcci&oacute;n</label><input type="text" id="bfdir" maxlength="80" placeholder="" oninput="cc(this,80)"><div class="cc">0/80</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7: Persona Juridica -->
+  <div class="sc" id="s7">
+    <div class="sh" style="background:#4527A0" onclick="togSec('s7')">
+      <div class="sn">VII</div><h2>VII. Persona Jur&iacute;dica</h2><span class="sv">&#9660;</span>
+    </div>
+    <div class="sb" id="b_s7">
+      <div class="g3">
+        <div class="fld"><label>Raz&oacute;n Social</label><input type="text" id="pjraz" maxlength="100" placeholder="" oninput="cc(this,100)"><div class="cc">0/100</div></div>
+        <div class="fld"><label>RUC</label><input type="text" id="pjruc" maxlength="13" placeholder="" oninput="cc(this,13)"><div class="cc">0/13</div></div>
+        <div class="fld"><label>Representante Legal</label><input type="text" id="pjrep" maxlength="80" placeholder="" oninput="cc(this,80)"><div class="cc">0/80</div></div>
+        <div class="fld"><label>CI del Representante</label><input type="text" id="pjci" maxlength="15" placeholder="" oninput="cc(this,15)"><div class="cc">0/15</div></div>
+        <div class="fld"><label>&iquest;Estructura Societaria Compleja?</label><div class="rr"><label class="ri"><input type="radio" name="pjestr" value="S&iacute;"> S&iacute;</label><label class="ri"><input type="radio" name="pjestr" value="No"> No</label></div></div>
+        <div class="fld full"><div class="fld"><label>Beneficiarios Finales Identificados</label><input type="text" id="pjben" maxlength="200" placeholder="" oninput="cc(this,200)"><div class="cc">0/200</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8: Bases Publicas -->
+  <div class="sc" id="s8">
+    <div class="sh" style="background:#00695C" onclick="togSec('s8')">
+      <div class="sn">VIII</div><h2>VIII. Consultas en Bases P&uacute;blicas</h2><span class="sv">&#9660;</span>
+    </div>
+    <div class="sb" id="b_s8">
+      <div class="ag" style="margin-bottom:10px"><label class="ai"><input type="checkbox" class="bchk" value="Fiscal&iacute;a General del Estado" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Fiscal&iacute;a General del Estado</label>
+<label class="ai"><input type="checkbox" class="bchk" value="Funci&oacute;n Judicial (procesos)" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Funci&oacute;n Judicial (procesos)</label>
+<label class="ai"><input type="checkbox" class="bchk" value="Superintendencia de Compa&ntilde;&iacute;as" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Superintendencia de Compa&ntilde;&iacute;as</label>
+<label class="ai"><input type="checkbox" class="bchk" value="Servicio de Rentas Internas" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Servicio de Rentas Internas</label>
+<label class="ai"><input type="checkbox" class="bchk" value="Listas restrictivas internacionales" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Listas restrictivas internacionales</label></div>
+      <div class="fld"><label>Fecha de Consulta en Bases</label><input type="date" id="fbases" style="max-width:200px"></div>
+    </div>
+  </div>
+
+  <!-- S9: PEP -->
+  <div class="sc" id="s9">
+    <div class="sh" style="background:#B71C1C" onclick="togSec('s9')">
+      <div class="sn">IX</div><h2>IX. PEP &#8212; Persona Expuesta Pol&iacute;ticamente</h2><span class="sv">&#9660;</span>
+    </div>
+    <div class="sb" id="b_s9">
+      <div class="g3">
+        <div class="fld"><label>&iquest;Es Persona Expuesta Pol&iacute;ticamente?</label><div class="rr"><label class="ri"><input type="radio" name="espep" value="S&iacute;"> S&iacute;</label><label class="ri"><input type="radio" name="espep" value="No"> No</label></div></div>
+        <div class="fld"><label>&iquest;Es familiar o relacionado con PEP?</label><div class="rr"><label class="ri"><input type="radio" name="pepfam" value="S&iacute;"> S&iacute;</label><label class="ri"><input type="radio" name="pepfam" value="No"> No</label></div></div>
+      </div>
+      <div class="g3" id="pepf" style="display:none;margin-top:10px">
+        <div class="fld"><label>Entidad</label><input type="text" id="pepent" maxlength="80" placeholder="" oninput="cc(this,80)"><div class="cc">0/80</div></div>
+        <div class="fld"><label>Cargo</label><input type="text" id="pepcargo" maxlength="60" placeholder="" oninput="cc(this,60)"><div class="cc">0/60</div></div>
+        <div class="fld"><label>Per&iacute;odo</label><input type="text" id="pepperiodo" maxlength="20" placeholder="" oninput="cc(this,20)"><div class="cc">0/20</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S10: Riesgo -->
+  <div class="sc" id="s10">
+    <div class="sh" style="background:#BF360C" onclick="togSec('s10')">
+      <div class="sn">X</div><h2>X. Matriz de Evaluaci&oacute;n de Riesgo</h2><span class="sv">&#9660;</span>
+    </div>
+    <div class="sb" id="b_s10">
+      <div style="font-size:10px;font-weight:700;color:#374151;margin-bottom:6px">Factores Identificados</div>
+      <div class="ag" style="margin-bottom:10px"><label class="ai"><input type="checkbox" class="rfact" value="Inconsistencia econ&oacute;mica" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Inconsistencia econ&oacute;mica</label>
+<label class="ai"><input type="checkbox" class="rfact" value="Monto elevado" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Monto elevado</label>
+<label class="ai"><input type="checkbox" class="rfact" value="Vinculaci&oacute;n penal directa" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Vinculaci&oacute;n penal directa</label>
+<label class="ai"><input type="checkbox" class="rfact" value="Vinculaci&oacute;n penal indirecta" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Vinculaci&oacute;n penal indirecta</label>
+<label class="ai"><input type="checkbox" class="rfact" value="Actividad econ&oacute;mica sensible" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Actividad econ&oacute;mica sensible</label>
+<label class="ai"><input type="checkbox" class="rfact" value="Operaci&oacute;n inusual" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Operaci&oacute;n inusual</label>
+<label class="ai"><input type="checkbox" class="rfact" value="Estructura societaria compleja" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Estructura societaria compleja</label>
+<label class="ai"><input type="checkbox" class="rfact" value="Cliente nuevo sin historial" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Cliente nuevo sin historial</label></div>
+      <div style="max-width:300px"><div class="fld"><label>Otro factor</label><input type="text" id="rotro" maxlength="80" placeholder="" oninput="cc(this,80)"><div class="cc">0/80</div></div></div>
+      <div style="font-size:10px;font-weight:700;color:#374151;margin:12px 0 6px">Nivel de Riesgo Asignado</div>
+      <div class="rprow">
+        <div class="rp" data-v="BAJO" onclick="setRiesgo(this)">&#9679; BAJO</div>
+        <div class="rp" data-v="MEDIO" onclick="setRiesgo(this)">&#9679; MEDIO</div>
+        <div class="rp" data-v="ALTO" onclick="setRiesgo(this)">&#9679; ALTO</div>
+        <div class="rp" data-v="MUY ALTO" onclick="setRiesgo(this)">&#9679; MUY ALTO</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S11: Decision -->
+  <div class="sc" id="s11">
+    <div class="sh" style="background:#1B3A6B" onclick="togSec('s11')">
+      <div class="sn">XI</div><h2>XI. Decisi&oacute;n Institucional</h2><span class="sv">&#9660;</span>
+    </div>
+    <div class="sb" id="b_s11">
+      <div class="g2">
+        <div class="fld"><label>Decisi&oacute;n</label>
+          <div class="rr" style="flex-direction:column;gap:7px;margin-top:3px">
+            <label class="ri"><input type="radio" name="decision" value="Procede la operaci&oacute;n"> Procede la operaci&oacute;n</label>
+            <label class="ri"><input type="radio" name="decision" value="Se eleva a an&aacute;lisis para posible ROS"> Se eleva a an&aacute;lisis para posible ROS</label>
+            <label class="ri"><input type="radio" name="decision" value="Rechazada"> Rechazada</label>
+          </div>
+        </div>
+        <div class="fld"><label>Observaciones</label><input type="text" id="obs" maxlength="200" placeholder="" oninput="cc(this,200)"><div class="cc">0/200</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S12: Uso Interno -->
+  <div class="sc" id="s12">
+    <div class="sh" style="background:#1B3A6B" onclick="togSec('s12')">
+      <div class="sn">XII</div><h2>XII. Uso Interno</h2><span class="sv">&#9660;</span>
+    </div>
+    <div class="sb" id="b_s12">
+      <div class="g3">
+        <div class="fld full"><label>Funcionario que realiza la Debida Diligencia</label>
+          <input type="text" id="func" maxlength="80"></div>
+        <div class="fld"><label>Fecha de la Diligencia</label><input type="date" id="fdilig"></div>
+        <div class="fld"><label>Declaraci&oacute;n Aceptada por el Cliente</label><div class="rr"><label class="ri"><input type="radio" name="dacept" value="S&iacute;"> S&iacute;</label><label class="ri"><input type="radio" name="dacept" value="No"> No</label></div></div>
+        <div class="fld"><label>Nombre del Compareciente (firma)</label><input type="text" id="ncomp" maxlength="100" placeholder="" oninput="cc(this,100)"><div class="cc">0/100</div></div>
+        <div class="fld"><label>Fecha de Firma</label><input type="date" id="ffirma"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="br" id="ba" style="display:none;margin-bottom:24px">
+    <button class="btn bs" onclick="doPrint()">&#128424; Imprimir A4</button>
+    <button class="btn bo" onclick="openHist()">&#128203; Historial / Editar</button>
+    <button class="btn bo" onclick="doNew()">&#8635; Nuevo</button>
+    <button class="btn bp" id="bsv" onclick="doSave()" disabled>&#128190; Guardar</button>
+    <div style="margin-left:auto;font-size:9px;color:#9CA3AF">Powered by <strong style="color:#0D7377">Soluciones D&amp;S</strong></div>
+  </div>
+</div>
+
+<!-- MODALES -->
+<div class="ov" id="ovAlert">
+  <div class="md" style="text-align:center;max-width:440px">
+    <div style="font-size:42px;margin-bottom:10px" id="mIco"></div>
+    <h3 id="mTit" style="text-align:center"></h3>
+    <p id="mMsg" style="font-size:12px;color:#555;margin-bottom:18px;line-height:1.65;white-space:pre-line;text-align:left"></p>
+    <div class="br" style="justify-content:center">
+      <button class="btn bs" id="mPrint" style="display:none" onclick="doPrint()">&#128424; Imprimir</button>
+      <button class="btn bp" id="mBtn" onclick="closeAlert()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="ovHist">
+  <div class="md" style="max-width:720px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <h3 style="margin:0">Historial &#8212; Formularios guardados</h3>
+      <button onclick="closeHist()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#888">&#x2715;</button>
+    </div>
+    <p style="font-size:11px;color:#666;margin-bottom:10px">Clic en un registro para cargarlo y <strong>editarlo</strong> (m&aacute;x. 4 modificaciones por campo).</p>
+    <div id="histList"></div>
+  </div>
+</div>
+
+<div class="ov" id="ovAdmin">
+  <div class="md" style="max-width:620px">
+    <div id="adLogin">
+      <h3>&#128274; Panel de Administraci&oacute;n</h3>
+      <p style="font-size:11px;color:#555;margin-bottom:12px">Contrase&ntilde;a requerida para configurar el sistema.</p>
+      <input type="password" id="adPw" class="ci" placeholder="Contrase&ntilde;a de administrador" onkeydown="if(event.key==='Enter')checkPass()">
+      <div id="adErr" style="color:#B71C1C;font-size:10px;display:none;margin-bottom:8px">Contrase&ntilde;a incorrecta</div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button onclick="checkPass()" class="btn bs" style="font-size:12px;padding:9px 18px">Ingresar</button>
+        <button onclick="closeAdmin()" class="btn bo" style="font-size:12px;padding:9px 18px">Cancelar</button>
+      </div>
+    </div>
+    <div id="adPanel" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <h3 style="margin:0">&#9881; Configuraci&oacute;n del Sistema</h3>
+        <button onclick="closeAdmin()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#888">&#x2715;</button>
+      </div>
+      <label class="cl">&#127963; Nombre de la Instituci&oacute;n / Notar&iacute;a <span class="req">*</span> <span id="nomLk" class="lbdg" style="display:none">&#128274; Fijo</span></label>
+      <input type="text" id="cfNom" class="ci" placeholder="Ej: Notar&iacute;a 69 del Cant&oacute;n Quito">
+      <label class="cl">&#128197; A&ntilde;o del formulario <span id="anioLk" class="lbdg" style="display:none">&#128274; Fijo</span></label>
+      <input type="text" id="cfAnio" class="ci" placeholder="2026" style="max-width:120px">
+      <label class="cl">&#128279; URL del Apps Script (/exec) <span class="req">*</span> <span id="urlLk" class="lbdg" style="display:none">&#128274; Fijo</span></label>
+      <input type="text" id="cfUrl" class="ci" placeholder="https://script.google.com/macros/s/.../exec" style="font-family:monospace;font-size:10px">
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+        <button onclick="testConn()" class="btn bo" style="font-size:11px;padding:5px 13px">&#128299; Probar</button>
+        <span id="connRes" style="font-size:10px"></span>
+      </div>
+      <label class="cl">&#128273; Nueva contrase&ntilde;a admin <small>(vac&iacute;o = no cambiar)</small></label>
+      <input type="password" id="cfPw" class="ci" placeholder="Nueva contrase&ntilde;a...">
+      <label class="cl">&#128100; Funcionarios / Matrizadores (uno por l&iacute;nea)</label>
+      <textarea id="cfMat" class="ct" rows="5"></textarea>
+      <label class="cl">&#128203; Tipos de Acto (uno por l&iacute;nea)</label>
+      <textarea id="cfAct" class="ct" rows="4"></textarea>
+      <label class="cl">&#127758; Nacionalidades (una por l&iacute;nea)</label>
+      <textarea id="cfNac" class="ct" rows="4"></textarea>
+      <label class="cl">&#128188; Profesiones (una por l&iacute;nea)</label>
+      <textarea id="cfPrf" class="ct" rows="4"></textarea>
+      <div id="cfMsg" style="display:none;padding:9px 12px;border-radius:7px;font-size:11px;margin-top:8px"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+        <button onclick="saveCfg()" class="btn bp" style="font-size:12px">&#128190; Guardar configuraci&oacute;n</button>
+        <button onclick="closeAdmin()" class="btn bo" style="font-size:12px">Cerrar</button>
+      </div>
+      <p style="font-size:9px;color:#aaa;margin-top:8px">&#9888; Nombre, A&ntilde;o y URL se bloquean al guardar. Para cambiarlos ingrese clave admin de nuevo. Cambie el A&ntilde;o cada 1&deg; de enero.</p>
+    </div>
+  </div>
+</div>
+
+<div id="pd"></div>
+<script>
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// DEBIDA DILIGENCIA v8 â€” Soluciones D&S â€” JS LIMPIO
+// Sin construcciÃ³n dinÃ¡mica de HTML â€” Todo el HTML es estÃ¡tico
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+var ADMIN_DEF = atob('YWRtaW4yMDI2');
+
+var FP_KEYS = ['debito','credito','efectivo','cheque','bienes','servicios','tarjeta'];
+var FP_NAMES = ['Valor debitado','Valor crÃ©dito','Valor efectivo','Cheque','Valor en bienes','Valor en servicios','Tarjeta de crÃ©dito'];
+
+// â”€â”€ CONFIG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+var CFG = {};
+function loadCfg() {
+  try { CFG = JSON.parse(localStorage.getItem('dd_cfg') || '{}'); } catch(e) { CFG = {}; }
+  if (!CFG.scriptUrl) CFG.scriptUrl = '';
+  if (!CFG.pass)      CFG.pass      = ADMIN_DEF;
+  if (!CFG.anio)      CFG.anio      = String(new Date().getFullYear());
+  if (!CFG.nombre)    CFG.nombre    = '';
+  if (!CFG.mat)       CFG.mat       = ['Funcionario 1','Funcionario 2','Funcionario 3'];
+  if (!CFG.tipoActos) CFG.tipoActos = [
+    'Promesas de celebrar contratos','Compraventa','ConstituciÃ³n de hipoteca',
+    'DonaciÃ³n','Permuta','LiquidaciÃ³n de sociedad conyugal','DaciÃ³n en pago',
+    'CesiÃ³n de derechos onerosos','Comodato','Consorcios con cuantÃ­a',
+    'Traspaso de crÃ©dito','CesiÃ³n de participaciones','Otro acto notarial'
+  ];
+  if (CFG._nomL  === undefined) CFG._nomL  = false;
+  if (CFG._anioL === undefined) CFG._anioL = false;
+  if (CFG._urlL  === undefined) CFG._urlL  = false;
+}
+loadCfg();
+
+// â”€â”€ STATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+var FUNC = '', RIESGO = '', HIST = [], EDIT = null, EDITROW = -1, EDITIDX = -1;
+try { HIST = JSON.parse(localStorage.getItem('dd_hist') || '[]'); } catch(e) {}
+
+// â”€â”€ DOM HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function E(id) { return document.getElementById(id); }
+function V(id) { var e = E(id); return e ? e.value.trim() : ''; }
+function RV(n) { var e = document.querySelector('input[name="' + n + '"]:checked'); return e ? e.value : ''; }
+function cc(el, max) { var n = el.nextElementSibling; if (n && n.classList.contains('cc')) n.textContent = el.value.length + '/' + max; }
+
+// â”€â”€ INIT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function buildActos() {
+  var ag = E('ag_actos');
+  if (!ag) return;
+  var html = '';
+  (CFG.tipoActos || []).forEach(function(a) {
+    var safe = a.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    html += '<label class="ai"><input type="checkbox" class="chkacto" value="' + safe + '" onchange="this.closest(\'label\').classList.toggle(\'sel\',this.checked)"> ' + a + '</label>\n';
+  });
+  html += '<label class="ai" style="grid-column:1/-1"><input type="checkbox" id="chk_otro" onchange="this.closest(\'label\').classList.toggle(\'sel\',this.checked)"> Otro: <input type="text" id="chk_otro_txt" maxlength="60" placeholder="Especifique..." style="display:inline-block;width:180px;margin-left:6px;padding:2px 6px;font-size:10px" onclick="event.stopPropagation()"></label>';
+  ag.innerHTML = html;
 }
 
-function _toggleFP(key){
-  const card = el('fpcard_'+key);
-  const isActive = card.classList.contains('fp_active');
-  if(isActive){
-    // Desactivar
-    card.classList.remove('fp_active');
-    const m = el('fpmonto_'+key);
-    const r = el('fpref_'+key);
-    if(m){ m.value=''; }
-    if(r){ r.value=''; }
-    el('fpbadge_'+key).textContent='';
-    _calcFPBalance();
-  } else {
-    // Activar y hacer foco en monto
-    card.classList.add('fp_active');
-    setTimeout(()=>{ const m=el('fpmonto_'+key); if(m){ m.focus(); m.select(); } },120);
-    _calcFPBalance();
-  }
-}
+function init() {
+  // Update topbar
+  var nom = CFG.nombre || '';
+  var anio = CFG.anio || '';
+  E('tt').textContent = 'Formulario de Debida Diligencia' + (nom ? ' \u2014 ' + nom : '');
+  E('tsub').textContent = 'Prevenci\u00F3n de Lavado de Activos \u00B7 Soluciones D&S' + (anio ? ' \u00B7 ' + anio : '');
 
-function _onFPMonto(key, val){
-  const badge = el('fpbadge_'+key);
-  const n = parseFloat(val)||0;
-  badge.textContent = n>0 ? '$ '+n.toLocaleString('es-EC',{minimumFractionDigits:2,maximumFractionDigits:2}) : '';
-  _calcFPBalance();
-}
-
-function _getRefValue(){
-  const c=parseFloat(v('cuantia'))||0;
-  const a=parseFloat(v('avaluo'))||0;
-  return c>0?c:(a>0?a:0);
-}
-
-function _calcFPBalance(){
-  let sum=0;
-  let activeCount=0;
-  FP_OPCIONES.forEach(fp=>{
-    const card=el('fpcard_'+fp.key);
-    if(card&&card.classList.contains('fp_active')){
-      activeCount++;
-      const m=parseFloat((el('fpmonto_'+fp.key)||{}).value)||0;
-      sum+=m;
-    }
+  // Build nav bar
+  var secs = [
+    {id:'s1',n:'I'},  {id:'s2',n:'II'}, {id:'s3',n:'III'},{id:'s4',n:'IV'},
+    {id:'s5',n:'V'},  {id:'s6',n:'VI'}, {id:'s7',n:'VII'},{id:'s8',n:'VIII'},
+    {id:'s9',n:'IX'}, {id:'s10',n:'X'},{id:'s11',n:'XI'},{id:'s12',n:'XII'}
+  ];
+  var nav = E('nav');
+  nav.innerHTML = '';
+  secs.forEach(function(s) {
+    var d = document.createElement('div');
+    d.className = 'pst';
+    d.textContent = s.n;
+    d.setAttribute('data-sec', s.id);
+    d.onclick = function() { goSec(this.getAttribute('data-sec')); };
+    nav.appendChild(d);
   });
 
-  const ref=_getRefValue();
-  const bal=el('fpago_balance');
-  if(!bal) return;
-  if(activeCount===0){bal.style.display='none';return;}
-  bal.style.display='block';
-
-  el('fp_ref_total').textContent = ref>0?'$ '+ref.toFixed(2):'—';
-  el('fp_sum_label').textContent = '$ '+sum.toFixed(2);
-
-  const diff=sum-ref;
-  el('fp_diff_label').textContent=(diff>=0?'':'−')+'$ '+Math.abs(diff).toFixed(2);
-
-  const pct=ref>0?Math.min((sum/ref)*100,120):0;
-  const bar=el('fp_progbar');
-  bar.style.width=Math.min(pct,100)+'%';
-
-  const est=el('fp_estado');
-  const pctLbl=el('fp_pct_label');
-
-  if(ref<=0){
-    bar.style.background='#9CA3AF';
-    pctLbl.textContent='Sin cuantía/avalúo';
-    est.className='noref';
-    est.textContent='ℹ Ingrese la Cuantía o el Avalúo arriba para validar el cuadre automáticamente.';
-    el('fp_diff_txt').textContent='Sin referencia';
-  } else if(Math.abs(diff)<0.01){
-    bar.style.background='#2E7D32';
-    pctLbl.textContent='✓ Cuadre exacto';
-    est.className='ok';
-    est.textContent='✅ Las formas de pago suman exactamente $ '+sum.toFixed(2)+' — igual a la cuantía/avalúo. ¡Correcto!';
-    el('fp_diff_txt').textContent='Diferencia';
-  } else if(diff>0){
-    bar.style.background='#B71C1C';
-    pctLbl.textContent='⚠ Excede en $ '+diff.toFixed(2);
-    est.className='over';
-    est.textContent='❌ Total pagos $ '+sum.toFixed(2)+' EXCEDE la referencia $ '+ref.toFixed(2)+' en $ '+diff.toFixed(2)+'. Corrija los montos.';
-    el('fp_diff_txt').textContent='Exceso';
-  } else {
-    bar.style.background='#B45309';
-    const falta=Math.abs(diff);
-    pctLbl.textContent='Faltan $ '+falta.toFixed(2);
-    est.className='under';
-    est.textContent='⚠ Total pagos $ '+sum.toFixed(2)+' — faltan $ '+falta.toFixed(2)+' para completar $ '+ref.toFixed(2)+'.';
-    el('fp_diff_txt').textContent='Faltante';
-  }
-}
-
-/* Recalcular balance cuando cambia cuantia o avaluo */
-function _onCuantiaChange(){
-  _calcFPBalance();
-  const c=parseFloat(v("cuantia"))||0;
-  const a=parseFloat(v("avaluo"))||0;
-  const info=el("fp_ref_info");
-  if(info){
-    if(c>0||a>0){
-      let parts=[];
-      if(c>0) parts.push("Cuantía $ "+c.toFixed(2));
-      if(a>0) parts.push("Avalúo $ "+a.toFixed(2));
-      info.textContent="📌 Ref: "+parts.join(" / ");
-    } else { info.textContent=""; }
-  }
-}
-
-/* Serializar formas de pago para el sheet */
-function _serializeFP(){
-  const items=[];
-  FP_OPCIONES.forEach(fp=>{
-    const card=el("fpcard_"+fp.key);
-    if(card&&card.classList.contains("fp_active")){
-      const monto=parseFloat((el("fpmonto_"+fp.key)||{}).value)||0;
-      const ref=((el("fpref_"+fp.key)||{}).value||"").trim();
-      let txt=fp.label;
-      if(monto>0) txt+=" $"+monto.toFixed(2);
-      if(ref) txt+=" ("+ref+")";
-      items.push(txt);
-    }
+  // Build funcionarios select
+  var us = E('us');
+  us.innerHTML = '<option value="">\u2014 Seleccionar funcionario \u2014</option>';
+  (CFG.mat || []).forEach(function(m) {
+    var o = document.createElement('option');
+    o.value = m; o.textContent = m;
+    us.appendChild(o);
   });
-  return items.join(" | ");
+
+  // Open S1 by default
+  E('s1').classList.add('open');
+  E('ba').style.display = 'flex';
+
+  // Construir actos desde config
+  buildActos();
+
+  // PEP listeners
+  document.querySelectorAll('input[name="espep"], input[name="pepfam"]').forEach(function(r) {
+    r.addEventListener('change', function() {
+      E('pepf').style.display = (RV('espep') === 'S\u00ED' || RV('pepfam') === 'S\u00ED') ? 'grid' : 'none';
+    });
+  });
+
+  doPing();
 }
 
-/* Suma total de formas de pago */
-function _sumFP(){
-  let s=0;
-  FP_OPCIONES.forEach(fp=>{
-    const card=el("fpcard_"+fp.key);
-    if(card&&card.classList.contains("fp_active"))
-      s+=parseFloat((el("fpmonto_"+fp.key)||{}).value)||0;
+// â”€â”€ SECCION TOGGLE / NAV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function togSec(id) { E(id).classList.toggle('open'); }
+function goSec(id) {
+  E(id).classList.add('open');
+  E(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.pst').forEach(function(d) { d.classList.remove('act'); });
+  var btn = document.querySelector('[data-sec="' + id + '"]');
+  if (btn) btn.classList.add('act');
+}
+
+// â”€â”€ FORMAS DE PAGO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function togFP(k) {
+  var card = E('fpc_' + k);
+  var on = card.classList.contains('on');
+  if (on) {
+    card.classList.remove('on');
+    var m = E('fpm_' + k), r = E('fpr_' + k);
+    if (m) m.value = '';
+    if (r) r.value = '';
+    E('fpbg_' + k).textContent = '';
+  } else {
+    card.classList.add('on');
+    setTimeout(function() { var m = E('fpm_' + k); if (m) { m.focus(); m.select(); } }, 80);
+  }
+  calcFP();
+}
+
+function onFPM(k, val) {
+  var n = parseFloat(val) || 0;
+  E('fpbg_' + k).textContent = n > 0 ? '$' + n.toLocaleString('es-EC', {minimumFractionDigits:2, maximumFractionDigits:2}) : '';
+  calcFP();
+}
+
+function getRef() {
+  // P10: validar contra AVALÃšO Ãºnicamente
+  return parseFloat(V('avaluo')) || 0;
+}
+
+function sumFP() {
+  var s = 0;
+  FP_KEYS.forEach(function(k) {
+    var c = E('fpc_' + k);
+    if (c && c.classList.contains('on')) s += parseFloat((E('fpm_' + k) || {}).value) || 0;
   });
   return s;
 }
 
-/* ====== BUILD FORM ====== */
-function _f06(){
-  const nom=_v13.nombre||"Formulario Debida Diligencia";
-  const anio=_v13.anio||"";
-  document.title="Formulario Debida Diligencia — Soluciones D&S"+(_v13.nombre?" | "+_v13.nombre:"");
-  el("tt").textContent="Formulario de Debida Diligencia"+(_v13.nombre?" — "+_v13.nombre:"");
-  el("ts").textContent="Prevención de Lavado de Activos · Soluciones D&S"+(anio?" · "+anio:"");
-  el("pb").innerHTML=_v07.map((s,i)=>`<div class="ps${i===0?" active":""}" onclick="_f20('${s.id}')">${s.n}. ${s.t.split(". ").slice(1).join(". ").substring(0,18)||s.t.substring(0,18)}</div>`).join("");
-  const us=el("user-select");
-  us.innerHTML='<option value="">— Seleccionar funcionario —</option>';
-  _v13.matrizadores.forEach(m=>{const o=document.createElement("option");o.value=m;o.textContent=m;us.appendChild(o);});
-  el("fs").innerHTML=_v07.map(s=>`
-<div class="sc" id="${s.id}">
-<div class="sh" style="background:${s.c}" onclick="_f19('${s.id}')">
-<div class="sn">${s.n}</div><h2>${s.t}</h2><span class="sv">▼</span>
-</div>
-<div class="sb" style="border-color:${s.c}20" id="b_${s.id}"></div>
-</div>`).join("");
-
-  /* SECCIÓN I */
-  el("b_s1").innerHTML=`
-<div class="g3">
-${fld("Número de Matriz",`<input type="text" id="nro" placeholder="2026-001">`,true)}
-${fld("Tipo de Interviniente",`<select id="tipo_int" onchange="_f25(this.value)"><option value="">— Seleccionar —</option>${["Vendedor","Comprador","Donante","Donatario","Acreedor","Deudor","Cedente","Cesionario","Otro"].map(o=>"<option>"+o+"</option>").join("")}</select>`,true)}
-${fld("Fecha de la Operación",`<input type="date" id="fop">`,true)}
-${fld("Cuantía / Monto Total (USD) *",`<input type="number" id="cuantia" placeholder="0.00" min="0" step="0.01" oninput="_onCuantiaChange()">`)}
-${fld("Avalúo Catastral (USD)",`<input type="number" id="avaluo" placeholder="0.00" min="0" step="0.01" oninput="_onCuantiaChange()">`)}
-<div style="grid-column:1/-1"></div>
-</div>
-<div style="margin-top:13px">
-<div style="font-size:10px;font-weight:700;color:#374151;margin-bottom:4px">
-  Formas de Pago <span style="color:#B71C1C">*</span>
-  <span style="font-weight:400;color:#6B7280;margin-left:6px">— La suma de los montos debe cuadrar con la Cuantía o el Avalúo</span>
-</div>
-${_buildFPPanel()}
-</div>
-<div class="g3" style="margin-top:13px">
-${fld("Entidad Financiera Principal",`<input type="text" id="entidad">`)}
-${fld("N° de Cuenta",`<input type="text" id="nro_cta">`)}
-${fld("Tipo de Cuenta",sel(["Cuenta Corriente","Cuenta Ahorros","Cuenta Empresarial"],"tipo_cta"))}
-</div>
-<div style="margin-top:13px">
-<div style="font-size:10px;font-weight:700;color:#374151;margin-bottom:6px">Tipo de Acto o Contrato — Marque todos los que correspondan</div>
-<div class="ag" id="ag">
-${_v13.tipoActos.map(a=>`<label class="ai"><input type="checkbox" value="${a}" onchange="this.closest('label').classList.toggle('sel',this.checked)"> ${a}</label>`).join("")}
-<label class="ai" style="grid-column:1/-1">
-<input type="checkbox" id="chk_otro" value="Otro" onchange="this.closest('label').classList.toggle('sel',this.checked)"> Otro:
-<input type="text" id="chk_otro_txt" placeholder="Especifique..." style="display:inline-block;width:175px;margin-left:7px;padding:3px 7px;font-size:10px" onclick="event.stopPropagation()">
-</label>
-</div>
-</div>`;
-
-  /* SECCIÓN II */
-  el("b_s2").innerHTML=`
-<div class="g3">
-${fld("Tipo de Identificación",sel(["Cédula","Pasaporte","RUC"],"tipo_id"))}
-${fld("Cédula / Pasaporte",`<input type="text" id="cedula" placeholder="1712345678" onblur="_f26(this.value)">` + '<div id="cedula_searching" style="font-size:10px;margin-top:3px;display:none"></div>',true)}
-${fld("RUC (si aplica)",`<input type="text" id="ruc">`)}
-<div class="fld full"><label>Nombres Completos <span class="req">*</span></label>
-<input type="text" id="nombres" placeholder="Apellidos y nombres completos"></div>
-${fld("Nacionalidad",`<select id="nacion"><option value="">— Seleccionar —</option>${_v13.nacionalidades.map(n=>`<option>${n}</option>`).join("")}</select>`)}
-${fld("Estado Civil",`<select id="ecivil" onchange="_f23(this.value)"><option value="">— Seleccionar —</option><option>Soltero/a</option><option>Casado/a</option><option>Divorciado/a</option><option>Viudo/a</option><option>Unión libre</option></select>`)}
-${fld("Profesión / Ocupación",`<select id="profesion"><option value="">— Seleccionar —</option>${_v13.profesiones.map(p=>`<option>${p}</option>`).join("")}</select>`)}
-<div class="fld full">${fld("Actividad Económica Principal",`<input type="text" id="actividad">`)}</div>
-<div class="fld full">${fld("Dirección Domiciliaria",`<input type="text" id="direccion" placeholder="Calle, número, sector...">`)}</div>
-${fld("Ciudad / Provincia",`<input type="text" id="ciudad_cli" placeholder="Quito / Pichincha">`)}
-${fld("Teléfono",`<input type="tel" id="telefono" placeholder="09...">`)}
-${fld("Correo Electrónico",`<input type="email" id="correo">`)}
-<div class="fld full">${fld("Empresa / Lugar de Trabajo",`<input type="text" id="empresa">`)}</div>
-${fld("Tiempo de Actividad (años)",`<input type="number" id="tact" min="0" max="60">`)}
-</div>`;
-
-  /* SECCIÓN III CÓNYUGE */
-  el("b_s3").innerHTML=`
-<div id="cny_notice" style="display:none;background:#FEF3C7;border:1px solid #F59E0B;border-radius:7px;padding:8px 12px;margin-bottom:11px;font-size:11px;color:#92400E">
-⚠ La sección Cónyuge no aplica para el estado civil seleccionado.
-</div>
-<div class="g3" id="cny_flds">
-${fld("Cédula / Pasaporte Cónyuge",`<input type="text" id="cced">`)}
-<div class="fld full">${fld("Nombres Completos Cónyuge",`<input type="text" id="cnom">`)}</div>
-${fld("Nacionalidad",`<input type="text" id="cnac">`)}
-${fld("Profesión",`<input type="text" id="cprof">`)}
-${fld("Actividad Económica",`<input type="text" id="cact">`)}
-${fld("Dirección",`<input type="text" id="cdir">`)}
-${fld("Teléfono",`<input type="tel" id="ctel">`)}
-${fld("Correo",`<input type="email" id="ccorreo">`)}
-${fld("Empresa",`<input type="text" id="cemp">`)}
-</div>`;
-
-  /* SECCIÓN IV TRIBUTARIA */
-  el("b_s4").innerHTML=`
-<div class="g3">
-<div class="fld"><label>Estado del RUC</label>${rads(["Activo","Suspendido","Cancelado"],"eruc")}</div>
-<div class="fld"><label>Régimen Tributario</label>${rads(["General","RIMPE-Emprendedor","RIMPE-Negocio Popular"],"regimen")}</div>
-<div class="fld"><label>Obligado a llevar Contabilidad</label>${rads(["Sí","No"],"oblig")}</div>
-<div class="fld"><label>Contribuyente Especial</label>${rads(["Sí","No"],"contrib")}</div>
-${fld("Fecha de Verificación SRI",`<input type="date" id="fsri">`)}
-${fld("Resultado de Verificación",`<input type="text" id="rsri" placeholder="Ej.: RUC activo, al día">`)}
-</div>`;
-
-  /* SECCIÓN V ECONÓMICA */
-  el("b_s5").innerHTML=`
-<div class="g3">
-${fld("Ingreso Mensual Promedio (USD)",`<input type="number" id="ingreso" placeholder="0.00" step="0.01" min="0">`)}
-${fld("Patrimonio Aproximado (USD)",`<input type="number" id="patrimonio" placeholder="0.00" step="0.01" min="0">`)}
-<div id="fondos_wrap" class="fld">
-${fld("Origen de los Fondos",sel(["Ahorros propios","Crédito bancario","Venta de inmueble","Actividad comercial","Herencia","Donación","Otro"],"ofondos"))}
-</div>
-<div id="odetalle_wrap" class="fld full">${fld("Descripción del Origen de Fondos",`<textarea id="odetalle" placeholder="Describa el origen..."></textarea>`)}</div>
-<div class="fld full"><label>Respaldo Documental Presentado</label>
-<div class="rr" style="flex-wrap:wrap;gap:7px 16px">
-${["Estados de cuenta bancarios","Declaración de impuesto a la renta","Escritura de venta previa","Contrato de crédito","Certificado laboral","Estados financieros","No presenta respaldo"]
-.map(d=>`<label class="ri"><input type="checkbox" class="rdoc" value="${d}"> ${d}</label>`).join("")}
-<label class="ri"><input type="checkbox" class="rdoc" id="rdoc_otros" value="Otros" onchange="el('rdoc_otros_txt').style.display=this.checked?'inline-block':'none'"> Otros:</label>
-<input type="text" id="rdoc_otros_txt" placeholder="Especifique..." style="display:none;width:180px;padding:3px 7px;font-size:10px;border:1.5px solid #CBD5E1;border-radius:6px">
-</div>
-</div>
-</div>`;
-
-  /* SECCIÓN VI BENEF FINAL */
-  el("b_s6").innerHTML=`
-<div class="fld" style="margin-bottom:12px"><label>¿Actúa por cuenta propia?</label>
-<div class="rr">
-<label class="ri"><input type="radio" name="cpropia" value="Sí" onchange="el('bff').style.display='none'"> Sí</label>
-<label class="ri"><input type="radio" name="cpropia" value="No" onchange="el('bff').style.display='grid'"> No — identificar beneficiario</label>
-</div>
-</div>
-<div class="g3" id="bff" style="display:none">
-<div class="fld full">${fld("Nombre del Beneficiario Final",`<input type="text" id="bfnom">`)}</div>
-${fld("Cédula / RUC",`<input type="text" id="bfced">`)}
-${fld("Nacionalidad",`<input type="text" id="bfnac">`)}
-${fld("Teléfono",`<input type="tel" id="bftel">`)}
-${fld("Correo",`<input type="email" id="bfcorreo">`)}
-${fld("Relación con el compareciente",`<input type="text" id="bfrel">`)}
-<div class="fld full">${fld("Dirección",`<input type="text" id="bfdir">`)}</div>
-</div>`;
-
-  /* SECCIÓN VII PERSONA JURÍDICA */
-  el("b_s7").innerHTML=`
-<div class="g3">
-${fld("Razón Social",`<input type="text" id="pjraz">`)}
-${fld("RUC",`<input type="text" id="pjruc">`)}
-${fld("Representante Legal",`<input type="text" id="pjrep">`)}
-${fld("CI del Representante Legal",`<input type="text" id="pjci">`)}
-<div class="fld"><label>¿Estructura Societaria Compleja?</label>${rads(["Sí","No"],"pjestr")}</div>
-<div class="fld full">${fld("Beneficiarios Finales Identificados",`<textarea id="pjben"></textarea>`)}</div>
-</div>`;
-
-  /* SECCIÓN VIII BASES */
-  el("b_s8").innerHTML=`
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:7px;margin-bottom:12px">
-${_v05.map(b=>`<label class="ai"><input type="checkbox" class="bchk" value="${b}" onchange="this.closest('label').classList.toggle('sel',this.checked)"> ${b}</label>`).join("")}
-</div>
-${fld("Fecha de Consulta en Bases",`<input type="date" id="fbases" style="max-width:200px">`)}`;
-
-  /* SECCIÓN IX PEP */
-  el("b_s9").innerHTML=`
-<div class="g3">
-<div class="fld"><label>¿Es Persona Expuesta Políticamente?</label>${rads(["Sí","No"],"espep")}</div>
-<div class="fld"><label>¿Es familiar o relacionado con PEP?</label>${rads(["Sí","No"],"pepfam")}</div>
-</div>
-<div class="g3" id="pepf" style="display:none;margin-top:10px">
-${fld("Entidad",`<input type="text" id="pepent">`)}
-${fld("Cargo",`<input type="text" id="pepcargo">`)}
-${fld("Período",`<input type="text" id="pepperiodo" placeholder="2020 - 2024">`)}
-</div>`;
-  document.querySelectorAll('input[name="espep"],input[name="pepfam"]').forEach(r=>{
-    r.addEventListener("change",()=>{
-      el("pepf").style.display=(rv("espep")==="Sí"||rv("pepfam")==="Sí")?"grid":"none";
-    });
-  });
-
-  /* SECCIÓN X RIESGO */
-  el("b_s10").innerHTML=`
-<div style="margin-bottom:12px">
-<div style="font-size:10px;font-weight:700;color:#374151;margin-bottom:6px">Factores Identificados</div>
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:5px">
-${_v06.map(f=>`<label class="ai"><input type="checkbox" class="rfact" value="${f}" onchange="this.closest('label').classList.toggle('sel',this.checked)"> ${f}</label>`).join("")}
-</div>
-<div style="margin-top:9px;max-width:320px">${fld("Otro factor",`<input type="text" id="rotro">`)}</div>
-</div>
-<div>
-<div style="font-size:10px;font-weight:700;color:#374151;margin-bottom:6px">Nivel de Riesgo Asignado</div>
-<div class="rprow">
-<div class="rp" data-v="BAJO"     onclick="_f21(this)">● BAJO</div>
-<div class="rp" data-v="MEDIO"    onclick="_f21(this)">● MEDIO</div>
-<div class="rp" data-v="ALTO"     onclick="_f21(this)">● ALTO</div>
-<div class="rp" data-v="MUY ALTO" onclick="_f21(this)">● MUY ALTO</div>
-</div>
-</div>`;
-
-  /* SECCIÓN XI DECISIÓN */
-  el("b_s11").innerHTML=`
-<div class="g2">
-<div class="fld"><label>Decisión</label>
-<div class="rr" style="flex-direction:column;gap:7px;margin-top:3px">
-<label class="ri"><input type="radio" name="decision" value="Procede la operación"> Procede la operación</label>
-<label class="ri"><input type="radio" name="decision" value="Se eleva a análisis para posible ROS"> Se eleva a análisis para posible ROS</label>
-<label class="ri"><input type="radio" name="decision" value="Rechazada"> Rechazada</label>
-</div>
-</div>
-${fld("Observaciones",`<textarea id="obs" placeholder="Observaciones adicionales..."></textarea>`)}
-</div>`;
-
-  /* SECCIÓN XII USO INTERNO */
-  el("b_s12").innerHTML=`
-<div class="g3">
-<div class="fld full">${fld("Funcionario que realiza la Debida Diligencia",`<input type="text" id="func">`)}</div>
-${fld("Fecha de la Diligencia",`<input type="date" id="fdilig">`)}
-<div class="fld"><label>Declaración Aceptada por el Cliente</label>${rads(["Sí","No"],"dacept")}</div>
-${fld("Nombre del Compareciente (para firma)",`<input type="text" id="ncomp">`)}
-${fld("Fecha de Firma",`<input type="date" id="ffirma">`)}
-</div>`;
-
-  el("s1").classList.add("open");
-  el("ba").style.display="flex";
-}
-
-function _f19(id){ el(id).classList.toggle("open"); }
-function _f20(id){ el(id).classList.add("open"); el(id).scrollIntoView({behavior:"smooth",block:"start"}); }
-function _f21(e){ document.querySelectorAll(".rp").forEach(p=>p.classList.remove("on")); e.classList.add("on"); _v02=e.dataset.v; }
-function _f22(u){ _v01=u; el("bsv").disabled=!u; if(u&&el("func"))el("func").value=u; }
-function _f23(val){
-  const sinCony=["Soltero/a","Divorciado/a","Viudo/a"];
-  const blk=sinCony.includes(val);
-  el("cny_flds").style.opacity=blk?"0.35":"1";
-  el("cny_flds").style.pointerEvents=blk?"none":"";
-  el("cny_notice").style.display=blk?"block":"none";
-  if(blk) ["cced","cnom","cnac","cprof","cact","cdir","ctel","ccorreo","cemp"].forEach(id=>{const e=el(id);if(e)e.value="";});
-}
-
-/* Collect data for sheet — columnas alineadas con Google Sheets */
-function _f10(){
-  const actos=_v13.tipoActos.map(a=>{const cb=document.querySelector(`#ag input[value="${a}"]`);return cb&&cb.checked?"Sí":"No";});
-  const bases=_v05.map(b=>{const cb=document.querySelector(`.bchk[value="${b}"]`);return cb&&cb.checked?"Sí":"No";});
-  const factores=[...document.querySelectorAll(".rfact:checked")].map(e=>e.value).join(", ");
-  const respDocs=(()=>{let docs=chks("rdoc");const ot=v("rdoc_otros_txt");if(el("rdoc_otros")&&el("rdoc_otros").checked&&ot)docs=docs.replace("Otros","Otros: "+ot);return docs;})();
-
-  // Montos por forma de pago (columnas individuales para el sheet)
-  const fpMontos=FP_OPCIONES.map(fp=>{
-    const card=el("fpcard_"+fp.key);
-    if(!card||!card.classList.contains("fp_active")) return "";
-    return parseFloat((el("fpmonto_"+fp.key)||{}).value)||"";
-  });
-  const fpRefs=FP_OPCIONES.map(fp=>{
-    const card=el("fpcard_"+fp.key);
-    if(!card||!card.classList.contains("fp_active")) return "";
-    return (el("fpref_"+fp.key)||{}).value||"";
-  });
-
-  return[
-    "",                          // A: N° Registro (auto por script)
-    new Date().toISOString(),    // B: Fecha Ingreso
-    _v01,                        // C: Matrizador
-    _v13.nombre||"",             // D: Notaría
-    _v13.anio||"",               // E: Año
-    "PENDIENTE",                 // F: Estado
-    v("nro"),                    // G: N° Matriz
-    v("tipo_int"),               // H: Tipo Interviniente
-    v("fop"),                    // I: Fecha Operación
-    v("cuantia"),                // J: Cuantía USD
-    v("avaluo"),                 // K: Avalúo USD
-    _serializeFP(),              // L: Formas Pago (resumen texto)
-    _sumFP().toFixed(2),         // M: Total Pago USD
-    v("entidad"),                // N: Entidad Financiera
-    v("nro_cta"),                // O: N° Cuenta
-    v("tipo_cta"),               // P: Tipo Cuenta
-    // Montos individuales por forma de pago
-    fpMontos[0],fpMontos[1],fpMontos[2],fpMontos[3],fpMontos[4],fpMontos[5],fpMontos[6],fpMontos[7],fpMontos[8], // Q-Y
-    // Referencias por forma de pago
-    fpRefs[0],fpRefs[1],fpRefs[2],fpRefs[3],fpRefs[4],fpRefs[5],fpRefs[6],fpRefs[7],fpRefs[8], // Z-AH
-    // Tipos de acto
-    ...actos,                    // AI+
-    v("chk_otro_txt"),           // Acto Otro
-    // Identificación
-    v("tipo_id"),v("cedula"),v("nombres"),v("ruc"),v("nacion"),v("ecivil"),v("profesion"),
-    v("actividad"),v("direccion"),v("ciudad_cli"),v("telefono"),v("correo"),v("empresa"),v("tact"),
-    // Cónyuge
-    v("cced"),v("cnom"),v("cnac"),v("cprof"),v("cact"),v("cdir"),v("ctel"),v("ccorreo"),v("cemp"),
-    // Tributaria
-    rv("eruc"),rv("regimen"),rv("oblig"),rv("contrib"),v("fsri"),v("rsri"),
-    // Económica
-    v("ingreso"),v("patrimonio"),v("ofondos"),v("odetalle"),respDocs,
-    // Benef final
-    rv("cpropia"),v("bfnom"),v("bfced"),v("bfnac"),v("bfdir"),v("bftel"),v("bfcorreo"),v("bfrel"),
-    // PJ
-    v("pjraz"),v("pjruc"),v("pjrep"),v("pjci"),rv("pjestr"),v("pjben"),
-    // Bases
-    ...bases,v("fbases"),
-    // PEP
-    rv("espep"),rv("pepfam"),v("pepent"),v("pepcargo"),v("pepperiodo"),
-    // Firma
-    rv("dacept"),v("ncomp"),v("ffirma"),
-    // Interno
-    v("func"),v("fdilig"),
-    // Riesgo
-    factores,v("rotro"),_v02,
-    // Decisión
-    rv("decision"),v("obs"),
-    new Date().toLocaleDateString("es-EC")
-  ];
-}
-
-function _f09(){
-  const reqs=[
-    {id:"nro",lb:"Número de Matriz"},
-    {id:"tipo_int",lb:"Tipo de Interviniente"},
-    {id:"fop",lb:"Fecha de la Operación"},
-    {id:"cedula",lb:"Cédula / Pasaporte"},
-    {id:"nombres",lb:"Nombres Completos"},
-  ];
-  const errs=[];
-  if(!_v01) errs.push("Seleccionar Funcionario en la barra superior");
-
-  // Validar formas de pago
-  const fpActive=FP_OPCIONES.filter(fp=>{const c=el("fpcard_"+fp.key);return c&&c.classList.contains("fp_active");});
-  if(fpActive.length===0){ errs.push("Seleccionar al menos una Forma de Pago"); }
-  else {
-    fpActive.forEach(fp=>{
-      const m=parseFloat((el("fpmonto_"+fp.key)||{}).value)||0;
-      if(m<=0) errs.push("Ingrese el monto para: "+fp.label);
-    });
-    const ref=_getRefValue();
-    const sum=_sumFP();
-    if(ref>0 && Math.abs(sum-ref)>0.01){
-      errs.push("Formas de pago ($ "+sum.toFixed(2)+") no cuadran con la cuantía/avalúo ($ "+ref.toFixed(2)+")");
+function serFP() {
+  var it = [];
+  FP_KEYS.forEach(function(k, i) {
+    var c = E('fpc_' + k);
+    if (c && c.classList.contains('on')) {
+      var m = parseFloat((E('fpm_' + k) || {}).value) || 0;
+      if (m > 0) it.push(FP_NAMES[i] + ' $' + m.toFixed(2));
     }
-  }
-
-  reqs.forEach(r=>{
-    const e=el(r.id);
-    if(!e||!e.value.trim()){errs.push(r.lb);if(e)e.classList.add("err-f");}
-    else if(e) e.classList.remove("err-f");
   });
+  return it.join(' | ');
+}
+
+function onAvaluo() {
+  calcFP();
+  var a = parseFloat(V('avaluo')) || 0;
+  var ri = E('fpref');
+  if (ri) ri.innerHTML = a > 0 ? '<strong style="color:#0D7377">\u2714 Avalu\u00F3 referencia FP: $' + a.toFixed(2) + '</strong>' : '';
+}
+
+function calcFP() {
+  var sum = 0, cnt = 0;
+  FP_KEYS.forEach(function(k) {
+    var c = E('fpc_' + k);
+    if (c && c.classList.contains('on')) { cnt++; sum += parseFloat((E('fpm_' + k) || {}).value) || 0; }
+  });
+  var bal = E('fpbal');
+  if (!bal) return;
+  if (cnt === 0) { bal.style.display = 'none'; return; }
+  bal.style.display = 'block';
+
+  var ref = getRef();
+  E('fprefv').textContent = ref > 0 ? '$ ' + ref.toFixed(2) : '\u2014';
+  E('fpsum').textContent = '$ ' + sum.toFixed(2);
+  var diff = sum - ref;
+  E('fpdiff').textContent = (diff >= 0 ? '' : '\u2212 ') + '$ ' + Math.abs(diff).toFixed(2);
+  var pct = ref > 0 ? Math.min((sum / ref) * 100, 120) : 0;
+  var bar = E('fppbi');
+  bar.style.width = Math.min(pct, 100) + '%';
+  var est = E('fpest'), pl = E('fppct');
+  if (ref <= 0) {
+    bar.style.background = '#9CA3AF';
+    pl.textContent = 'Ingrese Avalu\u00F3 para validar';
+    est.className = 'noref';
+    est.textContent = '\u2139 Ingrese el Avalu\u00F3 Catastral para validar la distribuci\u00F3n de pagos.';
+    E('fpdtxt').textContent = 'Sin referencia';
+  } else if (Math.abs(diff) < 0.01) {
+    bar.style.background = '#2E7D32';
+    pl.textContent = '\u2713 Cuadre exacto';
+    est.className = 'ok';
+    est.textContent = '\u2713 Las formas de pago cuadran exactamente con el avalu\u00F3 catastral.';
+    E('fpdtxt').textContent = 'Diferencia';
+  } else if (diff > 0) {
+    bar.style.background = '#B71C1C';
+    pl.textContent = '\u26A0 Excede $' + diff.toFixed(2);
+    est.className = 'over';
+    est.textContent = '\u2718 El total excede el avalu\u00F3 en $' + diff.toFixed(2);
+    E('fpdtxt').textContent = 'Exceso';
+  } else {
+    bar.style.background = '#B45309';
+    pl.textContent = 'Faltan $' + Math.abs(diff).toFixed(2);
+    est.className = 'under';
+    est.textContent = '\u26A0 Faltan $' + Math.abs(diff).toFixed(2) + ' para completar $' + ref.toFixed(2);
+    E('fpdtxt').textContent = 'Faltante';
+  }
+}
+
+// â”€â”€ AUTOCOMPLETE INTERVINIENTE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function buscarInt() {
+  var ced = V('intCed');
+  if (ced.length < 5 || !CFG.scriptUrl) {
+    E('intRes').innerHTML = '<div style="font-size:11px;color:#B71C1C">Ingrese al menos 5 caracteres o configure la URL del script.</div>';
+    return;
+  }
+  E('intRes').innerHTML = '<div style="font-size:11px;color:#555">&#128269; Buscando...</div>';
+  jsonp(CFG.scriptUrl, {action:'buscar_cedula', cedula:encodeURIComponent(ced)}, function(d) {
+    if (d && d.status === 'FOUND') {
+      try {
+        var r = JSON.parse(d.msg);
+        var html = '<div class="int-it" onclick="cargarInt(\'' + encodeURIComponent(JSON.stringify(r)) + '\')">' +
+          '<strong>' + (r.nombres || '\u2014') + '</strong><br>' +
+          '<span style="color:#6B7280">' + (r.cedula || ced) + ' \u00B7 ' + (r.telefono || '') + ' \u00B7 ' + (r.ciudad || '') + '</span></div>';
+        E('intRes').innerHTML = html;
+      } catch(e) { E('intRes').innerHTML = '<div style="font-size:11px;color:#B71C1C">Error al leer los datos.</div>'; }
+    } else {
+      E('intRes').innerHTML = '<div style="font-size:11px;color:#888">Sin registros previos. Complete manualmente.</div>';
+    }
+  });
+}
+
+function cargarInt(encoded) {
+  var r; try { r = JSON.parse(decodeURIComponent(encoded)); } catch(e) { return; }
+  var M = {cedula:'cedula',nombres:'nombres',ecivil:'ecivil',nacion:'nacion',profesion:'profesion',
+    telefono:'telefono',correo:'correo',direccion:'direccion',ciudad:'ciudad_cli',empresa:'empresa',
+    actividad:'actividad',ingreso:'ingreso',patrimonio:'patrimonio',ofondos:'ofondos',
+    ruc:'ruc',eruc:'eruc',regimen:'regimen',tact:'tact',tipo_id:'tipo_id'};
+  Object.keys(M).forEach(function(s) {
+    var el = E(M[s]); if (el && r[s] !== undefined) el.value = r[s];
+  });
+  var bdg = E('intBdg');
+  if (bdg) { bdg.style.display = 'block'; bdg.textContent = '\u2713 Datos de ' + (r.nombres || 'el interviniente') + ' cargados correctamente.'; }
+  E('intRes').innerHTML = '';
+}
+
+// â”€â”€ AUX â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function setFunc(u) { FUNC = u; E('bsv').disabled = !u; if (u && E('func')) E('func').value = u; }
+function setRiesgo(el) { document.querySelectorAll('.rp').forEach(function(p) { p.classList.remove('on'); }); el.classList.add('on'); RIESGO = el.dataset.v; }
+function togCony(val) {
+  var sinC = ['Soltero/a','Divorciado/a','Viudo/a'];
+  var blk = sinC.indexOf(val) >= 0;
+  var f = E('cny_flds'), n = E('cny_notice');
+  if (f) { f.style.opacity = blk ? '0.35' : '1'; f.style.pointerEvents = blk ? 'none' : ''; }
+  if (n) n.style.display = blk ? 'block' : 'none';
+}
+
+// â”€â”€ COLLECT DATA (120 columnas) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function collectData() {
+  // COLUMNAS DEL SHEET (orden exacto):
+  // [0-5]   Metadatos: NReg, Fecha, Func, Inst, AÃ±o, Estado
+  // [6-15]  OperaciÃ³n: NroMat, TipoInt, FechaOp, Cuantia, Avaluo, FPResumen, TotalPago, Entidad, NroCta, TipoCta
+  // [16-22] FP Montos x7: Debito, Credito, Efectivo, Cheque, Bienes, Servicios, Tarjeta
+  // [23-25] Tipo Bien: TipoBien, DirBien, EstadoBien
+  // [26-27] Actos: ActosSelec, OtroActo  (+ padding hasta [38])
+  // [39-52] Cliente 14 campos
+  // [53-63] CÃ³nyuge 11 campos
+  // [64-69] Tributaria
+  // [70-74] EconÃ³mico
+  // [75-82] Benef Final
+  // [83-88] PJ
+  // [89-90] Bases, FBases
+  // [91-95] PEP
+  // [96-100] Firma
+  // [101-106] Riesgo + Cierre
+  // [33-45] Actos x13 + [46] OtroActo
+  // [47-60] Cliente (14 campos)
+  // [61-71] CÃ³nyuge (11 campos)
+  // [72-77] Tributaria
+  // [78-82] EconÃ³mico
+  // [83-90] Benef Final
+  // [91-96] PJ
+  // [97-101] Bases x5 + [102] FBases
+  // [103-107] PEP
+  // [108-112] Firma
+  // [113-118] Riesgo + Cierre
+  var actos = document.querySelectorAll('.chkacto:checked');
+  var actosVals = []; actos.forEach(function(a) { actosVals.push(a.value); });
+  var bases = document.querySelectorAll('.bchk:checked');
+  var basesVals = []; bases.forEach(function(b) { basesVals.push(b.value); });
+  var factores = document.querySelectorAll('.rfact:checked');
+  var factVals = []; factores.forEach(function(f) { factVals.push(f.value); });
+  var rdocs = document.querySelectorAll('.rdoc:checked');
+  var rdocVals = []; rdocs.forEach(function(r) { rdocVals.push(r.value); });
+
+  var fpM = FP_KEYS.map(function(k) {
+    var c = E('fpc_' + k);
+    if (!c || !c.classList.contains('on')) return '';
+    return parseFloat((E('fpm_' + k) || {}).value) || '';
+  });
+  // fpR eliminado â€” solo se guardan montos FP
+
+  var row = [
+    '',                          // [0] NÂ°Reg (script lo genera)
+    new Date().toISOString(),   // [1] Fecha
+    FUNC,                        // [2] Funcionario
+    CFG.nombre || '',            // [3] InstituciÃ³n
+    CFG.anio || '',              // [4] AÃ±o
+    'GUARDADO',                  // [5] Estado
+    V('nro'),                    // [6] NÂ°Matriz
+    V('tipo_int'),               // [7] TipoInt
+    V('fop'),                    // [8] FechaOp
+    V('cuantia'),                // [9] CuantÃ­a
+    V('avaluo'),                 // [10] AvalÃºo
+    serFP(),                     // [11] FPResumen
+    sumFP().toFixed(2),          // [12] TotalPago
+    V('entidad'),                // [13] Entidad
+    V('nro_cta'),                // [14] NÂ°Cta
+    V('tipo_cta'),               // [15] TipoCta
+  ];
+  // [16-22] FP Montos
+  fpM.forEach(function(v) { row.push(v); });
+  // FP Refs eliminado â€” solo montos
+  // [30-32] Bien
+  row.push(V('tipo_bien'), V('dir_bien'), V('estado_bien'));
+  // [33-46] Actos
+  row.push(actosVals.join(', '), V('chk_otro_txt'));
+  // Pad actos to 14 slots
+  while (row.length < 47) row.push('');
+  // [47-60] Cliente
+  row.push(V('tipo_id'), V('cedula'), V('nombres'), V('ruc'), V('nacion'), V('ecivil'), V('profesion'),
+    V('actividad'), V('direccion'), V('ciudad_cli'), V('telefono'), V('correo'), V('empresa'), V('tact'));
+  // [61-71] CÃ³nyuge
+  row.push(V('ctipo_id'), V('cced'), V('cnom'), V('cruc'), V('cnac'), V('cprof'),
+    V('cact'), V('cdir'), V('ctel'), V('ccorreo'), V('cemp'));
+  // [72-77] Tributaria
+  row.push(RV('eruc'), RV('regimen'), RV('oblig'), RV('contrib'), V('fsri'), V('rsri'));
+  // [78-82] EconÃ³mico
+  row.push(V('ingreso'), V('patrimonio'), V('ofondos'), V('odetalle'), rdocVals.join(', '));
+  // [83-90] Benef Final
+  row.push(RV('cpropia'), V('bfnom'), V('bfced'), V('bfnac'), V('bfdir'), V('bftel'), V('bfcorreo'), V('bfrel'));
+  // [91-96] PJ
+  row.push(V('pjraz'), V('pjruc'), V('pjrep'), V('pjci'), RV('pjestr'), V('pjben'));
+  // [97-102] Bases
+  row.push(basesVals.join(', '), V('fbases'));
+  // [103-107] PEP
+  row.push(RV('espep'), RV('pepfam'), V('pepent'), V('pepcargo'), V('pepperiodo'));
+  // [108-112] Firma
+  row.push(RV('dacept'), V('ncomp'), V('ffirma'), V('func'), V('fdilig'));
+  // [113-118] Riesgo
+  row.push(factVals.join(', '), V('rotro'), RIESGO, RV('decision'), V('obs'), new Date().toLocaleDateString('es-EC'));
+  return row;
+}
+
+// â”€â”€ VALIDATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function validate() {
+  var errs = [];
+  if (!FUNC) errs.push('Seleccionar Funcionario (barra superior)');
+  var reqs = [['nro','N\u00B0 de Matriz'],['tipo_int','Tipo de Interviniente'],
+    ['fop','Fecha de la Operaci\u00F3n'],['cedula','C\u00E9dula/Pasaporte'],['nombres','Nombres Completos']];
+  reqs.forEach(function(p) {
+    var el = E(p[0]);
+    if (!el || !el.value.trim()) { errs.push(p[1]); if (el) el.classList.add('ef'); }
+    else if (el) el.classList.remove('ef');
+  });
+  var av = parseFloat(V('avaluo')) || 0;
+  if (av <= 0) errs.push('Ingrese el Avalu\u00F3 Catastral (requerido para validar FP)');
+  var fpAct = FP_KEYS.filter(function(k) { var c = E('fpc_' + k); return c && c.classList.contains('on'); });
+  if (fpAct.length === 0) {
+    errs.push('Seleccionar al menos una Forma de Pago');
+  } else {
+    fpAct.forEach(function(k, i) {
+      var m = parseFloat((E('fpm_' + k) || {}).value) || 0;
+      if (m <= 0) errs.push('Monto requerido en: ' + FP_NAMES[FP_KEYS.indexOf(k)]);
+    });
+    var sum = sumFP();
+    if (av > 0 && Math.abs(sum - av) > 0.01) errs.push('Formas de pago ($' + sum.toFixed(2) + ') no cuadran con avalu\u00F3 ($' + av.toFixed(2) + ')');
+  }
   return errs;
 }
 
-async function _f08(){
-  const errs=_f09();
-  if(errs.length){ _f17("⚠️","Campos requeridos / errores de cuadre","Por favor corrija:\n• "+errs.join("\n• "),false); return; }
-  el("bsv").disabled=true; el("bsv").textContent="⏳ Guardando...";
-  el("sp").textContent="⏳ Enviando"; el("sp").className="saving";
-  const datos=_f10();
-  let intentos=0;
-  async function enviar(){
+// â”€â”€ SAVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function doSave() {
+  var errs = validate();
+  if (errs.length) { showAlert('\u26A0\uFE0F', 'Campos requeridos', '\u2022 ' + errs.join('\n\u2022 '), false); return; }
+  E('bsv').disabled = true; E('bsv').textContent = 'Guardando...';
+  E('sp').textContent = 'Enviando'; E('sp').className = 'spin';
+  var datos = collectData();
+  var action = (EDITROW > 0 && EDIT) ? 'editar' : 'guardar';
+  var xp = action === 'editar' ? '&fila=' + EDITROW : '';
+  var intentos = 0;
+  function enviar() {
     intentos++;
-    try{
-      await new Promise((res,rej)=>{
-        const cb="__s"+Date.now();
-        const sc=document.createElement("script");
-        const tm=setTimeout(()=>{delete window[cb];try{document.head.removeChild(sc);}catch(x){}rej(new Error("Sin respuesta del servidor."));},20000);
-        window[cb]=d=>{clearTimeout(tm);delete window[cb];try{document.head.removeChild(sc);}catch(x){}d.status==="OK"?res(d):rej(new Error(d.msg||"Error al guardar"));};
-        sc.onerror=()=>{clearTimeout(tm);delete window[cb];try{document.head.removeChild(sc);}catch(x){}rej(new Error("Error de red."));};
-        sc.src=_v13.scriptUrl+"?callback="+cb+"&action=guardar&d="+encodeURIComponent(JSON.stringify(datos))+"&t="+Date.now();
-        document.head.appendChild(sc);
-      });
-      const reg={id:Date.now(),fecha:new Date().toLocaleString("es-EC"),mat:_v01,nro:datos[6],nombre:datos[32]||datos[31],datos};
-      _v04.unshift(reg);
-      if(_v04.length>50)_v04=_v04.slice(0,50);
-      localStorage.setItem("dd_hist",JSON.stringify(_v04));
-      el("sp").textContent="✓ Conectado"; el("sp").className="ok";
-      el("bsv").textContent="💾 Guardar"; el("bsv").disabled=false;
-      _f17("✅","Guardado exitosamente",`Funcionario: ${_v01}\nN° Matriz: ${datos[6]||"—"}\nCliente: ${datos[32]||datos[31]||"—"}\nTotal pago: $ ${datos[12]}\n\n✔ Registro enviado a Google Sheets.`,true);
-    }catch(err){
-      if(intentos<3){el("bsv").textContent=`⏳ Reintentando ${intentos}/3...`;await new Promise(r=>setTimeout(r,intentos*2000));return enviar();}
-      el("bsv").disabled=false; el("bsv").textContent="💾 Guardar";
-      el("sp").textContent="✗ Error — clic ⚙"; el("sp").className="err";
-      _f17("❌","Error al guardar","No se pudo conectar con Google Sheets.\n\nVerifique:\n1. Conexión a internet\n2. URL del Script (botón ⚙)\n\n"+err.message,false);
-    }
+    var cb = '__sv' + Date.now(); var sc = document.createElement('script');
+    var tm = setTimeout(function() { delete window[cb]; try { document.head.removeChild(sc); } catch(x) {} onErr('Timeout'); }, 20000);
+    window[cb] = function(d) { clearTimeout(tm); delete window[cb]; try { document.head.removeChild(sc); } catch(x) {} d.status === 'OK' ? onOk(d) : onErr(d.msg || 'Error'); };
+    sc.onerror = function() { clearTimeout(tm); delete window[cb]; try { document.head.removeChild(sc); } catch(x) {} onErr('Error de red'); };
+    sc.src = CFG.scriptUrl + '?callback=' + cb + '&action=' + action + '&d=' + encodeURIComponent(JSON.stringify(datos)) + '&t=' + Date.now() + xp;
+    document.head.appendChild(sc);
   }
-  await enviar();
+  function onOk(d) {
+    var reg = {id:Date.now(), fecha:new Date().toLocaleString('es-EC'), mat:FUNC,
+      nro:datos[6], nombre:datos[48] || '', datos:datos, edits:{}, fila:d.fila || EDITROW};
+    HIST.unshift(reg); if (HIST.length > 60) HIST = HIST.slice(0, 60);
+    localStorage.setItem('dd_hist', JSON.stringify(HIST));
+    E('sp').textContent = '\u2713 Conectado'; E('sp').className = 'ok';
+    E('bsv').textContent = '\uD83D\uDCBE Guardar'; E('bsv').disabled = false;
+    EDIT = null; EDITROW = -1; EDITIDX = -1;
+    showAlert('\u2705', 'Guardado exitosamente',
+      'Funcionario: ' + FUNC + '\nN\u00B0 Matriz: ' + (datos[6]||'\u2014') +
+      '\nCliente: ' + (datos[48]||'\u2014') + '\nTotal pago: $ ' + datos[12] + '\nEstado: GUARDADO', true);
+  }
+  function onErr(msg) {
+    if (intentos < 3) { E('bsv').textContent = 'Reintento ' + intentos + '/3...'; setTimeout(enviar, intentos * 2000); return; }
+    E('bsv').disabled = false; E('bsv').textContent = '\uD83D\uDCBE Guardar';
+    E('sp').textContent = 'Error'; E('sp').className = 'err';
+    showAlert('\u274C', 'Error al guardar', 'No se pudo conectar.\nVerifique:\n1. Conexi\u00F3n a internet\n2. URL del Script (\u2699 Config)\n\n' + msg, false);
+  }
+  enviar();
 }
 
-function _f14(){
-  try{_v04=JSON.parse(localStorage.getItem("dd_hist")||"[]");}catch(e){}
-  el("hl").innerHTML=_v04.length
-    ? _v04.map((r,i)=>`<div class="hi" onclick="_f16(${i})">
-<div style="font-size:12px;font-weight:700;color:#1B3A6B">${r.nombre||"Sin nombre"} &nbsp;·&nbsp; N° ${r.nro||"—"}</div>
-<div class="hm">📅 ${r.fecha} &nbsp;|&nbsp; 👤 ${r.mat}</div>
-</div>`).join("")
-    : '<p style="color:#888;font-size:12px;text-align:center;padding:20px">No hay registros guardados en este navegador.</p>';
-  el("hp").classList.add("show");
+// â”€â”€ HISTORIAL / EDICIÃ“N â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function openHist() {
+  try { HIST = JSON.parse(localStorage.getItem('dd_hist') || '[]'); } catch(e) {}
+  E('histList').innerHTML = HIST.length ? HIST.map(function(r, i) {
+    var edCnt = r.edits ? Object.keys(r.edits).reduce(function(acc, k) { return acc + r.edits[k]; }, 0) : 0;
+    return '<div class="hi ' + (edCnt ? 'hied' : '') + '" onclick="loadEdit(' + i + ')">' +
+      '<div style="font-size:12px;font-weight:700;color:#1B3A6B">' + (r.nombre || 'Sin nombre') + ' \u00B7 N\u00B0 ' + (r.nro || '\u2014') + '</div>' +
+      '<div style="font-size:10px;color:#888;margin-top:3px">' + r.fecha + ' \u00B7 ' + r.mat + (edCnt ? ' \u00B7 \u270F ' + edCnt + ' ediciones' : '') + '</div></div>';
+  }).join('') : '<p style="color:#888;font-size:12px;text-align:center;padding:20px">No hay registros guardados en este dispositivo.</p>';
+  E('ovHist').classList.add('show');
 }
-function _f15(){ el("hp").classList.remove("show"); }
-function _f16(i){ const reg=_v04[i]; if(!reg)return; _f15(); _f13(reg.datos,reg.mat); }
+function closeHist() { E('ovHist').classList.remove('show'); }
 
-/* IMPRIMIR */
-function _f12(){ _f13(_f10(),_v01); }
-function _f13(d,resp){
-  const g=i=>d[i]||"";
-  const nom=d[3]||_v13.nombre||"Institución";
-  const anio=d[4]||_v13.anio||new Date().getFullYear();
-  const actos=_v13.tipoActos.map((a,i)=>({lb:a,on:d[32+i]==="Sí"})); // offset ajustado
-  const bases=_v05.map((b,i)=>({lb:b,on:d[95+i]==="Sí"}));
-  const nr=_v02||"";
-  const rs={BAJO:{bg:"#D1FAE5",c:"#2E7D32"},MEDIO:{bg:"#FEF3C7",c:"#B45309"},ALTO:{bg:"#FFEDD5",c:"#E65100"},"MUY ALTO":{bg:"#FEE2E2",c:"#B71C1C"}}[nr]||{bg:"#F3F4F6",c:"#555"};
-  const hoy=new Date().toLocaleDateString("es-EC",{day:"2-digit",month:"2-digit",year:"numeric"});
-  const fv=(lb,val)=>`<div class="pf"><div class="pl">${lb}</div><div class="pv${!val?" e":""}">${val||"—"}</div></div>`;
-  const sh=(n,t,c)=>`<div class="psh" style="background:${c}"><div class="n">${n}</div>${t}</div>`;
-
-  // Construir tabla de formas de pago para impresión
-  const fpPrintRows=FP_OPCIONES.map((fp,i)=>{
-    const card=el("fpcard_"+fp.key);
-    if(!card||!card.classList.contains("fp_active")) return "";
-    const monto=parseFloat((el("fpmonto_"+fp.key)||{}).value)||0;
-    const ref=((el("fpref_"+fp.key)||{}).value)||"—";
-    return`<div class="pp_fp_row"><div>${fp.label}</div><div>$ ${monto.toFixed(2)}</div><div>${ref}</div></div>`;
-  }).filter(Boolean).join("");
-  const fpPrint=fpPrintRows?`<div class="pp_fp">
-<div class="pp_fp_row header"><div>Forma de Pago</div><div>Monto USD</div><div>Referencia</div></div>
-${fpPrintRows}
-<div class="pp_fp_total"><span>Total formas de pago</span><span>$ ${_sumFP().toFixed(2)}</span></div>
-</div>`:"";
-
-  el("pd").innerHTML=`<div class="pw">
-<div class="ph">
-<div class="ph-l"><h1>FORMULARIO DE DEBIDA DILIGENCIA — ${nom.toUpperCase() || "SOLUCIONES D&S"}</h1>
-<p>Prevención de Lavado de Activos · ${anio}</p></div>
-<div class="ph-r">N° Registro: <strong>${g(0)||"—"}</strong><br>N° Matriz: <strong>${g(6)||"—"}</strong><br>Generado: ${hoy}</div>
-</div>
-<div class="pm">
-<div class="pmi"><div class="lb">Matrizador/a</div><div class="vl">${resp||"—"}</div></div>
-<div class="pmi"><div class="lb">Fecha Ingreso</div><div class="vl">${new Date().toLocaleDateString("es-EC")}</div></div>
-<div class="pmi"><div class="lb">N° Matriz</div><div class="vl">${g(6)||"—"}</div></div>
-<div class="pmi"><div class="lb">Estado</div><div class="vl">${g(5)||"PENDIENTE"}</div></div>
-</div>
-<div class="ps2">${sh("I","INFORMACIÓN GENERAL DE LA OPERACIÓN","#0D7377")}
-<div class="psb">
-<div class="pg pg3" style="margin-bottom:6px">
-${fv("N° Matriz",g(6))}${fv("Tipo Interviniente",g(7))}${fv("Fecha Operación",g(8))}
-${fv("Cuantía USD",g(9))}${fv("Avalúo Catastral USD",g(10))}${fv("Total Formas de Pago USD",g(12))}
-${fv("Entidad Financiera",g(13))}${fv("N° Cuenta",g(14))}${fv("Tipo Cuenta",g(15))}
-</div>
-<div class="pl" style="margin-bottom:3px">Formas de Pago</div>
-${fpPrint}
-<div class="pl" style="margin-top:6px;margin-bottom:3px">Tipo de Acto o Contrato</div>
-<div class="pac">
-${actos.map(a=>`<div class="pa"><div class="pb2${a.on?" on":""}">${a.on?"✓":""}</div><span>${a.lb}</span></div>`).join("")}
-</div>
-</div></div>
-<div class="ps2">${sh("II","IDENTIFICACIÓN DEL CLIENTE","#1565C0")}
-<div class="psb"><div class="pg pg3">
-${fv("Tipo ID",g(47))}${fv("Cédula / Pasaporte",g(48))}${fv("RUC",g(50))}
-<div class="pf" style="grid-column:1/-1">${fv("Nombres Completos",g(49))}</div>
-${fv("Nacionalidad",g(51))}${fv("Estado Civil",g(52))}${fv("Profesión",g(53))}
-<div class="pf" style="grid-column:1/-1">${fv("Actividad Económica",g(54))}</div>
-<div class="pf" style="grid-column:1/-1">${fv("Dirección",g(55))}</div>
-${fv("Ciudad / Provincia",g(56))}${fv("Teléfono",g(57))}${fv("Correo",g(58))}
-<div class="pf" style="grid-column:1/-1">${fv("Empresa",g(59))}</div>
-${fv("Tiempo Actividad (años)",g(60))}
-</div></div></div>
-<div class="ps2">${sh("III","INFORMACIÓN TRIBUTARIA","#E65100")}
-<div class="psb pg pg3">
-${fv("Estado RUC",g(70))}${fv("Régimen",g(71))}${fv("Oblig. Contabilidad",g(72))}
-${fv("Contrib. Especial",g(73))}${fv("Fecha Verif. SRI",g(74))}${fv("Resultado Verif.",g(75))}
-</div></div>
-<div class="ps2">${sh("IV","PERFIL ECONÓMICO Y ORIGEN DE FONDOS","#37474F")}
-<div class="psb"><div class="pg pg3">
-${fv("Ingreso Mensual USD",g(76))}${fv("Patrimonio USD",g(77))}${fv("Origen Fondos",g(78))}
-<div class="pf" style="grid-column:1/-1">${fv("Descripción Origen",g(79))}</div>
-<div class="pf" style="grid-column:1/-1">${fv("Respaldo Documental",g(80))}</div>
-</div></div></div>
-<div class="ps2">${sh("V","BENEFICIARIO FINAL","#558B2F")}
-<div class="psb pg pg3">
-${fv("¿Actúa por cuenta propia?",g(81))}
-${g(82)?`<div class="pf" style="grid-column:2/4">${fv("Nombre Beneficiario Final",g(82))}</div>
-${fv("Cédula / RUC",g(83))}${fv("Teléfono",g(86))}${fv("Relación",g(88))}
-<div class="pf" style="grid-column:1/-1">${fv("Dirección",g(85))}</div>`:""}
-</div></div>
-<div class="ps2">${sh("VII","CONSULTAS EN BASES PÚBLICAS","#00695C")}
-<div class="psb">
-<div class="pbas" style="margin-bottom:5px">
-${bases.map(b=>`<div class="pa"><div class="pb2${b.on?" on":""}">${b.on?"✓":""}</div><span style="font-size:7pt">${b.lb}</span></div>`).join("")}
-</div>
-${fv("Fecha Consulta Bases",g(101))}
-</div></div>
-<div class="ps2">${sh("VIII","PERSONA EXPUESTA POLÍTICAMENTE (PEP)","#B71C1C")}
-<div class="psb pg pg3">
-${fv("¿Es PEP?",g(102))}${fv("¿Familiar/relacionado PEP?",g(103))}
-${fv("Entidad",g(104))}${fv("Cargo",g(105))}${fv("Período",g(106))}
-</div></div>
-<div class="ps2">${sh("IX","MATRIZ DE EVALUACIÓN DE RIESGO","#BF360C")}
-<div class="psb">
-<div class="pl" style="margin-bottom:3px">Factores Identificados</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 10px;margin-bottom:5px">
-${_v06.map(f=>{const on=(g(111)||"").includes(f);return`<div class="pa"><div class="pb2${on?" on":""}">${on?"✓":""}</div><span style="font-size:7pt">${f}</span></div>`;}).join("")}
-</div>
-<div><span style="font-size:7pt;font-weight:700;color:#555">Nivel de Riesgo:&nbsp;</span>
-<span class="pr" style="background:${rs.bg};color:${rs.c};border-color:${rs.c}">${nr||"— Sin asignar —"}</span>
-</div></div></div>
-<div class="ps2">${sh("X","DECISIÓN INSTITUCIONAL","#1B3A6B")}
-<div class="psb pg pg2">
-${fv("Decisión",g(113))}${fv("Observaciones",g(114))}
-</div></div>
-<div class="ps2">${sh("IX","DECLARACIÓN JURAMENTADA DEL CLIENTE","#1B3A6B")}
-<div class="psb" style="font-size:7pt;line-height:1.4;color:#333">
-Declaro bajo juramento que la información proporcionada es verdadera y que los fondos utilizados
-en la presente operación tienen origen lícito. Autorizo a ${nom} a verificar la información
-en bases públicas y privadas conforme la normativa vigente de prevención de lavado de activos.
-</div></div>
-<div class="pfir">
-<div class="pfb"><div class="pfl"></div>
-<div class="pfl2">Firma del Compareciente: ${g(108)||"_________________________"}<br>Fecha: ${g(109)||"____________________"}</div>
-</div>
-<div class="pfb"><div class="pfl"></div>
-<div class="pfl2">Firma del Funcionario: ${g(110)||"_________________________"}<br>Fecha: ${g(111)||"____________________"}</div>
-</div>
-<div class="pfb"><div class="pfl"></div>
-<div class="pfl2">Firma del Notario/a<br>Sello y Rúbrica<br>Fecha: ____________________</div>
-</div>
-</div>
-<div class="pft">Soluciones D&S · Formulario Debida Diligencia — ${nom||"Institución"} | Prevención Lavado de Activos ${anio} | N° Matriz: ${g(6)||"___"} | Total Pago: $ ${g(12)||"0.00"} | ${hoy}</div>
-</div>`;
-  setTimeout(()=>window.print(),200);
-}
-
-function _f17(icon,tit,msg,ok){
-  el("mi").textContent=icon; el("mt").textContent=tit; el("mm").textContent=msg;
-  el("mo").classList.add("show");
-  el("mbp").style.display=ok?"inline-block":"none";
-  el("mbo").textContent=ok?"+ Nuevo":"Cerrar";
-  el("mbo").onclick=ok?()=>{_f18();_f11();}:_f18;
-}
-function _f18(){ el("mo").classList.remove("show"); }
-function _f11(){
-  document.querySelectorAll("input[type=text],input[type=date],input[type=email],input[type=number],input[type=tel],select,textarea").forEach(e=>{e.value="";e.classList.remove("err-f");});
-  document.querySelectorAll("input[type=checkbox],input[type=radio]").forEach(e=>e.checked=false);
-  document.querySelectorAll(".ai,.bchk").forEach(e=>e.classList&&e.classList.remove("sel"));
-  document.querySelectorAll(".rp").forEach(p=>p.classList.remove("on"));
-  FP_OPCIONES.forEach(fp=>{
-    const card=el("fpcard_"+fp.key);
-    if(card) card.classList.remove("fp_active");
-    const m=el("fpmonto_"+fp.key); if(m) m.value="";
-    const r=el("fpref_"+fp.key); if(r) r.value="";
-    const b=el("fpbadge_"+fp.key); if(b) b.textContent="";
+function loadEdit(i) {
+  var reg = HIST[i]; if (!reg) return;
+  EDIT = reg.datos; EDITIDX = i; EDITROW = reg.fila || -1;
+  closeHist(); resetForm();
+  var d = reg.datos || [];
+  // Mapeo directo por Ã­ndice
+  var mapa = {
+    6:'nro', 7:'tipo_int', 8:'fop', 9:'cuantia', 10:'avaluo',
+    13:'entidad', 14:'nro_cta', 15:'tipo_cta',
+    30:'tipo_bien', 31:'dir_bien', 32:'estado_bien',
+    47:'tipo_id', 48:'cedula', 49:'nombres', 50:'ruc', 51:'nacion', 52:'ecivil', 53:'profesion',
+    54:'actividad', 55:'direccion', 56:'ciudad_cli', 57:'telefono', 58:'correo', 59:'empresa', 60:'tact',
+    61:'ctipo_id', 62:'cced', 63:'cnom', 64:'cruc', 65:'cnac', 66:'cprof',
+    67:'cact', 68:'cdir', 69:'ctel', 70:'ccorreo', 71:'cemp',
+    75:'fsri', 76:'rsri', 78:'ingreso', 79:'patrimonio', 80:'ofondos', 81:'odetalle',
+    84:'bfnom', 85:'bfced', 86:'bfnac', 87:'bfdir', 88:'bftel', 89:'bfcorreo', 90:'bfrel',
+    91:'pjraz', 92:'pjruc', 93:'pjrep', 94:'pjci', 96:'pjben',
+    108:'ncomp', 109:'ffirma', 110:'func', 111:'fdilig', 114:'rotro', 116:'obs'
+  };
+  Object.keys(mapa).forEach(function(idx) {
+    var el = E(mapa[idx]); if (el && d[idx] !== undefined) el.value = d[idx];
   });
-  const fpbal=el("fpago_balance"); if(fpbal) fpbal.style.display="none";
-  _v02="";
-  ["bff","pepf"].forEach(id=>{const e=el(id);if(e)e.style.display="none";});
-  el("cny_flds").style.opacity="1"; el("cny_flds").style.pointerEvents="";
-  el("cny_notice").style.display="none";
+  // Radios
+  [['eruc',72],['regimen',73],['oblig',74],['contrib',75],['cpropia',83],
+   ['espep',103],['pepfam',104],['dacept',108],['pjestr',95]].forEach(function(p) {
+    if (d[p[1]]) { var r = document.querySelector('input[name="' + p[0] + '"][value="' + d[p[1]] + '"]'); if (r) r.checked = true; }
+  });
+  if (d[117]) { var r = document.querySelector('input[name="decision"][value="' + d[117] + '"]'); if (r) r.checked = true; }
+  if (d[115]) { RIESGO = d[115]; document.querySelectorAll('.rp').forEach(function(p) { p.classList.toggle('on', p.dataset.v === RIESGO); }); }
+  // FP
+  FP_KEYS.forEach(function(k, fi) {
+    var mI = 16 + fi, rI = 23 + fi;
+    if (d[mI] && parseFloat(d[mI]) > 0) {
+      var card = E('fpc_' + k); if (card) card.classList.add('on');
+      var m = E('fpm_' + k); if (m) m.value = d[mI];
+      // fpr_ eliminado
+      var bg = E('fpbg_' + k); if (bg) bg.textContent = '$' + (parseFloat(d[mI])||0).toFixed(2);
+    }
+  });
+  FUNC = reg.mat || ''; E('us').value = FUNC; E('bsv').disabled = !FUNC;
+  calcFP(); onAvaluo();
+  E('s1').classList.add('open');
+  E('s1').scrollIntoView({behavior:'smooth'});
+  setTimeout(function() { showAlert('\u270F\uFE0F', 'Modo Edici\u00F3n', 'Cargado: ' + (reg.nombre||'Registro') + '\nN\u00B0: ' + (reg.nro||'\u2014') + '\n\nModifique y guarde.\nM\u00E1x. 4 cambios por campo.', false); }, 200);
 }
 
-async function _f07(){
-  if(!_v13.scriptUrl){el("sp").textContent="⚙ Configurar";el("sp").className="err";return;}
-  try{
-    el("sp").textContent="⏳ Probando...";el("sp").className="saving";
-    await new Promise((res,rej)=>{
-      const cb="__p"+Date.now();const sc=document.createElement("script");
-      const tm=setTimeout(()=>{delete window[cb];try{document.head.removeChild(sc);}catch(x){}rej();},7000);
-      window[cb]=d=>{clearTimeout(tm);delete window[cb];try{document.head.removeChild(sc);}catch(x){}d.status==="OK"?res():rej();};
-      sc.onerror=()=>{clearTimeout(tm);delete window[cb];try{document.head.removeChild(sc);}catch(x){}rej();};
-      sc.src=_v13.scriptUrl+"?callback="+cb+"&action=ping&t="+Date.now();
-      document.head.appendChild(sc);
-    });
-    _v03=true;el("sp").textContent="✓ Conectado";el("sp").className="ok";
-    if(_v01)el("bsv").disabled=false;
-  }catch(e){_v03=false;el("sp").textContent="✗ Error — clic ⚙";el("sp").className="err";}
+// â”€â”€ RESET â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function resetForm() {
+  document.querySelectorAll('input[type=text],input[type=date],input[type=email],input[type=number],input[type=tel],select,textarea').forEach(function(e) { e.value = ''; e.classList.remove('ef'); });
+  document.querySelectorAll('input[type=checkbox],input[type=radio]').forEach(function(e) { e.checked = false; });
+  document.querySelectorAll('.ai').forEach(function(e) { e.classList.remove('sel'); });
+  document.querySelectorAll('.rp').forEach(function(p) { p.classList.remove('on'); });
+  FP_KEYS.forEach(function(k) {
+    var c = E('fpc_' + k); if (c) c.classList.remove('on');
+    var m = E('fpm_' + k); if (m) m.value = '';
+    var r = E('fpr_' + k); if (r) r.value = '';
+    var b = E('fpbg_' + k); if (b) b.textContent = '';
+  });
+  var bal = E('fpbal'); if (bal) bal.style.display = 'none';
+  RIESGO = '';
+  var bff = E('bff'); if (bff) bff.style.display = 'none';
+  var pepf = E('pepf'); if (pepf) pepf.style.display = 'none';
+  var cf = E('cny_flds'); if (cf) { cf.style.opacity = '1'; cf.style.pointerEvents = ''; }
+  var cn = E('cny_notice'); if (cn) cn.style.display = 'none';
+  document.querySelectorAll('.cc').forEach(function(e) { var inp = e.previousElementSibling; if (inp && inp.maxLength > 0) e.textContent = '0/' + inp.maxLength; });
+  var bdg = E('intBdg'); if (bdg) bdg.style.display = 'none';
+  var res = E('intRes'); if (res) res.innerHTML = '';
+  var ic = E('intCed'); if (ic) ic.value = '';
+  var fp = E('fpref'); if (fp) fp.innerHTML = '';
+  // Reconstruir actos desde config (limpia selecciones y respeta lista config)
+  buildActos();
+}
+function doNew() { resetForm(); EDIT = null; EDITROW = -1; EDITIDX = -1; }
+
+// â”€â”€ ALERTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function showAlert(ico, tit, msg, ok) {
+  E('mIco').textContent = ico; E('mTit').textContent = tit; E('mMsg').textContent = msg;
+  E('ovAlert').classList.add('show');
+  E('mPrint').style.display = ok ? 'inline-block' : 'none';
+  E('mBtn').textContent = ok ? '+ Nuevo' : 'Cerrar';
+  E('mBtn').onclick = ok ? function() { closeAlert(); doNew(); } : closeAlert;
+}
+function closeAlert() { E('ovAlert').classList.remove('show'); }
+
+// â”€â”€ ADMIN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function openAdmin() {
+  E('ovAdmin').classList.add('show');
+  E('adLogin').style.display = 'block'; E('adPanel').style.display = 'none';
+  E('adPw').value = ''; E('adErr').style.display = 'none';
+  setTimeout(function() { E('adPw').focus(); }, 100);
+}
+function closeAdmin() { E('ovAdmin').classList.remove('show'); }
+function checkPass() {
+  if (E('adPw').value === CFG.pass) {
+    E('adLogin').style.display = 'none'; E('adPanel').style.display = 'block';
+    E('cfNom').value = CFG.nombre || ''; E('cfAnio').value = CFG.anio || '';
+    E('cfUrl').value = CFG.scriptUrl || ''; E('cfPw').value = '';
+    E('cfMat').value = (CFG.mat || []).join('\n');
+    var cfActEl = E('cfAct');
+    if (cfActEl) cfActEl.value = (CFG.tipoActos || []).join('\n');
+    E('nomLk').style.display  = CFG._nomL  ? 'inline' : 'none';
+    E('anioLk').style.display = CFG._anioL ? 'inline' : 'none';
+    E('urlLk').style.display  = CFG._urlL  ? 'inline' : 'none';
+    E('cfNom').disabled  = CFG._nomL;
+    E('cfAnio').disabled = CFG._anioL;
+    E('cfUrl').disabled  = CFG._urlL;
+  } else { E('adErr').style.display = 'block'; E('adPw').focus(); }
+}
+function testConn() {
+  var url = E('cfUrl').value.trim(), res = E('connRes');
+  if (!url) { res.textContent = '\u26A0 Ingrese URL primero'; res.style.color = '#E65100'; return; }
+  res.textContent = 'Probando...'; res.style.color = '#555';
+  jsonp(url, {action:'ping'}, function(d) {
+    if (d && d.status === 'OK') { res.textContent = '\u2705 Conexi\u00F3n OK'; res.style.color = '#2E7D32'; }
+    else { res.textContent = '\u274C Sin respuesta. Verifique la URL.'; res.style.color = '#B71C1C'; }
+  });
+}
+function saveCfg() {
+  var np = E('cfPw').value.trim();
+  if (!CFG._nomL)  { CFG.nombre    = E('cfNom').value.trim();  if (CFG.nombre)    CFG._nomL  = true; }
+  if (!CFG._anioL) { CFG.anio      = E('cfAnio').value.trim(); if (CFG.anio)      CFG._anioL = true; }
+  if (!CFG._urlL)  { CFG.scriptUrl = E('cfUrl').value.trim();  if (CFG.scriptUrl) CFG._urlL  = true; }
+  if (np) CFG.pass = np;
+  CFG.mat = E('cfMat').value.split('\n').map(function(s) { return s.trim(); }).filter(Boolean);
+  var cfAct = E('cfAct');
+  if (cfAct) CFG.tipoActos = cfAct.value.split('\n').map(function(s) { return s.trim(); }).filter(Boolean);
+  localStorage.setItem('dd_cfg', JSON.stringify(CFG));
+  var m = E('cfMsg'); m.style.display = 'block'; m.style.background = '#D1FAE5'; m.style.color = '#065F46';
+  m.textContent = '\u2705 Configuraci\u00F3n guardada. Recargando...';
+  setTimeout(function() { closeAdmin(); location.reload(); }, 1200);
 }
 
-function _f01(){
-  el("ao").style.display="flex";el("alv").style.display="block";el("apv").style.display="none";
-  el("api").value="";el("ape").style.display="none";
-  setTimeout(()=>el("api").focus(),100);
+// â”€â”€ JSONP / PING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function jsonp(url, params, cb) {
+  var cbn = '__jp' + Date.now(); var sc = document.createElement('script');
+  var tm = setTimeout(function() { delete window[cbn]; try { document.head.removeChild(sc); } catch(x) {} cb({status:'ERROR', msg:'Timeout'}); }, 12000);
+  window[cbn] = function(data) { clearTimeout(tm); delete window[cbn]; try { document.head.removeChild(sc); } catch(x) {} cb(data); };
+  sc.onerror = function() { clearTimeout(tm); delete window[cbn]; try { document.head.removeChild(sc); } catch(x) {} cb({status:'ERROR', msg:'Error de red'}); };
+  var qs = Object.keys(params).map(function(k) { return k + '=' + params[k]; }).join('&');
+  sc.src = url + '?' + qs + '&callback=' + cbn + '&t=' + Date.now();
+  document.head.appendChild(sc);
 }
-function _f02(){ el("ao").style.display="none"; }
-function _f03(){
-  if(el("api").value===(_v13.pass||_v08)){
-    el("alv").style.display="none";el("apv").style.display="block";
-    el("cn").value=_v13.nombre||"";el("ca").value=_v13.anio||"";
-    el("cs").value=_v13.scriptUrl||"";el("cp").value="";
-    el("cm").value=(_v13.matrizadores||[]).join("\n");
-    el("cac").value=(_v13.tipoActos||[]).join("\n");
-    el("cna").value=(_v13.nacionalidades||[]).join("\n");
-    el("cpr").value=(_v13.profesiones||[]).join("\n");
-  }else{el("ape").style.display="block";el("api").focus();}
-}
-async function _f04(){
-  const url=el("cs").value.trim(),res=el("csr");
-  if(!url){res.textContent="⚠ Ingrese URL";res.style.color="#E65100";return;}
-  res.textContent="⏳ Probando...";res.style.color="#E65100";
-  try{await fetch(url,{mode:"no-cors"});res.textContent="✅ Script responde OK";res.style.color="#2E7D32";}
-  catch(e){res.textContent="❌ No responde";res.style.color="#B71C1C";}
-}
-function _f05(){
-  const np=el("cp").value.trim();
-  _v13.nombre=el("cn").value.trim();_v13.anio=el("ca").value.trim();
-  _v13.scriptUrl=el("cs").value.trim();
-  if(np)_v13.pass=np;
-  _v13.matrizadores=el("cm").value.split("\n").map(s=>s.trim()).filter(Boolean);
-  _v13.tipoActos=el("cac").value.split("\n").map(s=>s.trim()).filter(Boolean);
-  _v13.nacionalidades=el("cna").value.split("\n").map(s=>s.trim()).filter(Boolean);
-  _v13.profesiones=el("cpr").value.split("\n").map(s=>s.trim()).filter(Boolean);
-  localStorage.setItem("dd_cfg",JSON.stringify(_v13));
-  const m=el("cmsg");
-  m.style.display="block";m.style.background="#D1FAE5";m.style.color="#065F46";
-  m.textContent="✅ Configuración guardada. Recargando...";
-  setTimeout(()=>{_f02();location.reload();},1400);
-}
-function _f25(val){
-  const esVendedor=val==="Vendedor";
-  const fw=el("fondos_wrap"),ow=el("odetalle_wrap");
-  if(fw){fw.style.opacity=esVendedor?"0.35":"1";fw.style.pointerEvents=esVendedor?"none":"";}
-  if(ow){ow.style.opacity=esVendedor?"0.35":"1";ow.style.pointerEvents=esVendedor?"none":"";}
-  if(esVendedor){
-    const sf=el("ofondos");if(sf)sf.value="";
-    const ta=el("odetalle");if(ta)ta.value="";
-    let notice=el("vendedor_notice");
-    if(!notice){notice=document.createElement("div");notice.id="vendedor_notice";
-      notice.style.cssText="background:#E0F2FE;border:1px solid #0284C7;border-radius:7px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#0C4A6E";
-      notice.textContent="ℹ Para Vendedor, los campos de Origen de Fondos no aplican.";
-      if(fw&&fw.parentNode)fw.parentNode.insertBefore(notice,fw);}
-    notice.style.display="block";
-  }else{const notice=el("vendedor_notice");if(notice)notice.style.display="none";}
-}
-async function _f26(cedula){
-  cedula=cedula.trim();
-  if(!cedula||cedula.length<5||!_v13.scriptUrl)return;
-  const ind=el("cedula_searching");
-  if(ind){ind.textContent="🔍 Buscando...";ind.style.display="inline";}
-  try{throw new Error("skip");}
-  catch(e){if(ind)ind.style.display="none";}
+function doPing() {
+  if (!CFG.scriptUrl) { E('sp').textContent = '\u2699 Configurar'; E('sp').className = 'err'; return; }
+  E('sp').textContent = '...'; E('sp').className = 'spin';
+  jsonp(CFG.scriptUrl, {action:'ping'}, function(d) {
+    if (d && d.status === 'OK') { E('sp').textContent = '\u2713 Conectado'; E('sp').className = 'ok'; if (FUNC) E('bsv').disabled = false; }
+    else { E('sp').textContent = '\u2717 Error'; E('sp').className = 'err'; }
+  });
 }
 
-_f06();
-_f07();
+// â”€â”€ PRINT A4 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function doPrint() {
+  var d = collectData();
+  var nom = d[3] || CFG.nombre || 'Instituci\u00F3n';
+  var anio = d[4] || CFG.anio || '';
+  var hoy = new Date().toLocaleDateString('es-EC', {day:'2-digit', month:'2-digit', year:'numeric'});
+  function fv(lb, val) { return '<div class="pf"><div class="pl">' + lb + '</div><div class="pv">' + (val || '\u2014') + '</div></div>'; }
+  var fpRows = FP_KEYS.map(function(k, i) {
+    var c = E('fpc_' + k);
+    if (!c || !c.classList.contains('on')) return '';
+    var m = parseFloat((E('fpm_' + k)||{}).value)||0;
+    var ref = (E('fpr_' + k)||{}).value || '\u2014';
+    return '<div class="pp-fp"><div>' + FP_NAMES[i] + '</div><div>$ ' + m.toFixed(2) + '</div><div>' + ref + '</div></div>';
+  }).filter(Boolean).join('');
+  var fpPrint = fpRows ? '<div style="border:1px solid #E2E8F0;border-radius:4px;overflow:hidden">' +
+    '<div class="pp-fp hdr"><div>Forma de Pago</div><div>Monto USD</div><div>Referencia / Detalle</div></div>' +
+    fpRows + '<div class="pp-tot"><span>Total</span><span>$ ' + sumFP().toFixed(2) + '</span></div></div>' : '\u2014';
+  var nr = RIESGO;
+  var rsm = {BAJO:'#D1FAE5,#2E7D32', MEDIO:'#FEF3C7,#B45309', ALTO:'#FFEDD5,#E65100', 'MUY ALTO':'#FEE2E2,#B71C1C'};
+  var rsc = (rsm[nr] || '#F3F4F6,#555').split(',');
+  E('pd').innerHTML = '<div class="pw">' +
+    '<div class="phd"><div><h1>FORMULARIO DEBIDA DILIGENCIA \u2014 ' + nom.toUpperCase() + '</h1>' +
+    '<p>Prevenci\u00F3n de Lavado de Activos \u00B7 ' + anio + '</p></div>' +
+    '<div class="pr">N\u00B0 Matriz: <strong>' + (d[6]||'\u2014') + '</strong><br>Generado: ' + hoy + '</div></div>' +
+    '<div class="pmeta">' +
+    '<div class="pmi"><div class="pml">Funcionario</div><div class="pmv">' + (d[2]||'\u2014') + '</div></div>' +
+    '<div class="pmi"><div class="pml">Fecha</div><div class="pmv">' + hoy + '</div></div>' +
+    '<div class="pmi"><div class="pml">N\u00B0 Matriz</div><div class="pmv">' + (d[6]||'\u2014') + '</div></div>' +
+    '<div class="pmi"><div class="pml">Estado</div><div class="pmv">GUARDADO</div></div></div>' +
+    '<div class="psec"><div class="psh" style="background:#0D7377">I. INFORMACI\u00D3N GENERAL DE LA OPERACI\u00D3N</div><div class="psb"><div class="pgrd pg3">' +
+    fv('N\u00B0 Matriz', d[6]) + fv('Tipo Interviniente', d[7]) + fv('Fecha Operaci\u00F3n', d[8]) +
+    fv('Cuant\u00EDa USD', d[9]) + fv('Avalu\u00F3 USD (ref. FP)', d[10]) + fv('Total Pago USD', d[12]) +
+    fv('Tipo de Bien', d[30]) + fv('Direcci\u00F3n del Bien', d[31]) + fv('Estado del Bien', d[32]) +
+    '</div><div style="margin-top:5px"><div class="pl" style="margin-bottom:3px">FORMAS DE PAGO</div>' + fpPrint + '</div></div></div>' +
+    '<div class="psec"><div class="psh" style="background:#1565C0">II. IDENTIFICACI\u00D3N DEL CLIENTE</div><div class="psb"><div class="pgrd pg3">' +
+    fv('Tipo ID', d[47]) + fv('C\u00E9dula/Pasaporte', d[48]) + fv('RUC', d[50]) +
+    '<div class="pf" style="grid-column:1/-1">' + fv('Nombres Completos', d[49]) + '</div>' +
+    fv('Nacionalidad', d[51]) + fv('Estado Civil', d[52]) + fv('Profesi\u00F3n', d[53]) +
+    '<div class="pf" style="grid-column:1/-1">' + fv('Actividad Econ\u00F3mica', d[54]) + '</div>' +
+    '<div class="pf" style="grid-column:1/-1">' + fv('Direcci\u00F3n', d[55]) + '</div>' +
+    fv('Ciudad', d[56]) + fv('Tel\u00E9fono', d[57]) + fv('Correo', d[58]) +
+    '<div class="pf" style="grid-column:1/-1">' + fv('Empresa', d[59]) + '</div>' +
+    '</div></div></div>' +
+    '<div class="psec"><div class="psh" style="background:#37474F">V. PERFIL ECON\u00D3MICO</div><div class="psb"><div class="pgrd pg3">' +
+    fv('Ingreso Mensual', d[78]) + fv('Patrimonio', d[79]) + fv('Origen Fondos', d[80]) +
+    '<div class="pf" style="grid-column:1/-1">' + fv('Descripci\u00F3n', d[81]) + '</div></div></div></div>' +
+    '<div class="psec"><div class="psh" style="background:#BF360C">X. RIESGO Y DECISI\u00D3N</div><div class="psb"><div class="pgrd pg2">' +
+    '<div><div class="pl">Nivel de Riesgo</div><div class="pv"><span style="background:' + rsc[0] + ';color:' + rsc[1] + ';border:1.5px solid ' + rsc[1] + ';padding:2px 10px;border-radius:10px;font-weight:800">' + (nr||'Sin asignar') + '</span></div></div>' +
+    fv('Decisi\u00F3n', d[116]) +
+    '<div class="pf" style="grid-column:1/-1">' + fv('Observaciones', d[117]) + '</div>' +
+    '</div></div></div>' +
+    '<div class="pfirm">' +
+    '<div class="pfirb"><div class="pfirl"></div><div class="pfirc">Compareciente: ' + (d[108]||'___________________') + '<br>Fecha: ' + (d[109]||'_______________') + '</div></div>' +
+    '<div class="pfirb"><div class="pfirl"></div><div class="pfirc">Funcionario: ' + (d[110]||'___________________') + '<br>Fecha: ' + (d[111]||'_______________') + '</div></div>' +
+    '<div class="pfirb"><div class="pfirl"></div><div class="pfirc">Firma Notario/a \u00B7 Sello<br>Fecha: _______________</div></div>' +
+    '</div>' +
+    '<div class="pft">Soluciones D&S \u00B7 Formulario Debida Diligencia \u2014 ' + nom + ' \u00B7 ' + anio + ' \u00B7 ' + hoy + '</div>' +
+    '</div>';
+  setTimeout(function() { window.print(); }, 200);
+}
+
+// â”€â”€ ARRANCAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+window.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
